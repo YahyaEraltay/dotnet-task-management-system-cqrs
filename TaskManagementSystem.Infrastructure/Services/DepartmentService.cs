@@ -65,7 +65,7 @@ namespace TaskManagementSystem.Infrastructure.Services
                 await _departmentRepository.Delete(department);
 
                 response.IsDeleted = true;
-                response.Message = "Department is deleted";
+                response.Message = "Department deleted";
             }
             else
             {
