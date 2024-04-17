@@ -10,9 +10,9 @@ namespace TaskManagementSystem.Infrastructure.Services
 {
     public interface IDepartmentService
     {
-        Task<DepartmentResponseDTO> CreateDepartment(CreateDepartmentRequestDTO request);
-        Task<DepartmentResponseDTO> UpdateDepartment(UpdateDepartmentRequestDTO request);
-        Task<DeleteDepartmentResponseDTO> DeleteDepartment(GetDepartmentRequestDTO request);
+        Task<DepartmentResponseDTO> Create(CreateDepartmentRequestDTO request);
+        Task<DepartmentResponseDTO> Update(UpdateDepartmentRequestDTO request);
+        Task<DeleteDepartmentResponseDTO> Delete(GetDepartmentRequestDTO request);
         Task<DepartmentResponseDTO> Detail(GetDepartmentRequestDTO request);
         Task<List<DepartmentResponseDTO>> All();
     }

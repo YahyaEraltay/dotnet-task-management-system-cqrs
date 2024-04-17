@@ -37,7 +37,7 @@ namespace TaskManagementSystem.Infrastructure.Services
             }
         }
 
-        public async Task<DepartmentResponseDTO> CreateDepartment(CreateDepartmentRequestDTO request)
+        public async Task<DepartmentResponseDTO> Create(CreateDepartmentRequestDTO request)
         {
             var department = new Department()
             {
@@ -55,7 +55,7 @@ namespace TaskManagementSystem.Infrastructure.Services
             return response;
         }
 
-        public async Task<DeleteDepartmentResponseDTO> DeleteDepartment(GetDepartmentRequestDTO request)
+        public async Task<DeleteDepartmentResponseDTO> Delete(GetDepartmentRequestDTO request)
         {
             var department = await _departmentRepository.Detail(request.Id);
             var response = new DeleteDepartmentResponseDTO();
@@ -95,7 +95,7 @@ namespace TaskManagementSystem.Infrastructure.Services
             }
         }
 
-        public async Task<DepartmentResponseDTO> UpdateDepartment(UpdateDepartmentRequestDTO request)
+        public async Task<DepartmentResponseDTO> Update(UpdateDepartmentRequestDTO request)
         {
             var department = await _departmentRepository.Detail(request.Id);
 
