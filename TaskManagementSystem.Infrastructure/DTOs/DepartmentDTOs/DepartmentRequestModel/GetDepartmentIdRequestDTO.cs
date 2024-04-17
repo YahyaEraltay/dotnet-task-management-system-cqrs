@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentRequestModel
 {
-    public class GetDepartmentRequestDTO
+    public class GetDepartmentIdRequestDTO
     {
         public Guid Id { get; set; }
     }
