@@ -79,11 +79,10 @@ namespace TaskManagementSystem.Infrastructure.Services
         public async Task<DepartmentResponseDTO> Detail(GetDepartmentRequestDTO request)
         {
             var department = await _departmentRepository.Detail(request.Id);
-            var response = new DepartmentResponseDTO();
 
             if (department != null)
             {
-                response = new DepartmentResponseDTO()
+                var response = new DepartmentResponseDTO()
                 {
                     Id = department.Id,
                     DepartmentName = department.DepartmentName,
@@ -99,14 +98,13 @@ namespace TaskManagementSystem.Infrastructure.Services
         public async Task<DepartmentResponseDTO> UpdateDepartment(UpdateDepartmentRequestDTO request)
         {
             var department = await _departmentRepository.Detail(request.Id);
-            var response = new DepartmentResponseDTO();
 
             if (department != null)
             {
                 department.DepartmentName = request.DepartmentName;
                 await _departmentRepository.Update(department);
 
-                response = new DepartmentResponseDTO()
+                var response = new DepartmentResponseDTO()
                 {
                     Id = department.Id,
                     DepartmentName = department.DepartmentName,
