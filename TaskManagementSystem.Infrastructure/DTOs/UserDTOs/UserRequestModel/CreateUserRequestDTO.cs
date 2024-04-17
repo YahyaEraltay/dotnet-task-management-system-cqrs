@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel
 {
-    internal class UserDTO
+    public class CreateUserRequestDTO
     {
     }
 }
