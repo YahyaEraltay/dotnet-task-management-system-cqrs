@@ -9,7 +9,7 @@ namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel
     public class CreateUserRequestDTO
     {
         public string UserName { get; set; }
-        public string Email { get; set; }
+        public string UserEmail { get; set; }
         public Guid DepartmentId { get; set; }
     }
 }
