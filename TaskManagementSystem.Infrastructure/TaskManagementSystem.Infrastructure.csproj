@@ -19,8 +19,4 @@
     <ProjectReference Include="..\TaskManagementSystem.Domain\TaskManagementSystem.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\UserDTOs\UserResponseModel\" />
-  </ItemGroup>
-
 </Project>

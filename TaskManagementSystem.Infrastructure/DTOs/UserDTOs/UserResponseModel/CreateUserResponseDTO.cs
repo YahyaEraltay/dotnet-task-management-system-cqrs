@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel
+namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserResponseModel
 {
-    public class CreateUserRequestDTO
+    public class CreateUserResponseDTO
     {
+        public Guid Id { get; set; }
         public string UserName { get; set; }
-        public string Email { get; set; }
+        public string UserEmail { get; set; }
         public Guid DepartmentId { get; set; }
     }
 }
