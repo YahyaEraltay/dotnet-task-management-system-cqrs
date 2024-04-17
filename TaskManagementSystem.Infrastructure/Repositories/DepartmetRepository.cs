@@ -47,7 +47,7 @@ namespace TaskManagementSystem.Infrastructure.Repositories
 
         public async Task<Department> Update(Department department)
         {
-            var updatedDepartment = await _context.Departments.FirstOrDefaultAsync(x=>x.Id == department.Id);
+            var updatedDepartment = await _context.Departments.FirstOrDefaultAsync(x => x.Id == department.Id);
 
             _context.Departments.Update(updatedDepartment);
             await _context.SaveChangesAsync();
