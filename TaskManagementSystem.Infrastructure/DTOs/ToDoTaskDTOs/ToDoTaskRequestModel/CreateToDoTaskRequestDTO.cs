@@ -10,9 +10,9 @@ namespace TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskRequestM
     public class CreateToDoTaskRequestDTO
     {
         public string ToDoTaskName { get; set; }
-        public int DepartmentId { get; set; }
-        public int CreatorUserId { get; set; }
-        public int AssignedUserId { get; set; }
+        public Guid DepartmentId { get; set; }
+        public Guid CreatorUserId { get; set; }
+        public Guid AssignedUserId { get; set; }
         public StatusEnum Status { get; set; }
     }
 }

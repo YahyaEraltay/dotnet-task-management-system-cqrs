@@ -9,7 +9,7 @@ namespace TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskResponse
 {
     public class DeleteToDoTaskResponseDTO
     {
-        public Guid IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public string Message { get; set; }
     }
 }
