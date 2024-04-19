@@ -7,7 +7,7 @@ using TaskManagementSystem.Domain.Entites;
 
 namespace TaskManagementSystem.Infrastructure.Repositories
 {
-    internal interface IUserRepository
+    public interface IUserRepository
     {
         Task<User> Create(User user);
         Task<User> Update(User user);
