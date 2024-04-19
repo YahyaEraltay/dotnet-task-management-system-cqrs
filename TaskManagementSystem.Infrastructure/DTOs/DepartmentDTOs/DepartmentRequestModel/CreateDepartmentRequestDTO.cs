@@ -8,6 +8,7 @@ namespace TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentRequ
 {
     public class CreateDepartmentRequestDTO
     {
+        public Guid Id { get; set; }
         public string DepartmentName { get; set; }
     }
 }
