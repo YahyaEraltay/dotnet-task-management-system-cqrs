@@ -21,7 +21,10 @@ namespace TaskManagementSystem.Application.Departments.Commands.Delete
 
             if (department != null)
             {
-                await _departmentService.Delete(department.Id);
+                await _departmentService.Delete(new GetDepartmentIdRequestDTO
+                {
+                    Id = department.Id,
+                });
 
                 response.IsDeleted = true;
                 response.Message = "Department deleted";

@@ -55,9 +55,9 @@ namespace TaskManagementSystem.Infrastructure.Services
             return response;
         }
 
-        public async Task<DeleteDepartmentResponseDTO> Delete(Guid id)
+        public async Task<DeleteDepartmentResponseDTO> Delete(GetDepartmentIdRequestDTO request)
         {
-            var department = await _departmentRepository.Detail(id);
+            var department = await _departmentRepository.Detail(request.Id);
             var response = new DeleteDepartmentResponseDTO();
 
             if (department != null)
