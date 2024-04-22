@@ -16,7 +16,7 @@ namespace TaskManagementSystem.Application.Departments.Commands.Update
 
         public async Task<UpdateDepartmentResponse> Handle(UpdateDepartmentRequest request, CancellationToken cancellationToken)
         {
-            var department = await _departmentService.Detail(request.Id);
+            var department = await _departmentService.GetById(request.Id);
 
             if (department != null)
             {

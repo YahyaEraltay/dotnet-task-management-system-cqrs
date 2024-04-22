@@ -20,7 +20,7 @@ namespace TaskManagementSystem.Application.Departments.Queries.Detail
 
         public async Task<DetailDepartmentResponse> Handle(DetailDepartmentRequest request, CancellationToken cancellationToken)
         {
-            var departmentDetail = await _departmentService.Detail(request.Id);
+            var departmentDetail = await _departmentService.GetById(request.Id);
 
             var response = new DetailDepartmentResponse
             {

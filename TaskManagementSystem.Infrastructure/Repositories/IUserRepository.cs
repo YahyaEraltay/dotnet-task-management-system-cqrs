@@ -12,7 +12,7 @@ namespace TaskManagementSystem.Infrastructure.Repositories
         Task<User> Create(User user);
         Task<User> Update(User user);
         Task<User> Delete(User user);
-        Task<User> Detail(Guid id);
+        Task<User> GetById(Guid id);
         Task<List<User>> All();
     }
 }

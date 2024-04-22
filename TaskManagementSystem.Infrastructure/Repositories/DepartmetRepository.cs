@@ -38,7 +38,7 @@ namespace TaskManagementSystem.Infrastructure.Repositories
             return deletedDepartment;
         }
 
-        public async Task<Department> Detail(Guid id)
+        public async Task<Department> GetById(Guid id)
         {
             var department = await _context.Departments.FirstOrDefaultAsync(x => x.Id == id);
 

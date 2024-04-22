@@ -52,7 +52,7 @@ namespace TaskManagementSystem.Infrastructure.Repositories
             return deletedUser;
         }
 
-        public async Task<User> Detail(Guid id)
+        public async Task<User> GetById(Guid id)
         {
             var user = await _context.Users
                                      .Include(x => x.Department)

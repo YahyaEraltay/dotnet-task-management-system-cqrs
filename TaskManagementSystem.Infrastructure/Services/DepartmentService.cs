@@ -57,7 +57,7 @@ namespace TaskManagementSystem.Infrastructure.Services
 
         public async Task<DeleteDepartmentResponseDTO> Delete(GetDepartmentIdRequestDTO request)
         {
-            var department = await _departmentRepository.Detail(request.Id);
+            var department = await _departmentRepository.GetById(request.Id);
             var response = new DeleteDepartmentResponseDTO();
 
             if (department != null)
@@ -76,9 +76,9 @@ namespace TaskManagementSystem.Infrastructure.Services
             return response;
         }
 
-        public async Task<DepartmentResponseDTO> Detail(Guid id)
+        public async Task<DepartmentResponseDTO> GetById(Guid id)
         {
-            var department = await _departmentRepository.Detail(id);
+            var department = await _departmentRepository.GetById(id);
 
             if (department != null)
             {
@@ -97,7 +97,7 @@ namespace TaskManagementSystem.Infrastructure.Services
 
         public async Task<DepartmentResponseDTO> Update(UpdateDepartmentRequestDTO request)
         {
-            var department = await _departmentRepository.Detail(request.Id);
+            var department = await _departmentRepository.GetById(request.Id);
 
             if (department != null)
             {

@@ -58,7 +58,7 @@ namespace TaskManagementSystem.Infrastructure.Services
 
         public async Task<DeleteUserResponseDTO> Delete(GetUserIdRequestDTO request)
         {
-            var user = await _userRepository.Detail(request.Id);
+            var user = await _userRepository.GetById(request.Id);
             var response = new DeleteUserResponseDTO();
 
             if (user != null)
@@ -77,9 +77,9 @@ namespace TaskManagementSystem.Infrastructure.Services
             return response;
         }
 
-        public async Task<UserResponseDTO> Detail(Guid id)
+        public async Task<UserResponseDTO> GetById(Guid id)
         {
-            var user = await _userRepository.Detail(id);
+            var user = await _userRepository.GetById(id);
 
             var response = new UserResponseDTO()
             {
@@ -94,7 +94,7 @@ namespace TaskManagementSystem.Infrastructure.Services
 
         public async Task<UserResponseDTO> Update(UpdateUserRequestDTO request)
         {
-            var user = await _userRepository.Detail(request.Id);
+            var user = await _userRepository.GetById(request.Id);
             var response = new UserResponseDTO();
 
             if (user != null)

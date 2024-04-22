@@ -14,7 +14,7 @@ namespace TaskManagementSystem.Infrastructure.Services
         Task<DepartmentResponseDTO> Create(CreateDepartmentRequestDTO request);
         Task<DepartmentResponseDTO> Update(UpdateDepartmentRequestDTO request);
         Task<DeleteDepartmentResponseDTO> Delete(GetDepartmentIdRequestDTO request);
-        Task<DepartmentResponseDTO> Detail(Guid id);
+        Task<DepartmentResponseDTO> GetById(Guid id);
         Task<List<DepartmentResponseDTO>> All();
     }
 }
