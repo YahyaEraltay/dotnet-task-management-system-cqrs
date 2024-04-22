@@ -14,11 +14,4 @@
     <ProjectReference Include="..\TaskManagementSystem.Infrastructure\TaskManagementSystem.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Users\Commands\Delete\" />
-    <Folder Include="Users\Commands\Update\" />
-    <Folder Include="Users\Queries\All\" />
-    <Folder Include="Users\Queries\Detail\" />
-  </ItemGroup>
-
 </Project>
