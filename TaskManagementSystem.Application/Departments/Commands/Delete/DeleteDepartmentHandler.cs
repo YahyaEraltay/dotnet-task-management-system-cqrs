@@ -1,15 +1,11 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentRequestModel;
+using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentResponseModel;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.Departments.Commands.Delete
 {
-    public class DeleteDepartmentHandler : IRequestHandler<DeleteRequest, DeleteResponse>
+    public class DeleteDepartmentHandler : IRequestHandler<DeleteDepartmentRequest, DeleteDepartmentResponse>
     {
         private readonly IDepartmentService _departmentService;
 
@@ -18,18 +14,23 @@ namespace TaskManagementSystem.Application.Departments.Commands.Delete
             _departmentService = departmentService;
         }
 
-        public async Task<DeleteResponse> Handle(DeleteRequest request, CancellationToken cancellationToken)
+        public async Task<DeleteDepartmentResponse> Handle(DeleteDepartmentRequest request, CancellationToken cancellationToken)
         {
-            var department = await _departmentService.Delete(new GetDepartmentIdRequestDTO
-            {
-                Id = request.Id
-            });
+            var department = await _departmentService.Detail(request.Id);
+            var response = new DeleteDepartmentResponse();
 
-            var response = new DeleteResponse
+            if (department != null)
             {
-                IsDeleted = true,
-                Message = "abc"
-            };
+                await _departmentService.Delete(department.Id);
+
+                response.IsDeleted = true;
+                response.Message = "Department deleted";
+            }
+            else
+            {
+                response.IsDeleted = false;
+                response.Message = "Department not deleted";
+            }
 
             return response;
         }

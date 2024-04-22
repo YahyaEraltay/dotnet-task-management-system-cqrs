@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Application.Departments.Queries.All
+namespace TaskManagementSystem.Application.Users.Commands.Create
 {
-    public class AllResponse
+    internal class CreateUserHandler
     {
     }
 }

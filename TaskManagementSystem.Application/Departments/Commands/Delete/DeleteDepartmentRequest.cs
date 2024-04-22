@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Application.Departments.Queries.All
+namespace TaskManagementSystem.Application.Departments.Commands.Delete
 {
-    public class AllRequest : IRequest<AllResponse>
+    public class DeleteDepartmentRequest : IRequest<DeleteDepartmentResponse>
     {
         public Guid Id { get; set; }
-        public string DepartmentName { get; set; }
     }
 }

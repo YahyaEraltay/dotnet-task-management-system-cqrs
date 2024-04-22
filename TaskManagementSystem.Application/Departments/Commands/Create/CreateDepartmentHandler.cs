@@ -9,7 +9,7 @@ using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.Departments.Commands.Create
 {
-    public class CreateDepartmentHandler : IRequestHandler<CreateRequest, CreateResponse>
+    public class CreateDepartmentHandler : IRequestHandler<CreateDepartmentRequest, CreateDepartmentResponse>
     {
         private readonly IDepartmentService _departmentService;
 
@@ -18,7 +18,7 @@ namespace TaskManagementSystem.Application.Departments.Commands.Create
             _departmentService = departmentService;
         }
 
-        public async Task<CreateResponse> Handle(CreateRequest request, CancellationToken cancellationToken)
+        public async Task<CreateDepartmentResponse> Handle(CreateDepartmentRequest request, CancellationToken cancellationToken)
         {
             var department = new CreateDepartmentRequestDTO()
             {
@@ -27,7 +27,7 @@ namespace TaskManagementSystem.Application.Departments.Commands.Create
 
             await _departmentService.Create(department);
 
-            var response = new CreateResponse()
+            var response = new CreateDepartmentResponse()
             {
                 Id = department.Id,
                 DepartmentName = department.DepartmentName

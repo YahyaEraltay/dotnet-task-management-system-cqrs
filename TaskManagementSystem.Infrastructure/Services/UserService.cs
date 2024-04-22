@@ -77,9 +77,9 @@ namespace TaskManagementSystem.Infrastructure.Services
             return response;
         }
 
-        public async Task<UserResponseDTO> Detail(GetUserIdRequestDTO request)
+        public async Task<UserResponseDTO> Detail(Guid id)
         {
-            var user = await _userRepository.Detail(request.Id);
+            var user = await _userRepository.Detail(id);
 
             var response = new UserResponseDTO()
             {

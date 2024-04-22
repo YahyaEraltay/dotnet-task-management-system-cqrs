@@ -1,3 +1,5 @@
+using MediatR;
+using TaskManagementSystem.Application.Departments.Commands.Create;
 using TaskManagementSystem.Infrastructure.RelationalDb;
 using TaskManagementSystem.Infrastructure.Repositories;
 using TaskManagementSystem.Infrastructure.Services;
@@ -18,6 +20,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IToDoTaskRepository, ToDoTaskRepository>();
 builder.Services.AddScoped<IToDoTaskService, ToDoTaskService>();
+
+builder.Services.AddMediatR(typeof(CreateDepartmentHandler).Assembly);
 
 var app = builder.Build();
 

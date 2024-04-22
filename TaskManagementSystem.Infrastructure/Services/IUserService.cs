@@ -8,7 +8,7 @@ namespace TaskManagementSystem.Infrastructure.Services
         Task<CreateUserResponseDTO> Create(CreateUserRequestDTO request);
         Task<UserResponseDTO> Update(UpdateUserRequestDTO request);
         Task<DeleteUserResponseDTO> Delete(GetUserIdRequestDTO request);
-        Task<UserResponseDTO> Detail(GetUserIdRequestDTO request);
+        Task<UserResponseDTO> Detail(Guid id);
         Task<List<UserResponseDTO>> All();
     }
 }

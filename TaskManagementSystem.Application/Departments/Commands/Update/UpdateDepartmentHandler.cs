@@ -1,24 +1,22 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentRequestModel;
+using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentResponseModel;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.Departments.Commands.Update
 {
-    public class UpdateDepartmentHandler : IRequestHandler<UpdateRequest, UpdateResponse>
+    public class UpdateDepartmentHandler : IRequestHandler<UpdateDepartmentRequest, UpdateDepartmentResponse>
     {
         private readonly IDepartmentService _departmentService;
 
-        public async Task<UpdateResponse> Handle(UpdateRequest request, CancellationToken cancellationToken)
+        public UpdateDepartmentHandler(IDepartmentService departmentService)
         {
-            var department = await _departmentService.Detail(new GetDepartmentIdRequestDTO
-            {
-                Id = request.Id,
-            });
+            _departmentService = departmentService;
+        }
+
+        public async Task<UpdateDepartmentResponse> Handle(UpdateDepartmentRequest request, CancellationToken cancellationToken)
+        {
+            var department = await _departmentService.Detail(request.Id);
 
             if (department != null)
             {
@@ -31,7 +29,7 @@ namespace TaskManagementSystem.Application.Departments.Commands.Update
                 await _departmentService.Update(updatedDepartment);
             }
 
-            var response = new UpdateResponse
+            var response = new UpdateDepartmentResponse
             {
                 Id = department.Id,
                 DepartmentName = request.DepartmentName

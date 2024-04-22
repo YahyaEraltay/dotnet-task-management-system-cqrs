@@ -94,9 +94,9 @@ namespace TaskManagementSystem.Infrastructure.Services
             }
         }
 
-        public async Task<GetToDoTaskResponseDTO> Detail(GetToDoTaskIdRequestDTO request)
+        public async Task<GetToDoTaskResponseDTO> Detail(Guid id)
         {
-            var task = await _toDoTaskRepository.Detail(request.Id);
+            var task = await _toDoTaskRepository.Detail(id);
 
             if (task != null)
             {

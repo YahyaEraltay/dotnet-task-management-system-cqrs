@@ -55,9 +55,9 @@ namespace TaskManagementSystem.Infrastructure.Services
             return response;
         }
 
-        public async Task<DeleteDepartmentResponseDTO> Delete(GetDepartmentIdRequestDTO request)
+        public async Task<DeleteDepartmentResponseDTO> Delete(Guid id)
         {
-            var department = await _departmentRepository.Detail(request.Id);
+            var department = await _departmentRepository.Detail(id);
             var response = new DeleteDepartmentResponseDTO();
 
             if (department != null)
@@ -76,9 +76,9 @@ namespace TaskManagementSystem.Infrastructure.Services
             return response;
         }
 
-        public async Task<DepartmentResponseDTO> Detail(GetDepartmentIdRequestDTO request)
+        public async Task<DepartmentResponseDTO> Detail(Guid id)
         {
-            var department = await _departmentRepository.Detail(request.Id);
+            var department = await _departmentRepository.Detail(id);
 
             if (department != null)
             {
