@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Application.Users.Queries.Detail
 {
-    internal class DetailUserResponse
+    public class DetailUserResponse
     {
+        public Guid Id { get; set; }
+        public string UserName { get; set; }
+        public string UserEmail { get; set; }
+        public string DepartmentName { get; set; }
     }
 }
