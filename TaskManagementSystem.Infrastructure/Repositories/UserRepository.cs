@@ -24,14 +24,7 @@ namespace TaskManagementSystem.Infrastructure.Repositories
                                       .Include(x => x.Department)
                                       .ToListAsync();
 
-            if (users != null)
-            {
-                return users;
-            }
-            else
-            {
-                throw new Exception("There is no user");
-            }
+            return users;   
         }
 
         public async Task<User> Create(User user)
