@@ -19,24 +19,18 @@ namespace TaskManagementSystem.Infrastructure.Services
             var users = await _userRepository.All();
             var response = new List<UserResponseDTO>();
 
-            if (users != null)
+            foreach (var user in users)
             {
-                foreach (var user in users)
+                response.Add(new UserResponseDTO
                 {
-                    response.Add(new UserResponseDTO
-                    {
-                        Id = user.Id,
-                        UserName = user.UserName,
-                        UserEmail = user.UserEmail,
-                        DepartmentName = user.Department.DepartmentName
-                    });
-                }
-                return response;
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    UserEmail = user.UserEmail,
+                    DepartmentName = user.Department.DepartmentName
+                });
             }
-            else
-            {
-                throw new Exception("There is no user");
-            }
+
+            return response;
         }
 
         public async Task<CreateUserResponseDTO> Create(CreateUserRequestDTO request)
@@ -109,7 +103,6 @@ namespace TaskManagementSystem.Infrastructure.Services
         public async Task<UserResponseDTO> Update(UpdateUserRequestDTO request)
         {
             var user = await _userRepository.GetById(request.Id);
-            var response = new UserResponseDTO();
 
             if (user != null)
             {
@@ -119,7 +112,7 @@ namespace TaskManagementSystem.Infrastructure.Services
 
                 await _userRepository.Update(user);
 
-                response = new UserResponseDTO
+                var response = new UserResponseDTO
                 {
                     Id = user.Id,
                     UserName = user.UserName,
