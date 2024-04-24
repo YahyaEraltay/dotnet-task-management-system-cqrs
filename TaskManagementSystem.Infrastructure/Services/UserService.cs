@@ -9,6 +9,11 @@ namespace TaskManagementSystem.Infrastructure.Services
     {
         private readonly IUserRepository _userRepository;
 
+        public UserService(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
         public async Task<List<UserResponseDTO>> All()
         {
             var users = await _userRepository.All();
@@ -41,6 +46,7 @@ namespace TaskManagementSystem.Infrastructure.Services
                 UserName = request.UserName,
                 UserEmail = request.UserEmail,
                 DepartmentId = request.DepartmentId,
+
             };
 
             await _userRepository.Create(user);
@@ -50,7 +56,7 @@ namespace TaskManagementSystem.Infrastructure.Services
                 Id = user.Id,
                 UserName = user.UserName,
                 UserEmail = user.UserEmail,
-                DepartmentName = user.Department.DepartmentName
+                DepartmentId = user.DepartmentId
             };
 
             return response;
@@ -81,15 +87,23 @@ namespace TaskManagementSystem.Infrastructure.Services
         {
             var user = await _userRepository.GetById(id);
 
-            var response = new UserResponseDTO()
+            if (user != null)
             {
-                Id = user.Id,
-                UserName = user.UserName,
-                UserEmail = user.UserEmail,
-                DepartmentName = user.Department.DepartmentName
-            };
+                var response = new UserResponseDTO()
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    UserEmail = user.UserEmail,
+                    DepartmentName = user.Department.DepartmentName
+                };
 
-            return response;
+                return response;
+            }
+            else
+            {
+                throw new Exception("User could not be find");
+            }
+
         }
 
         public async Task<UserResponseDTO> Update(UpdateUserRequestDTO request)
