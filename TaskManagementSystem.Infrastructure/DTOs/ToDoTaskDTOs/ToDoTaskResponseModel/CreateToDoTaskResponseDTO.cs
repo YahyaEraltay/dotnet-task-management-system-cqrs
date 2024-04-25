@@ -10,7 +10,7 @@ namespace TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskResponse
     public class CreateToDoTaskResponseDTO
     {
         public Guid Id { get; set; }
-        public string ToDoTasName { get; set; }
+        public string ToDoTaskName { get; set; }
         public Guid DepartmentId { get; set; }
         public Guid CreatorUserId { get; set; }
         public Guid AssignedUserId { get; set; }

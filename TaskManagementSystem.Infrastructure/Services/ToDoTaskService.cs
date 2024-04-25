@@ -36,7 +36,8 @@ namespace TaskManagementSystem.Infrastructure.Services
                         AssignedUserEmail = task.AssignedUser.UserEmail,
                         DepartmentName = task.Department.DepartmentName,
                         ToDoTaskName = task.ToDoTaskName,
-                        CreatorUserName = task.CreatorUser.UserName
+                        CreatorUserName = task.CreatorUser.UserName,
+                        Status = task.Status
                     });
                 }
 
@@ -64,11 +65,11 @@ namespace TaskManagementSystem.Infrastructure.Services
             var response = new CreateToDoTaskResponseDTO()
             {
                 Id = task.Id,
-                ToDoTasName = request.ToDoTaskName,
-                AssignedUserId = request.AssignedUserId,
-                CreatorUserId = request.CreatorUserId,
-                DepartmentId = request.DepartmentId,
-                Status = request.Status
+                ToDoTaskName = task.ToDoTaskName,
+                AssignedUserId = task.AssignedUserId,
+                CreatorUserId = task.CreatorUserId,
+                DepartmentId = task.DepartmentId,
+                Status = task.Status
             };
 
             return response;
@@ -76,7 +77,7 @@ namespace TaskManagementSystem.Infrastructure.Services
 
         public async Task<DeleteToDoTaskResponseDTO> Delete(GetToDoTaskIdRequestDTO request)
         {
-            var task = await _toDoTaskRepository.Detail(request.Id);
+            var task = await _toDoTaskRepository.GetById(request.Id);
             var response = new DeleteToDoTaskResponseDTO();
 
             if (task != null)
@@ -94,9 +95,9 @@ namespace TaskManagementSystem.Infrastructure.Services
             }
         }
 
-        public async Task<GetToDoTaskResponseDTO> Detail(Guid id)
+        public async Task<GetToDoTaskResponseDTO> GetById(Guid id)
         {
-            var task = await _toDoTaskRepository.Detail(id);
+            var task = await _toDoTaskRepository.GetById(id);
 
             if (task != null)
             {
@@ -121,7 +122,7 @@ namespace TaskManagementSystem.Infrastructure.Services
 
         public async Task<UpdateToDoTaskResponseDTO> Update(UpdateToDoTaskRequestDTO request)
         {
-            var task = await _toDoTaskRepository.Detail(request.Id);
+            var task = await _toDoTaskRepository.GetById(request.Id);
 
             if (task != null)
             {

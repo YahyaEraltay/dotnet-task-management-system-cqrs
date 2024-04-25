@@ -46,7 +46,7 @@ namespace TaskManagementSystem.Infrastructure.Repositories
             return deletedTask;
         }
 
-        public async Task<ToDoTask> Detail(Guid id)
+        public async Task<ToDoTask> GetById(Guid id)
         {
             var toDoTask = await _context.ToDoTasks
                                    .Include(x => x.Department)

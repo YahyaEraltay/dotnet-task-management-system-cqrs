@@ -13,7 +13,7 @@ namespace TaskManagementSystem.Infrastructure.Services
         Task<CreateToDoTaskResponseDTO> Create(CreateToDoTaskRequestDTO request);
         Task<UpdateToDoTaskResponseDTO> Update(UpdateToDoTaskRequestDTO request);
         Task<DeleteToDoTaskResponseDTO> Delete(GetToDoTaskIdRequestDTO request);
-        Task<GetToDoTaskResponseDTO> Detail(Guid id);
+        Task<GetToDoTaskResponseDTO> GetById(Guid id);
         Task<List<GetToDoTaskResponseDTO>> All();
     }
 }

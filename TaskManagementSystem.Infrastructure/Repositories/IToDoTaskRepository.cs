@@ -12,7 +12,7 @@ namespace TaskManagementSystem.Infrastructure.Repositories
         Task<ToDoTask> Create(ToDoTask toDoTask);
         Task<ToDoTask> Update(ToDoTask toDoTask);
         Task<ToDoTask> Delete(ToDoTask toDoTask);
-        Task<ToDoTask> Detail(Guid id);
+        Task<ToDoTask> GetById(Guid id);
         Task<List<ToDoTask>> All();
     }
 }

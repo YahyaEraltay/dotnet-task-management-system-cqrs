@@ -9,6 +9,7 @@ namespace TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskRequestM
 {
     public class CreateToDoTaskRequestDTO
     {
+        public Guid Id { get; set; }
         public string ToDoTaskName { get; set; }
         public Guid DepartmentId { get; set; }
         public Guid CreatorUserId { get; set; }
