@@ -54,6 +54,14 @@ namespace TaskManagementSystem.Infrastructure.Repositories
             return user;
         }
 
+        public async Task<User> Login(string email)
+        {
+            var user = await _context.Users
+                                     .Include(x => x.Department)
+                                     .FirstOrDefaultAsync(x => x.UserEmail == email);   
+            return user;
+        }
+
         public async Task<User> Update(User user)
         {
             var updatedUser = await _context.Users.FirstOrDefaultAsync(x => x.Id == user.Id);

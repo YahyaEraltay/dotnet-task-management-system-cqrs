@@ -1,4 +1,5 @@
-﻿using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel;
+﻿using TaskManagementSystem.Domain.Entites;
+using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel;
 using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserResponseModel;
 
 namespace TaskManagementSystem.Infrastructure.Services
@@ -10,5 +11,6 @@ namespace TaskManagementSystem.Infrastructure.Services
         Task<DeleteUserResponseDTO> Delete(GetUserIdRequestDTO request);
         Task<UserResponseDTO> GetById(Guid id);
         Task<List<UserResponseDTO>> All();
+        Task<LoginUserResponseDTO> Login(LoginUserRequestDTO request);
     }
 }

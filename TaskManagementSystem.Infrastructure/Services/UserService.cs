@@ -100,6 +100,17 @@ namespace TaskManagementSystem.Infrastructure.Services
 
         }
 
+        public async Task<LoginUserResponseDTO> Login(LoginUserRequestDTO request)
+        {
+            var user = await _userRepository.Login(request.UserEmail);
+
+            return new LoginUserResponseDTO
+            {
+                UserName = user.UserName,
+                UserEmail = user.UserEmail
+            };
+        }
+
         public async Task<UserResponseDTO> Update(UpdateUserRequestDTO request)
         {
             var user = await _userRepository.GetById(request.Id);
