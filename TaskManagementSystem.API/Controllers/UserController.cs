@@ -1,10 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using TaskManagementSystem.Application.Auth;
 using TaskManagementSystem.Application.Users.Commands.Create;
 using TaskManagementSystem.Application.Users.Commands.Delete;
+using TaskManagementSystem.Application.Users.Commands.Login;
 using TaskManagementSystem.Application.Users.Commands.Update;
 using TaskManagementSystem.Application.Users.Queries.All;
 using TaskManagementSystem.Application.Users.Queries.Detail;
+using TaskManagementSystem.Infrastructure.Services;
 
 namespace Task_Management_System_CQRS.Controllers
 {
@@ -13,10 +16,14 @@ namespace Task_Management_System_CQRS.Controllers
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IGenerateJwtToken _generateJwtToken;
+        private readonly IUserService _userService;
 
-        public UserController(IMediator mediator)
+        public UserController(IMediator mediator, IGenerateJwtToken generateJwtToken, IUserService userService)
         {
             _mediator = mediator;
+            _generateJwtToken = generateJwtToken;
+            _userService = userService;
         }
 
         [HttpPost("[action]")]
@@ -43,9 +50,7 @@ namespace Task_Management_System_CQRS.Controllers
         [HttpGet("[action]")]
         public async Task<ActionResult> All()
         {
-            var request = new AllUserRequest();
-            var result = await _mediator.Send(request);
-                
+            var result = await _mediator.Send(new AllUserRequest());
             return Ok(result);
         }
 
@@ -54,6 +59,21 @@ namespace Task_Management_System_CQRS.Controllers
         {
             var result = await _mediator.Send(request);
             return Ok(result);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<ActionResult> Login(LoginUserRequest request)
+        {
+            var result = await _mediator.Send(request);
+
+            if (result == null)
+            {
+                return Unauthorized(new { message = "Invalid email" });
+            }
+
+            var token = _generateJwtToken.GenerateToken(result);
+
+            return Ok(new { token });
         }
     }
 }
