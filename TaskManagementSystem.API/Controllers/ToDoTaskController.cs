@@ -44,9 +44,7 @@ namespace Task_Management_System_CQRS.Controllers
         [HttpGet("[action]")]
         public async Task<ActionResult> All()
         {
-            var request = new AllToDoTaskRequest();
-            var result = await _mediator.Send(request);
-
+            var result = await _mediator.Send(new AllToDoTaskRequest());
             return Ok(result);
         }
 
