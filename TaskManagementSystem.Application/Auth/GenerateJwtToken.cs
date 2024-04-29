@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using TaskManagementSystem.Application.Users.Commands.Login;
+using TaskManagementSystem.Domain.Entites;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.Auth
@@ -34,9 +35,7 @@ namespace TaskManagementSystem.Application.Auth
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Email, response.UserEmail),
-                    new Claim(ClaimTypes.Name, response.UserName),
-                    new Claim("Id", response.Id.ToString())
+                    new Claim(ClaimTypes.Email, response.UserEmail)
                 }),
 
                 Expires = DateTime.UtcNow.AddHours(1),
