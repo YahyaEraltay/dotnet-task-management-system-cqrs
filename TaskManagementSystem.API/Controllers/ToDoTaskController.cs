@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Application.ToDoTasks.Commands.Create;
@@ -9,6 +10,7 @@ using TaskManagementSystem.Application.ToDoTasks.Queries.Detail;
 
 namespace Task_Management_System_CQRS.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ToDoTaskController : ControllerBase

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using TaskManagementSystem.Application.Auth;
 using TaskManagementSystem.Application.Users.Commands.Create;
 using TaskManagementSystem.Application.Users.Commands.Delete;
@@ -8,6 +9,7 @@ using TaskManagementSystem.Application.Users.Commands.Login;
 using TaskManagementSystem.Application.Users.Commands.Update;
 using TaskManagementSystem.Application.Users.Queries.All;
 using TaskManagementSystem.Application.Users.Queries.Detail;
+using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserResponseModel;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace Task_Management_System_CQRS.Controllers
@@ -19,13 +21,13 @@ namespace Task_Management_System_CQRS.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IGenerateJwtToken _generateJwtToken;
-        private readonly IUserService _userService;
+        private readonly ICurrentUser _currentUser;
 
-        public UserController(IMediator mediator, IGenerateJwtToken generateJwtToken, IUserService userService)
+        public UserController(IMediator mediator, IGenerateJwtToken generateJwtToken, ICurrentUser currentUser)
         {
             _mediator = mediator;
             _generateJwtToken = generateJwtToken;
-            _userService = userService;
+            _currentUser = currentUser;
         }
 
         [HttpPost("[action]")]
@@ -78,5 +80,15 @@ namespace Task_Management_System_CQRS.Controllers
 
             return Ok(new { token });
         }
+
+        [HttpGet("[action]")]
+        public async Task<ActionResult<UserResponseDTO>> GetCurrentUser()
+        {
+            var currentUser = await _currentUser.GetCurrentUser();
+
+            return Ok(currentUser);
+        }
+
+
     }
 }
