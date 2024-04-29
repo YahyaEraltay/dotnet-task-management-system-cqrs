@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Application.Auth;
 using TaskManagementSystem.Application.Users.Commands.Create;
@@ -11,6 +12,7 @@ using TaskManagementSystem.Infrastructure.Services;
 
 namespace Task_Management_System_CQRS.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -61,6 +63,7 @@ namespace Task_Management_System_CQRS.Controllers
             return Ok(result);
         }
 
+        [AllowAnonymous]
         [HttpPost("[action]")]
         public async Task<ActionResult> Login(LoginUserRequest request)
         {
