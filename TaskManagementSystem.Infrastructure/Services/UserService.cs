@@ -104,11 +104,18 @@ namespace TaskManagementSystem.Infrastructure.Services
         {
             var user = await _userRepository.Login(request.UserEmail);
 
-            return new LoginUserResponseDTO
+            if (user != null)
             {
-                UserName = user.UserName,
-                UserEmail = user.UserEmail
-            };
+                return new LoginUserResponseDTO
+                {
+                    UserName = user.UserName,
+                    UserEmail = user.UserEmail
+                };
+            }
+            else
+            {
+                throw new Exception("Invalid Email Adress");
+            }
         }
 
         public async Task<UserResponseDTO> Update(UpdateUserRequestDTO request)
