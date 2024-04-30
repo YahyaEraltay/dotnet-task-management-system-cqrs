@@ -14,5 +14,6 @@ namespace TaskManagementSystem.Infrastructure.Repositories
         Task<ToDoTask> Delete(ToDoTask toDoTask);
         Task<ToDoTask> GetById(Guid id);
         Task<List<ToDoTask>> All();
+        Task<List<ToDoTask>> AssignedTasks(Guid id);
     }
 }

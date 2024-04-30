@@ -28,6 +28,17 @@ namespace TaskManagementSystem.Infrastructure.Repositories
             return toDoTask;
         }
 
+        public async Task<List<ToDoTask>> AssignedTasks(Guid id)
+        {
+            var assignedTasks = await _context.ToDoTasks
+                                              .Include(x => x.Department)
+                                              .Include(x => x.CreatorUser)
+                                              .Include(x => x.AssignedUser)
+                                              .Where(x => x.AssignedUserId == id)
+                                              .ToListAsync();
+            return assignedTasks;
+        }
+
         public async Task<ToDoTask> Create(ToDoTask toDoTask)
         {
             _context.ToDoTasks.Add(toDoTask);

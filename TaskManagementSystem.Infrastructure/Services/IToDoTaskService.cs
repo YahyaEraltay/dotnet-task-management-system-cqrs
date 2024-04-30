@@ -15,5 +15,6 @@ namespace TaskManagementSystem.Infrastructure.Services
         Task<DeleteToDoTaskResponseDTO> Delete(GetToDoTaskIdRequestDTO request);
         Task<GetToDoTaskResponseDTO> GetById(Guid id);
         Task<List<GetToDoTaskResponseDTO>> All();
+        Task<List<AssignedTasksResponseDTO>> AssignedTasks(Guid id);
     }
 }

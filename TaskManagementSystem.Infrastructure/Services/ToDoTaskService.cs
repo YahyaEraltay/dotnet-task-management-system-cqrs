@@ -49,6 +49,32 @@ namespace TaskManagementSystem.Infrastructure.Services
             }
         }
 
+        public async Task<List<AssignedTasksResponseDTO>> AssignedTasks(Guid id)
+        {
+            var assignedTasks = await _toDoTaskRepository.AssignedTasks(id);
+            var response = new List<AssignedTasksResponseDTO>();
+
+            if (assignedTasks != null)
+            {
+                foreach (var task in assignedTasks)
+                {
+                    response.Add(new AssignedTasksResponseDTO
+                    {
+                        CreatorUserName = task.CreatorUser.UserName,
+                        AssignedUserName = task.AssignedUser.UserName,
+                        AssignedDepartmentName = task.Department.DepartmentName,
+                        ToDoTaskName = task.ToDoTaskName,
+                        Status = task.Status
+                    });
+                }
+                return response;
+            }
+            else
+            {
+                throw new Exception("There is no assigned task");
+            }
+        }
+
         public async Task<CreateToDoTaskResponseDTO> Create(CreateToDoTaskRequestDTO request)
         {
             var task = new ToDoTask()
