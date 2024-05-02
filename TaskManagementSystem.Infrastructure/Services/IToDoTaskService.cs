@@ -12,9 +12,10 @@ namespace TaskManagementSystem.Infrastructure.Services
     {
         Task<CreateToDoTaskResponseDTO> Create(CreateToDoTaskRequestDTO request);
         Task<UpdateToDoTaskResponseDTO> Update(UpdateToDoTaskRequestDTO request);
-        Task<DeleteToDoTaskResponseDTO> Delete(GetToDoTaskIdRequestDTO request);
+        Task<DeleteToDoTaskResponseDTO> Delete(DeleteToDoTaskRequestDTO request);
         Task<GetToDoTaskResponseDTO> GetById(Guid id);
         Task<List<GetToDoTaskResponseDTO>> All();
         Task<List<AssignedTasksResponseDTO>> AssignedTasks(Guid id);
+        Task<Guid> CreatorUser(Guid id);
     }
 }

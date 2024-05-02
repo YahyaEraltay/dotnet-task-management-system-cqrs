@@ -101,7 +101,15 @@ namespace TaskManagementSystem.Infrastructure.Services
             return response;
         }
 
-        public async Task<DeleteToDoTaskResponseDTO> Delete(GetToDoTaskIdRequestDTO request)
+        public async Task<Guid> CreatorUser(Guid id)
+        {
+            var task = await _toDoTaskRepository.GetById(id);
+            var creatorUser = task.CreatorUserId;
+
+            return creatorUser;
+        }
+
+        public async Task<DeleteToDoTaskResponseDTO> Delete(DeleteToDoTaskRequestDTO request)
         {
             var task = await _toDoTaskRepository.GetById(request.Id);
             var response = new DeleteToDoTaskResponseDTO();
