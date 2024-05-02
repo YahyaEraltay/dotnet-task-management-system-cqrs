@@ -13,21 +13,25 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Create
     public class CreateToDoTaskHandler : IRequestHandler<CreateToDoTaskRequest, CreateToDoTaskResponse>
     {
         private readonly IToDoTaskService _toDoTaskService;
+        private readonly ICurrentUser _currentUser;
 
-        public CreateToDoTaskHandler(IToDoTaskService toDoTaskService)
+        public CreateToDoTaskHandler(IToDoTaskService toDoTaskService, ICurrentUser currentUser)
         {
             _toDoTaskService = toDoTaskService;
+            _currentUser = currentUser;
         }
 
         public async Task<CreateToDoTaskResponse> Handle(CreateToDoTaskRequest request, CancellationToken cancellationToken)
         {
+            var currentUser = await _currentUser.GetCurrentUser();
+
             var task = new CreateToDoTaskRequestDTO
             {
                 ToDoTaskName = request.ToDoTaskName,
                 ToDoTaskDescription = request.ToDoTaskDescription,
                 ToDoTaskDate = DateTime.Now.Date,
                 AssignedUserId = request.AssignedUserId,
-                CreatorUserId = request.CreatorUserId,
+                CreatorUserId = currentUser.Id,
                 DepartmentId = request.DepartmentId,
                 Status = request.Status = 0
             };

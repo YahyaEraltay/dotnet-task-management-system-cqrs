@@ -14,10 +14,12 @@ namespace TaskManagementSystem.Infrastructure.Services
     public class ToDoTaskService : IToDoTaskService
     {
         private readonly IToDoTaskRepository _toDoTaskRepository;
+        private readonly ICurrentUser _currentUser;
 
-        public ToDoTaskService(IToDoTaskRepository toDoTaskRepository)
+        public ToDoTaskService(IToDoTaskRepository toDoTaskRepository, ICurrentUser currentUser)
         {
             _toDoTaskRepository = toDoTaskRepository;
+            _currentUser = currentUser;
         }
 
         public async Task<List<GetToDoTaskResponseDTO>> All()
@@ -78,13 +80,14 @@ namespace TaskManagementSystem.Infrastructure.Services
 
         public async Task<CreateToDoTaskResponseDTO> Create(CreateToDoTaskRequestDTO request)
         {
+            var currentUser = await _currentUser.GetCurrentUser();
             var task = new ToDoTask()
             {
                 ToDoTaskName = request.ToDoTaskName,
                 ToDoTaskDescription = request.ToDoTaskDescription,
                 ToDoTaskDate = DateTime.Now.Date,
                 AssignedUserId = request.AssignedUserId,
-                CreatorUserId = request.CreatorUserId,
+                CreatorUserId = currentUser.Id,
                 DepartmentId = request.DepartmentId,
                 Status = request.Status = 0,
             };
