@@ -1,9 +1,4 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaskManagementSystem.Application.Auth;
 using TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskRequestModel;
 using TaskManagementSystem.Infrastructure.Services;
@@ -25,11 +20,13 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Delete
         {
             var currentUser = await _currentUser.GetCurrentUser();
             var task = await _toDoTaskService.GetById(request.Id);
+            var creatorUser = await _toDoTaskService.CreatorUser(task.Id);
+
             var response = new DeleteToDoTaskResponse();
 
-            if (currentUser.Id == request.CreatorUserId)
+            if (currentUser.Id == creatorUser)
             {
-                await _toDoTaskService.Delete(new GetToDoTaskIdRequestDTO
+                await _toDoTaskService.Delete(new DeleteToDoTaskRequestDTO
                 {
                     Id = task.Id,
                 });
