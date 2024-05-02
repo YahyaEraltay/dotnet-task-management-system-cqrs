@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskRequestModel
 {
-    public class GetToDoTaskIdRequestDTO
+    public class DeleteToDoTaskRequestDTO
     {
-        public  Guid Id { get; set; }
+        public Guid Id { get; set; }
     }
 }
