@@ -9,6 +9,7 @@ namespace TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskResponse
 {
     public class AssignedTasksResponseDTO
     {
+        public DateTime ToDoTaskDate { get; set; }
         public string CreatorUserName { get; set; }
         public string AssignedUserName { get; set; }
         public string AssignedDepartmentName { get; set; }

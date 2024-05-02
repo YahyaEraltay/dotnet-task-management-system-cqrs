@@ -8,7 +8,8 @@ using static TaskManagementSystem.Domain.Entites.ToDoTask;
 namespace TaskManagementSystem.Application.ToDoTasks.Queries.AssignedToDoTask
 {
     public class AssignedToDoTaskResponse
-    { 
+    {
+        public DateTime ToDoTaskDate { get; set; }
         public string CreatorUserName { get; set; }
         public string AssignedUserName { get; set; }
         public string AssignedDepartmentName { get; set; }

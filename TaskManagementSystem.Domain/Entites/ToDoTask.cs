@@ -10,6 +10,8 @@ namespace TaskManagementSystem.Domain.Entites
     {
         public Guid Id { get; set; }
         public string ToDoTaskName { get; set; }
+        public string ToDoTaskDescription { get; set; }
+        public DateTime ToDoTaskDate { get; set; }
 
         public Department Department { get; set; }
         public Guid DepartmentId { get; set; }

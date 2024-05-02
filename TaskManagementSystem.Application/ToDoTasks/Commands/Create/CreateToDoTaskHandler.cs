@@ -24,6 +24,8 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Create
             var task = new CreateToDoTaskRequestDTO
             {
                 ToDoTaskName = request.ToDoTaskName,
+                ToDoTaskDescription = request.ToDoTaskDescription,
+                ToDoTaskDate = DateTime.Now.Date,
                 AssignedUserId = request.AssignedUserId,
                 CreatorUserId = request.CreatorUserId,
                 DepartmentId = request.DepartmentId,
@@ -36,6 +38,8 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Create
             {
                 Id = task.Id,
                 ToDoTaskName = request.ToDoTaskName,
+                ToDoTaskDescription = request.ToDoTaskDescription,
+                ToDoTaskDate = task.ToDoTaskDate.Date,
                 AssignedUserId = request.AssignedUserId,
                 CreatorUserId = request.CreatorUserId,
                 DepartmentId = request.DepartmentId,

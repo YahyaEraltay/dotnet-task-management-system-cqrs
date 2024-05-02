@@ -25,6 +25,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Queries.AssignedToDoTask
             {
                 response.Add(new AssignedToDoTaskResponse
                 {
+                    ToDoTaskDate = assignedTask.ToDoTaskDate.Date,
                     CreatorUserName = assignedTask.CreatorUserName,
                     AssignedUserName = assignedTask.AssignedUserName,
                     AssignedDepartmentName = assignedTask.AssignedDepartmentName,

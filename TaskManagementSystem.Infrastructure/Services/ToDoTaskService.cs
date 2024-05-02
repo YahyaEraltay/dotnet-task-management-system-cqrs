@@ -60,6 +60,7 @@ namespace TaskManagementSystem.Infrastructure.Services
                 {
                     response.Add(new AssignedTasksResponseDTO
                     {
+                        ToDoTaskDate = task.ToDoTaskDate.Date,
                         CreatorUserName = task.CreatorUser.UserName,
                         AssignedUserName = task.AssignedUser.UserName,
                         AssignedDepartmentName = task.Department.DepartmentName,
@@ -80,6 +81,8 @@ namespace TaskManagementSystem.Infrastructure.Services
             var task = new ToDoTask()
             {
                 ToDoTaskName = request.ToDoTaskName,
+                ToDoTaskDescription = request.ToDoTaskDescription,
+                ToDoTaskDate = DateTime.Now.Date,
                 AssignedUserId = request.AssignedUserId,
                 CreatorUserId = request.CreatorUserId,
                 DepartmentId = request.DepartmentId,
@@ -92,6 +95,8 @@ namespace TaskManagementSystem.Infrastructure.Services
             {
                 Id = task.Id,
                 ToDoTaskName = task.ToDoTaskName,
+                ToDoTaskDescription = task.ToDoTaskDescription,
+                ToDoTaskDate = task.ToDoTaskDate.Date,
                 AssignedUserId = task.AssignedUserId,
                 CreatorUserId = task.CreatorUserId,
                 DepartmentId = task.DepartmentId,
