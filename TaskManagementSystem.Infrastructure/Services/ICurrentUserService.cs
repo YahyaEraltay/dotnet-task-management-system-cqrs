@@ -7,7 +7,7 @@ using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserResponseModel;
 
 namespace TaskManagementSystem.Infrastructure.Services
 {
-    public interface ICurrentUser
+    public interface ICurrentUserService
     {
         Task<UserResponseDTO> GetCurrentUser();
     }

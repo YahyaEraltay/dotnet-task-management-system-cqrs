@@ -17,5 +17,7 @@ namespace TaskManagementSystem.Infrastructure.Services
         Task<List<GetToDoTaskResponseDTO>> All();
         Task<List<AssignedTasksResponseDTO>> AssignedTasks(Guid id);
         Task<Guid> CreatorUser(Guid id);
+        Task<Guid> AssignedUser(Guid id);
+        Task<UpdateToDoTaskResponseDTO> UpdateStatus(UpdateToDoTaskRequestDTO request);
     }
 }

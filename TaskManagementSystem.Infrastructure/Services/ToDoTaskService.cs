@@ -14,9 +14,9 @@ namespace TaskManagementSystem.Infrastructure.Services
     public class ToDoTaskService : IToDoTaskService
     {
         private readonly IToDoTaskRepository _toDoTaskRepository;
-        private readonly ICurrentUser _currentUser;
+        private readonly ICurrentUserService _currentUser;
 
-        public ToDoTaskService(IToDoTaskRepository toDoTaskRepository, ICurrentUser currentUser)
+        public ToDoTaskService(IToDoTaskRepository toDoTaskRepository, ICurrentUserService currentUser)
         {
             _toDoTaskRepository = toDoTaskRepository;
             _currentUser = currentUser;
@@ -76,6 +76,14 @@ namespace TaskManagementSystem.Infrastructure.Services
             {
                 throw new Exception("There is no assigned task");
             }
+        }
+
+        public async Task<Guid> AssignedUser(Guid id)
+        {
+            var user = await _toDoTaskRepository.GetById(id);
+            var assignedUser = user.AssignedUserId;
+
+            return assignedUser;
         }
 
         public async Task<CreateToDoTaskResponseDTO> Create(CreateToDoTaskRequestDTO request)
@@ -183,6 +191,30 @@ namespace TaskManagementSystem.Infrastructure.Services
                     DepartmentName = task.Department.DepartmentName,
                     CreatorUserName = task.CreatorUser.UserName,
                     AssignedUserName = task.AssignedUser.UserName,
+                    Status = task.Status
+                };
+
+                return response;
+            }
+            else
+            {
+                throw new Exception("Task not found");
+            }
+        }
+
+        public async Task<UpdateToDoTaskResponseDTO> UpdateStatus(UpdateToDoTaskRequestDTO request)
+        {
+            var task = await _toDoTaskRepository.GetById(request.Id);
+
+            if (task != null)
+            {
+                task.Status = request.Status;
+
+                await _toDoTaskRepository.Update(task);
+
+                var response = new UpdateToDoTaskResponseDTO
+                {
+                    Id = task.Id,
                     Status = task.Status
                 };
 

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Application.ToDoTasks.Commands.Create;
 using TaskManagementSystem.Application.ToDoTasks.Commands.Delete;
+using TaskManagementSystem.Application.ToDoTasks.Commands.Status;
 using TaskManagementSystem.Application.ToDoTasks.Commands.Update;
 using TaskManagementSystem.Application.ToDoTasks.Queries.All;
 using TaskManagementSystem.Application.ToDoTasks.Queries.AssignedToDoTask;
@@ -62,6 +63,13 @@ namespace Task_Management_System_CQRS.Controllers
         public async Task<ActionResult> AssignedTasks()
         {
             var result = await _mediator.Send(new AssignedToDoTaskRequest());
+            return Ok(result);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<ActionResult> TaskStatus(StatusToDoTaskRequest request)
+        {
+            var result = await _mediator.Send(request);
             return Ok(result);
         }
     }

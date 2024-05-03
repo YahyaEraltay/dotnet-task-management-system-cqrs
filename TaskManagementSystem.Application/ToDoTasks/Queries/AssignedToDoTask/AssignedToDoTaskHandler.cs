@@ -6,10 +6,10 @@ namespace TaskManagementSystem.Application.ToDoTasks.Queries.AssignedToDoTask
 {
     public class AssignedToDoTaskHandler : IRequestHandler<AssignedToDoTaskRequest, List<AssignedToDoTaskResponse>>
     {
-        private readonly ICurrentUser _currentUser;
+        private readonly ICurrentUserService _currentUser;
         private readonly IToDoTaskService _toDoTaskService;
 
-        public AssignedToDoTaskHandler(ICurrentUser currentUser, IToDoTaskService toDoTaskService)
+        public AssignedToDoTaskHandler(ICurrentUserService currentUser, IToDoTaskService toDoTaskService)
         {
             _currentUser = currentUser;
             _toDoTaskService = toDoTaskService;

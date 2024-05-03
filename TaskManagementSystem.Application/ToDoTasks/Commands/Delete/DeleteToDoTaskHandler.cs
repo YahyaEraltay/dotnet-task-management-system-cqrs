@@ -8,9 +8,9 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Delete
     public class DeleteToDoTaskHandler : IRequestHandler<DeleteToDoTaskRequest, DeleteToDoTaskResponse>
     {
         private readonly IToDoTaskService _toDoTaskService;
-        private readonly ICurrentUser _currentUser;
+        private readonly ICurrentUserService _currentUser;
 
-        public DeleteToDoTaskHandler(IToDoTaskService toDoTaskService, ICurrentUser currentUser)
+        public DeleteToDoTaskHandler(IToDoTaskService toDoTaskService, ICurrentUserService currentUser)
         {
             _toDoTaskService = toDoTaskService;
             _currentUser = currentUser;
@@ -38,7 +38,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Delete
             }
             else
             {
-                throw new Exception("You can only delete tasks that you have created yourself");
+                throw new Exception("You can only approve/reject the task assigned to you");
             }
         }
     }

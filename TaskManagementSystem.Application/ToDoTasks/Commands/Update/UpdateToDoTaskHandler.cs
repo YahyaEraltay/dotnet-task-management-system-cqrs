@@ -8,9 +8,9 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Update
     public class UpdateToDoTaskHandler : IRequestHandler<UpdateToDoTaskRequest, UpdateToDoTaskResponse>
     {
         private readonly IToDoTaskService _toDoTaskService;
-        private readonly ICurrentUser _currentUser;
+        private readonly ICurrentUserService _currentUser;
 
-        public UpdateToDoTaskHandler(IToDoTaskService toDoTaskService, ICurrentUser currentUser)
+        public UpdateToDoTaskHandler(IToDoTaskService toDoTaskService, ICurrentUserService currentUser)
         {
             _toDoTaskService = toDoTaskService;
             _currentUser = currentUser;

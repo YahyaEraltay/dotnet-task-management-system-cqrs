@@ -7,12 +7,12 @@ using TaskManagementSystem.Infrastructure.Repositories;
 
 namespace TaskManagementSystem.Infrastructure.Services
 {
-    public class CurrentUser : ICurrentUser
+    public class CurrentUserService : ICurrentUserService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IUserRepository _userRepository;
 
-        public CurrentUser(IHttpContextAccessor httpContextAccessor, IUserRepository userRepository)
+        public CurrentUserService(IHttpContextAccessor httpContextAccessor, IUserRepository userRepository)
         {
             _httpContextAccessor = httpContextAccessor;
             _userRepository = userRepository;

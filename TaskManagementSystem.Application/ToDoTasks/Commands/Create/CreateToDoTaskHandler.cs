@@ -13,9 +13,9 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Create
     public class CreateToDoTaskHandler : IRequestHandler<CreateToDoTaskRequest, CreateToDoTaskResponse>
     {
         private readonly IToDoTaskService _toDoTaskService;
-        private readonly ICurrentUser _currentUser;
+        private readonly ICurrentUserService _currentUser;
 
-        public CreateToDoTaskHandler(IToDoTaskService toDoTaskService, ICurrentUser currentUser)
+        public CreateToDoTaskHandler(IToDoTaskService toDoTaskService, ICurrentUserService currentUser)
         {
             _toDoTaskService = toDoTaskService;
             _currentUser = currentUser;

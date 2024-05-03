@@ -21,9 +21,9 @@ namespace Task_Management_System_CQRS.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IGenerateJwtToken _generateJwtToken;
-        private readonly ICurrentUser _currentUser;
+        private readonly ICurrentUserService _currentUser;
 
-        public UserController(IMediator mediator, IGenerateJwtToken generateJwtToken, ICurrentUser currentUser)
+        public UserController(IMediator mediator, IGenerateJwtToken generateJwtToken, ICurrentUserService currentUser)
         {
             _mediator = mediator;
             _generateJwtToken = generateJwtToken;
