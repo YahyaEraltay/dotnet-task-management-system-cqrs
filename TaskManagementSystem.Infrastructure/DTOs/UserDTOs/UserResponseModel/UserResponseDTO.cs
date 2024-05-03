@@ -11,6 +11,8 @@ namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserResponseModel
         public Guid Id { get; set; }
         public string UserName { get; set; }
         public string UserEmail { get; set; }
+        public string PhoneNumber { get; set; }
         public string DepartmentName { get; set; }
+        public string UserTitle { get; set; }
     }
 }

@@ -32,7 +32,9 @@ namespace TaskManagementSystem.Infrastructure.Services
                     Id = user.Id,
                     UserName = user.UserName,
                     UserEmail = user.UserEmail,
-                    DepartmentName = user.Department.DepartmentName
+                    PhoneNumber = user.PhoneNumber,
+                    DepartmentName = user.Department.DepartmentName,
+                    UserTitle = user.UserTitle
                 };
             }
             else
