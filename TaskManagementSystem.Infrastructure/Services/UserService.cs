@@ -39,8 +39,9 @@ namespace TaskManagementSystem.Infrastructure.Services
             {
                 UserName = request.UserName,
                 UserEmail = request.UserEmail,
+                PhoneNumber = request.PhoneNumber,  
                 DepartmentId = request.DepartmentId,
-
+                UserTitle = request.UserTitle,
             };
 
             await _userRepository.Create(user);
@@ -50,7 +51,9 @@ namespace TaskManagementSystem.Infrastructure.Services
                 Id = user.Id,
                 UserName = user.UserName,
                 UserEmail = user.UserEmail,
-                DepartmentId = user.DepartmentId
+                PhoneNumber = user.PhoneNumber,
+                DepartmentId = user.DepartmentId,
+                UserTitle = user.UserTitle,
             };
 
             return response;

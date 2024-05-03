@@ -24,7 +24,9 @@ namespace TaskManagementSystem.Application.Users.Commands.Create
             {
                 UserName = request.UserName,
                 UserEmail = request.UserEmail,
-                DepartmentId = request.DepartmentId
+                PhoneNumber = request.PhoneNumber,
+                DepartmentId = request.DepartmentId,
+                UserTitle = request.UserTitle
             };
 
             await _userService.Create(user);
@@ -33,7 +35,9 @@ namespace TaskManagementSystem.Application.Users.Commands.Create
             {
                 UserName = user.UserName,
                 UserEmail = user.UserEmail,
-                DepartmentId = user.DepartmentId
+                PhoneNumber = user.PhoneNumber,
+                DepartmentId = user.DepartmentId,
+                UserTitle = user.UserTitle
             };
 
             return response;
