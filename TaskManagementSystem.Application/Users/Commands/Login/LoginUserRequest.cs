@@ -10,5 +10,6 @@ namespace TaskManagementSystem.Application.Users.Commands.Login
     public class LoginUserRequest : IRequest<LoginUserResponse>
     {
         public string UserEmail { get; set; }
+        public string UserPassword { get; set; }
     }
 }

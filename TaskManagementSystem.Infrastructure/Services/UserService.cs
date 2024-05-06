@@ -39,6 +39,7 @@ namespace TaskManagementSystem.Infrastructure.Services
             {
                 UserName = request.UserName,
                 UserEmail = request.UserEmail,
+                UserPassword = request.UserPassword,
                 PhoneNumber = request.PhoneNumber,  
                 DepartmentId = request.DepartmentId,
                 UserTitle = request.UserTitle,
@@ -103,9 +104,17 @@ namespace TaskManagementSystem.Infrastructure.Services
 
         }
 
+        public async Task<string> GetUserByEmail(string email)
+        {
+            var userEmail = await _userRepository.GetUserByEmail(email);
+            var userPassword = userEmail.UserPassword;
+
+            return userPassword;
+        }
+
         public async Task<LoginUserResponseDTO> Login(LoginUserRequestDTO request)
         {
-            var user = await _userRepository.Login(request.UserEmail);
+            var user = await _userRepository.Login(request.UserEmail, request.UserPassword);
 
             if (user != null)
             {
@@ -117,7 +126,7 @@ namespace TaskManagementSystem.Infrastructure.Services
             }
             else
             {
-                throw new Exception("Invalid Email Adress");
+                throw new Exception("Invalid email adress or password");
             }
         }
 

@@ -14,6 +14,7 @@ namespace TaskManagementSystem.Infrastructure.Repositories
         Task<User> Delete(User user);
         Task<User> GetById(Guid id);
         Task<List<User>> All();
-        Task<User> Login(string email);
+        Task<User> Login(string email, string password);
+        Task<User> GetUserByEmail(string email);
     }
 }

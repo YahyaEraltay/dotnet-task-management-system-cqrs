@@ -12,5 +12,6 @@ namespace TaskManagementSystem.Infrastructure.Services
         Task<UserResponseDTO> GetById(Guid id);
         Task<List<UserResponseDTO>> All();
         Task<LoginUserResponseDTO> Login(LoginUserRequestDTO request);
+        Task<string> GetUserByEmail(string email);
     }
 }

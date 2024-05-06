@@ -22,7 +22,8 @@ namespace TaskManagementSystem.Application.Users.Commands.Login
         {
             var user = await _userService.Login(new LoginUserRequestDTO
             {
-                UserEmail = request.UserEmail
+                UserEmail = request.UserEmail,
+                UserPassword = request.UserPassword
             });
 
             if (user != null)
@@ -35,7 +36,7 @@ namespace TaskManagementSystem.Application.Users.Commands.Login
             }
             else
             {
-                throw new Exception("Invalid email");
+                throw new Exception("Invalid email adress or password");
             }
         }
     }

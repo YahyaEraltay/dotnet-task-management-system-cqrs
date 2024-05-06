@@ -24,6 +24,7 @@ namespace TaskManagementSystem.Application.Users.Commands.Create
             {
                 UserName = request.UserName,
                 UserEmail = request.UserEmail,
+                UserPassword = request.UserPassword,    
                 PhoneNumber = request.PhoneNumber,
                 DepartmentId = request.DepartmentId,
                 UserTitle = request.UserTitle

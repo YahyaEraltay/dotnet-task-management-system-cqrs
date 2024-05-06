@@ -9,5 +9,6 @@ namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel
     public class LoginUserRequestDTO
     {
         public string UserEmail { get; set; }
+        public string UserPassword { get; set; }
     }
 }
