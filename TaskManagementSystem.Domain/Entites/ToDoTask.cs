@@ -25,7 +25,7 @@ namespace TaskManagementSystem.Domain.Entites
         public enum StatusEnum
         {
             Pending = 0,
-            Completed = 1,
+            Approved = 1,
             Denied = 2
         }
     }
