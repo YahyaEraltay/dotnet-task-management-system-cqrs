@@ -1,0 +1,579 @@
+{
+	"info": {
+		"_postman_id": "a0a2dbbf-0a8a-417a-b0d5-45ecc31894a8",
+		"name": "TaskManagementSystem-CQRS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32995018"
+	},
+	"item": [
+		{
+			"name": "Department",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"departmentName\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/Department/Create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"Department",
+								"Create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:40921/api/Department/All",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"Department",
+								"All"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/Department/Detail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"Department",
+								"Detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"\",\r\n  \"departmentName\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/Department/Update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"Department",
+								"Update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/Department/Delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"Department",
+								"Delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"string\",\r\n  \"userEmail\": \"string\",\r\n  \"userPassword\": \"string\",\r\n  \"phoneNumber\": \"string\",\r\n  \"departmentId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"userTitle\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/User/Create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"User",
+								"Create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/User/Delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"User",
+								"Delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"\",\r\n  \"userName\": \"string\",\r\n  \"userEmail\": \"string\",\r\n  \"departmentId\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/User/Update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"User",
+								"Update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:40921/api/User/All",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"User",
+								"All"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/User/Detail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"User",
+								"Detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userEmail\": \"string\",\r\n  \"userPassword\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/User/Login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"User",
+								"Login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CurrentUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNlcmthbnl1cnRAZ21haWwuY29tIiwibmJmIjoxNzE0NDAwNjE4LCJleHAiOjE3MTQ0MDQyMTgsImlhdCI6MTcxNDQwMDYxOCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0MDkyMSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDA5MjEifQ.UHHhQec_YWHZqaptBpq3bZPIRxhsbkEZhqo98-DXeIE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:40921/api/User/GetCurrentUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"User",
+								"GetCurrentUser"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ToDoTask",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"toDoTaskName\": \"string\",\r\n  \"toDoTaskDescription\": \"string\",\r\n  \"departmentId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"creatorUserId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"assignedUserId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"status\": \"pending\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/ToDoTask/Create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"ToDoTask",
+								"Create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/ToDoTask/Delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"ToDoTask",
+								"Delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"toDoTaskName\": \"string\",\r\n  \"departmentId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"creatorUserId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"assignedUserId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"status\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/ToDoTask/Update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"ToDoTask",
+								"Update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:40921/api/ToDoTask/All",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"ToDoTask",
+								"All"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/ToDoTask/Detail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"ToDoTask",
+								"Detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AssignedTasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlhaHlhZXJhbHRheUBnbWFpbC5jb20iLCJuYmYiOjE3MTQ2NTA5NjcsImV4cCI6MTcxNDY1NDU2NywiaWF0IjoxNzE0NjUwOTY3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjQwOTIxIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MDkyMSJ9.hnduGY3ZtTIFkEC6qezHqXZjACxHoT7fjgSGK0tM9pw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:40921/api/ToDoTask/AssignedTasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"ToDoTask",
+								"AssignedTasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TaskStatus",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"status\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/ToDoTask/TaskStatus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"ToDoTask",
+								"TaskStatus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
