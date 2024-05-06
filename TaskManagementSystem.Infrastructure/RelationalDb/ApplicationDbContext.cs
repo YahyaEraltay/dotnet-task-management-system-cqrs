@@ -24,7 +24,8 @@ namespace TaskManagementSystem.Infrastructure.RelationalDb
             modelBuilder.Entity<ToDoTask>()
                 .HasOne(x => x.AssignedUser)
                 .WithMany()
-                .HasForeignKey(x => x.AssignedUserId);
+                .HasForeignKey(x => x.AssignedUserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(modelBuilder);
         }
