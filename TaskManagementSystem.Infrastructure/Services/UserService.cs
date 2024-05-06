@@ -40,7 +40,7 @@ namespace TaskManagementSystem.Infrastructure.Services
                 UserName = request.UserName,
                 UserEmail = request.UserEmail,
                 UserPassword = request.UserPassword,
-                PhoneNumber = request.PhoneNumber,  
+                PhoneNumber = request.PhoneNumber,
                 DepartmentId = request.DepartmentId,
                 UserTitle = request.UserTitle,
             };
@@ -92,6 +92,8 @@ namespace TaskManagementSystem.Infrastructure.Services
                     Id = user.Id,
                     UserName = user.UserName,
                     UserEmail = user.UserEmail,
+                    PhoneNumber = user.PhoneNumber,
+                    UserTitle = user.UserTitle,
                     DepartmentName = user.Department.DepartmentName
                 };
 
@@ -138,6 +140,9 @@ namespace TaskManagementSystem.Infrastructure.Services
             {
                 user.UserName = request.UserName;
                 user.UserEmail = request.UserEmail;
+                user.UserPassword = request.UserPassword;
+                user.PhoneNumber = request.PhoneNumber;
+                user.UserTitle = request.UserTitle;
                 user.DepartmentId = request.DepartmentId;
 
                 await _userRepository.Update(user);
@@ -147,7 +152,9 @@ namespace TaskManagementSystem.Infrastructure.Services
                     Id = user.Id,
                     UserName = user.UserName,
                     UserEmail = user.UserEmail,
-                    DepartmentName = user.Department.DepartmentName
+                    PhoneNumber = user.PhoneNumber,
+                    DepartmentName = user.Department.DepartmentName,
+                    UserTitle = user.UserTitle
                 };
 
                 return response;

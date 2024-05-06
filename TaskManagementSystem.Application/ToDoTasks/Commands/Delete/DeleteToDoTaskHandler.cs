@@ -38,7 +38,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Delete
             }
             else
             {
-                throw new Exception("You can only approve/reject the task assigned to you");
+                throw new Exception("You can only delete the task created to you");
             }
         }
     }

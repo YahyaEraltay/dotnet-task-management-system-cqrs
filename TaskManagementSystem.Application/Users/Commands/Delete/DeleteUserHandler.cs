@@ -12,26 +12,37 @@ namespace TaskManagementSystem.Application.Users.Commands.Delete
     public class DeleteUserHandler : IRequestHandler<DeleteUserRequest, DeleteUserResponse>
     {
         private readonly IUserService _userService;
+        private readonly ICurrentUserService _currentUserService;
 
-        public DeleteUserHandler(IUserService userService)
+        public DeleteUserHandler(IUserService userService, ICurrentUserService currentUserService)
         {
             _userService = userService;
+            _currentUserService = currentUserService;
         }
 
         public async Task<DeleteUserResponse> Handle(DeleteUserRequest request, CancellationToken cancellationToken)
         {
+            var currentUser = await _currentUserService.GetCurrentUser();
             var user = await _userService.GetById(request.Id);
+
             var response = new DeleteUserResponse();
 
-            await _userService.Delete(new GetUserIdRequestDTO
+            if (currentUser.Id == request.Id)
             {
-                Id = user.Id
-            });
+                await _userService.Delete(new GetUserIdRequestDTO
+                {
+                    Id = user.Id
+                });
 
-            response.IsDeleted = true;
-            response.Message = "User deleted";
+                response.IsDeleted = true;
+                response.Message = "User deleted";
 
-            return response;
+                return response;
+            }
+            else
+            {
+                throw new Exception("You can only delete user that you have created yourself");
+            }
         }
     }
 }
