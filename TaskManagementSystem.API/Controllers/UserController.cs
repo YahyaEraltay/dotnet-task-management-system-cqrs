@@ -67,7 +67,7 @@ namespace Task_Management_System_CQRS.Controllers
 
         [AllowAnonymous]
         [HttpPost("[action]")]
-        public async Task<ActionResult> Login(LoginUserRequestDTO request)
+        public async Task<ActionResult> Login(LoginUserRequest request)
         {
             var result = await _mediator.Send(request);
 

@@ -4,7 +4,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using TaskManagementSystem.Application.Auth;
 using TaskManagementSystem.Application.Departments.Commands.Create;
 using TaskManagementSystem.Infrastructure.DomainServices;
 using TaskManagementSystem.Infrastructure.RelationalDb;
