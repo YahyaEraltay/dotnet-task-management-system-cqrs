@@ -3,11 +3,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using TaskManagementSystem.Application.Users.Commands.Login;
-using TaskManagementSystem.Domain.Entites;
-using TaskManagementSystem.Infrastructure.Services;
+using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserResponseModel;
 
-namespace TaskManagementSystem.Application.Auth
+namespace TaskManagementSystem.Infrastructure.Services
 {
     public class GenerateJwtToken : IGenerateJwtToken
     {
@@ -18,7 +16,7 @@ namespace TaskManagementSystem.Application.Auth
             _configuration = configuration;
         }
 
-        public string GenerateToken(LoginUserResponse response) 
+        public string GenerateToken(LoginUserResponseDTO response)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
@@ -46,7 +44,7 @@ namespace TaskManagementSystem.Application.Auth
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return tokenHandler.WriteToken(token); 
+            return tokenHandler.WriteToken(token);
         }
     }
 }
