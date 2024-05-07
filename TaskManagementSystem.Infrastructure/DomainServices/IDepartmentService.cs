@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaskManagementSystem.Domain.Entites;
-using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentRequestModel;
-using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentResponseModel;
-
-namespace TaskManagementSystem.Infrastructure.DomainServices
+﻿namespace TaskManagementSystem.Infrastructure.DomainServices
 {
     public interface IDepartmentService
     {
         Task<DTOs.DepartmentDTOs.CreateDepartmentDTOs.ResponseModel> Create(DTOs.DepartmentDTOs.CreateDepartmentDTOs.RequestModel request);
-        Task<ResponseModel> Update(UpdateDepartmentRequestDTO request);
-        Task<DeleteDepartmentResponseDTO> Delete(GetDepartmentIdRequestDTO request);
-        Task<ResponseModel> GetById(Guid id);
-        Task<List<ResponseModel>> All();
+        Task<DTOs.DepartmentDTOs.UpdateDepartmentDTOs.ResponseModel> Update(DTOs.DepartmentDTOs.UpdateDepartmentDTOs.RequestModel request);
+        Task<DTOs.DepartmentDTOs.DeleteDepartmentDTOs.ResponseModel> Delete(DTOs.DepartmentDTOs.DeleteDepartmentDTOs.RequestModel request);
+        Task<DTOs.DepartmentDTOs.GetByIdDepartmentDTOs.ResponseModel> GetById(Guid id);
+        Task<List<DTOs.DepartmentDTOs.AllDepartmentDTOs.ResponseModel>> All();
     }
 }

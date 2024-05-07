@@ -1,6 +1,4 @@
 ﻿using TaskManagementSystem.Domain.Entites;
-using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentRequestModel;
-using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentResponseModel;
 using TaskManagementSystem.Infrastructure.Repositories;
 
 namespace TaskManagementSystem.Infrastructure.DomainServices
@@ -14,16 +12,16 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             _departmentRepository = departmentRepository;
         }
 
-        public async Task<List<ResponseModel>> All()
+        public async Task<List<DTOs.DepartmentDTOs.AllDepartmentDTOs.ResponseModel>> All()
         {
             var departments = await _departmentRepository.All();
-            var response = new List<ResponseModel>();
+            var response = new List<DTOs.DepartmentDTOs.AllDepartmentDTOs.ResponseModel>();
 
             if (departments != null)
             {
                 foreach (var department in departments)
                 {
-                    response.Add(new ResponseModel
+                    response.Add(new DTOs.DepartmentDTOs.AllDepartmentDTOs.ResponseModel
                     {
                         Id = department.Id,
                         DepartmentName = department.DepartmentName
@@ -55,10 +53,10 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             return response;
         }
 
-        public async Task<DeleteDepartmentResponseDTO> Delete(GetDepartmentIdRequestDTO request)
+        public async Task<DTOs.DepartmentDTOs.DeleteDepartmentDTOs.ResponseModel> Delete(DTOs.DepartmentDTOs.DeleteDepartmentDTOs.RequestModel request)
         {
             var department = await _departmentRepository.GetById(request.Id);
-            var response = new DeleteDepartmentResponseDTO();
+            var response = new DTOs.DepartmentDTOs.DeleteDepartmentDTOs.ResponseModel();
 
             if (department != null)
             {
@@ -76,13 +74,13 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             return response;
         }
 
-        public async Task<ResponseModel> GetById(Guid id)
+        public async Task<DTOs.DepartmentDTOs.GetByIdDepartmentDTOs.ResponseModel> GetById(Guid id)
         {
             var department = await _departmentRepository.GetById(id);
 
             if (department != null)
             {
-                var response = new ResponseModel()
+                var response = new DTOs.DepartmentDTOs.GetByIdDepartmentDTOs.ResponseModel()
                 {
                     Id = department.Id,
                     DepartmentName = department.DepartmentName,
@@ -95,7 +93,7 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             }
         }
 
-        public async Task<ResponseModel> Update(UpdateDepartmentRequestDTO request)
+        public async Task<DTOs.DepartmentDTOs.UpdateDepartmentDTOs.ResponseModel> Update(DTOs.DepartmentDTOs.UpdateDepartmentDTOs.RequestModel request)
         {
             var department = await _departmentRepository.GetById(request.Id);
 
@@ -104,7 +102,7 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
                 department.DepartmentName = request.DepartmentName;
                 await _departmentRepository.Update(department);
 
-                var response = new ResponseModel()
+                var response = new DTOs.DepartmentDTOs.UpdateDepartmentDTOs.ResponseModel()
                 {
                     Id = department.Id,
                     DepartmentName = department.DepartmentName,

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentResponseModel
+namespace TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.UpdateDepartmentDTOs
 {
-    public class ResponseModel
+    public class RequestModel
     {
         public Guid Id { get; set; }
         public string DepartmentName { get; set; }
