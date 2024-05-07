@@ -1,7 +1,7 @@
 ﻿using MediatR;
+using TaskManagementSystem.Infrastructure.DomainServices;
 using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentRequestModel;
 using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentResponseModel;
-using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.Departments.Commands.Update
 {

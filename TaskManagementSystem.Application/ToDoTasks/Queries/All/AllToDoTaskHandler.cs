@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using TaskManagementSystem.Infrastructure.Services;
+using TaskManagementSystem.Infrastructure.DomainServices;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Queries.All
 {

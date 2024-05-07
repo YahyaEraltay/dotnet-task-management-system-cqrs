@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentRequestModel
+namespace TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.CreateDepartmentDTOs
 {
-    public class CreateDepartmentRequestDTO
+    public class RequestModel
     {
         public Guid Id { get; set; }
         public string DepartmentName { get; set; }

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManagementSystem.Infrastructure.DomainServices;
 using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel;
-using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.Users.Queries.Detail
 {

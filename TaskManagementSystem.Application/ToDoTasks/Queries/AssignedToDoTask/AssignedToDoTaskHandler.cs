@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using TaskManagementSystem.Application.Auth;
+using TaskManagementSystem.Infrastructure.DomainServices;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Queries.AssignedToDoTask

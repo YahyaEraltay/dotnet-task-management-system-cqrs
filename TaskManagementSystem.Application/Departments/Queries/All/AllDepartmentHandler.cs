@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TaskManagementSystem.Infrastructure.Services;
+using TaskManagementSystem.Infrastructure.DomainServices;
 
 namespace TaskManagementSystem.Application.Departments.Queries.All
 {

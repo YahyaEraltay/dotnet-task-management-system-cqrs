@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentResponseModel
+namespace TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.CreateDepartmentDTOs
 {
     public class ResponseModel
     {

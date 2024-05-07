@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using TaskManagementSystem.Application.Auth;
 using TaskManagementSystem.Application.Users.Commands.Create;
 using TaskManagementSystem.Application.Users.Commands.Delete;
 using TaskManagementSystem.Application.Users.Commands.Login;
 using TaskManagementSystem.Application.Users.Commands.Update;
 using TaskManagementSystem.Application.Users.Queries.All;
 using TaskManagementSystem.Application.Users.Queries.Detail;
+using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel;
 using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserResponseModel;
 using TaskManagementSystem.Infrastructure.Services;
 
@@ -67,7 +67,7 @@ namespace Task_Management_System_CQRS.Controllers
 
         [AllowAnonymous]
         [HttpPost("[action]")]
-        public async Task<ActionResult> Login(LoginUserRequest request)
+        public async Task<ActionResult> Login(LoginUserRequestDTO request)
         {
             var result = await _mediator.Send(request);
 

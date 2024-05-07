@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManagementSystem.Infrastructure.DomainServices;
 using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentRequestModel;
-using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.Departments.Commands.Create
 {
@@ -20,7 +20,7 @@ namespace TaskManagementSystem.Application.Departments.Commands.Create
 
         public async Task<CreateDepartmentResponse> Handle(CreateDepartmentRequest request, CancellationToken cancellationToken)
         {
-            var department = new CreateDepartmentRequestDTO()
+            var department = new Infrastructure.DTOs.DepartmentDTOs.CreateDepartmentDTOs.RequestModel()
             {
                 DepartmentName = request.DepartmentName
             };
