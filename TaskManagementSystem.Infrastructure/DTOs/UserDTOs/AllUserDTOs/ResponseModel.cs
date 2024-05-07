@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel
+namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.AllUserDTOs
 {
-    public class UpdateUserRequestDTO
+    public class ResponseModel
     {
         public Guid Id { get; set; }
         public string UserName { get; set; }
         public string UserEmail { get; set; }
-        public string UserPassword { get; set; }
         public string PhoneNumber { get; set; }
+        public string DepartmentName { get; set; }
         public string UserTitle { get; set; }
-        public Guid DepartmentId { get; set; }
     }
 }

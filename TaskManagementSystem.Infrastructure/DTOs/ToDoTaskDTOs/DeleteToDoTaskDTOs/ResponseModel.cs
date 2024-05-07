@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserResponseModel
+namespace TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.DeleteToDoTaskDTOs
 {
-    public class DeleteUserResponseDTO
+    public class ResponseModel
     {
         public bool IsDeleted { get; set; }
         public string Message { get; set; }

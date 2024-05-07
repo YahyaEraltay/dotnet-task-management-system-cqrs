@@ -1,10 +1,10 @@
 ﻿using TaskManagementSystem.Domain.Entites;
-using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserResponseModel;
+using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.LoginUserDTOs;
 
 namespace TaskManagementSystem.Infrastructure.Services
 {
     public interface IGenerateJwtToken
     {
-        public string GenerateToken(LoginUserResponseDTO response);
+        public string GenerateToken(ResponseModel response);
     }
 }

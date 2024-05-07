@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using static TaskManagementSystem.Domain.Entites.ToDoTask;
 
-namespace TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskResponseModel
+namespace TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.AllToDoTaskDTOs
 {
-    public class GetToDoTaskResponseDTO
+    public class ResponseModel
     {
         public Guid Id { get; set; }
         public string AssignedUserName { get; set; }

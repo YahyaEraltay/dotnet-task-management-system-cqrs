@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel
+namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.LoginUserDTOs
 {
-    public class LoginUserRequestDTO
+    public class RequestModel
     {
         public string UserEmail { get; set; }
         public string UserPassword { get; set; }

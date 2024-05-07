@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel
+namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.DeleteUserDTOs
 {
-    public class GetUserIdRequestDTO
+    public class RequestModel
     {
         public Guid Id { get; set; }
     }

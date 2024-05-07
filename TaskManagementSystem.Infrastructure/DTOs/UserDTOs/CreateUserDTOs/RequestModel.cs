@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel
+namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.CreateUserDTOs
 {
-    public class CreateUserRequestDTO
+    public class RequestModel
     {
         public string UserName { get; set; }
         public string UserEmail { get; set; }

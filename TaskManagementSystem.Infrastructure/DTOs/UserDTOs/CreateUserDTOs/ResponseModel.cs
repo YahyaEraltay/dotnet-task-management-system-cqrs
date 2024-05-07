@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserResponseModel
+namespace TaskManagementSystem.Infrastructure.DTOs.UserDTOs.CreateUserDTOs
 {
-    public class CreateUserResponseDTO
+    public class ResponseModel
     {
         public Guid Id { get; set; }
         public string UserName { get; set; }

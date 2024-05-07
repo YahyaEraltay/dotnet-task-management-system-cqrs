@@ -3,7 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserResponseModel;
+using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.LoginUserDTOs;
 
 namespace TaskManagementSystem.Infrastructure.Services
 {
@@ -16,7 +16,7 @@ namespace TaskManagementSystem.Infrastructure.Services
             _configuration = configuration;
         }
 
-        public string GenerateToken(LoginUserResponseDTO response)
+        public string GenerateToken(ResponseModel response)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);

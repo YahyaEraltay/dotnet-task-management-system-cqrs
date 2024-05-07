@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManagementSystem.Infrastructure.DomainServices;
-using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserResponseModel;
+using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.CurrentUserDTOs;
 using TaskManagementSystem.Infrastructure.Repositories;
 
 namespace TaskManagementSystem.Infrastructure.Services
@@ -21,7 +21,7 @@ namespace TaskManagementSystem.Infrastructure.Services
             _userService = userService;
         }
 
-        public async Task<UserResponseDTO> GetCurrentUser()
+        public async Task<ResponseModel> GetCurrentUser()
         {
             var claims = _httpContextAccessor.HttpContext.User.Claims;
             var email = claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
@@ -31,7 +31,7 @@ namespace TaskManagementSystem.Infrastructure.Services
 
             if (user != null)
             {
-                return new UserResponseDTO
+                return new ResponseModel
                 {
                     Id = user.Id,
                     UserName = user.UserName,

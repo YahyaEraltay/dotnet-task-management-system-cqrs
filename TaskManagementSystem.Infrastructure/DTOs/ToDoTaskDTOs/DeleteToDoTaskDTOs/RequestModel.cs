@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskRequestModel
+namespace TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.DeleteToDoTaskDTOs
 {
-    public class DeleteToDoTaskRequestDTO
+    public class RequestModel
     {
         public Guid Id { get; set; }
     }

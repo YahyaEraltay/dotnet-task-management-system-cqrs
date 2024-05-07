@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskRequestModel;
-using TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskResponseModel;
-
-namespace TaskManagementSystem.Infrastructure.DomainServices
+﻿namespace TaskManagementSystem.Infrastructure.DomainServices
 {
     public interface IToDoTaskService
     {
-        Task<CreateToDoTaskResponseDTO> Create(CreateToDoTaskRequestDTO request);
-        Task<UpdateToDoTaskResponseDTO> Update(UpdateToDoTaskRequestDTO request);
-        Task<DeleteToDoTaskResponseDTO> Delete(DeleteToDoTaskRequestDTO request);
-        Task<GetToDoTaskResponseDTO> GetById(Guid id);
-        Task<List<GetToDoTaskResponseDTO>> All();
-        Task<List<AssignedTasksResponseDTO>> AssignedTasks(Guid id);
+        Task<DTOs.ToDoTaskDTOs.CreateToDoTaskDTOs.ResponseModel> Create(DTOs.ToDoTaskDTOs.CreateToDoTaskDTOs.RequestModel request);
+        Task<DTOs.ToDoTaskDTOs.UpdateToDoTaskDTOs.ResponseModel> Update(DTOs.ToDoTaskDTOs.UpdateToDoTaskDTOs.RequestModel request);
+        Task<DTOs.ToDoTaskDTOs.DeleteToDoTaskDTOs.ResponseModel> Delete(DTOs.ToDoTaskDTOs.DeleteToDoTaskDTOs.RequestModel request);
+        Task<DTOs.ToDoTaskDTOs.GetByIdToDoTaskDTOs.ResponseModel> GetById(Guid id);
+        Task<List<DTOs.ToDoTaskDTOs.AllToDoTaskDTOs.ResponseModel>> All();
+        Task<List<DTOs.ToDoTaskDTOs.AssignedToDoTaskDTOs.ResponseModel>> AssignedToDoTask(Guid id);
         Task<Guid> CreatorUser(Guid id);
         Task<Guid> AssignedUser(Guid id);
-        Task<UpdateToDoTaskResponseDTO> UpdateStatus(UpdateToDoTaskRequestDTO request);
+        Task<DTOs.ToDoTaskDTOs.UpdateStatusToDoTaskDTOs.ResponseModel> UpdateStatus(DTOs.ToDoTaskDTOs.UpdateStatusToDoTaskDTOs.RequestModel request);
     }
 }

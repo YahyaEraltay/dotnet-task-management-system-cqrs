@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaskManagementSystem.Domain.Entites;
-using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentResponseModel;
-using TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskRequestModel;
-using TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskResponseModel;
+﻿using TaskManagementSystem.Domain.Entites;
 using TaskManagementSystem.Infrastructure.Repositories;
 using TaskManagementSystem.Infrastructure.Services;
 
@@ -23,16 +15,16 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             _currentUser = currentUser;
         }
 
-        public async Task<List<GetToDoTaskResponseDTO>> All()
+        public async Task<List<DTOs.ToDoTaskDTOs.AllToDoTaskDTOs.ResponseModel>> All()
         {
             var tasks = await _toDoTaskRepository.All();
-            var response = new List<GetToDoTaskResponseDTO>();
+            var response = new List<DTOs.ToDoTaskDTOs.AllToDoTaskDTOs.ResponseModel>();
 
             if (tasks != null)
             {
                 foreach (var task in tasks)
                 {
-                    response.Add(new GetToDoTaskResponseDTO()
+                    response.Add(new DTOs.ToDoTaskDTOs.AllToDoTaskDTOs.ResponseModel()
                     {
                         Id = task.Id,
                         AssignedUserName = task.AssignedUser.UserName,
@@ -52,16 +44,16 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             }
         }
 
-        public async Task<List<AssignedTasksResponseDTO>> AssignedTasks(Guid id)
+        public async Task<List<DTOs.ToDoTaskDTOs.AssignedToDoTaskDTOs.ResponseModel>> AssignedToDoTask(Guid id)
         {
             var assignedTasks = await _toDoTaskRepository.AssignedTasks(id);
-            var response = new List<AssignedTasksResponseDTO>();
+            var response = new List<DTOs.ToDoTaskDTOs.AssignedToDoTaskDTOs.ResponseModel>();
 
             if (assignedTasks != null)
             {
                 foreach (var task in assignedTasks)
                 {
-                    response.Add(new AssignedTasksResponseDTO
+                    response.Add(new DTOs.ToDoTaskDTOs.AssignedToDoTaskDTOs.ResponseModel
                     {
                         ToDoTaskDate = task.ToDoTaskDate.Date,
                         CreatorUserName = task.CreatorUser.UserName,
@@ -87,7 +79,7 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             return assignedUser;
         }
 
-        public async Task<CreateToDoTaskResponseDTO> Create(CreateToDoTaskRequestDTO request)
+        public async Task<DTOs.ToDoTaskDTOs.CreateToDoTaskDTOs.ResponseModel> Create(DTOs.ToDoTaskDTOs.CreateToDoTaskDTOs.RequestModel request)
         {
             var currentUser = await _currentUser.GetCurrentUser();
             var task = new ToDoTask()
@@ -103,7 +95,7 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
 
             await _toDoTaskRepository.Create(task);
 
-            var response = new CreateToDoTaskResponseDTO()
+            var response = new DTOs.ToDoTaskDTOs.CreateToDoTaskDTOs.ResponseModel()
             {
                 Id = task.Id,
                 ToDoTaskName = task.ToDoTaskName,
@@ -126,10 +118,10 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             return creatorUser;
         }
 
-        public async Task<DeleteToDoTaskResponseDTO> Delete(DeleteToDoTaskRequestDTO request)
+        public async Task<DTOs.ToDoTaskDTOs.DeleteToDoTaskDTOs.ResponseModel> Delete(DTOs.ToDoTaskDTOs.DeleteToDoTaskDTOs.RequestModel request)
         {
             var task = await _toDoTaskRepository.GetById(request.Id);
-            var response = new DeleteToDoTaskResponseDTO();
+            var response = new DTOs.ToDoTaskDTOs.DeleteToDoTaskDTOs.ResponseModel();
 
             if (task != null)
             {
@@ -146,13 +138,13 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             }
         }
 
-        public async Task<GetToDoTaskResponseDTO> GetById(Guid id)
+        public async Task<DTOs.ToDoTaskDTOs.GetByIdToDoTaskDTOs.ResponseModel> GetById(Guid id)
         {
             var task = await _toDoTaskRepository.GetById(id);
 
             if (task != null)
             {
-                var response = new GetToDoTaskResponseDTO
+                var response = new DTOs.ToDoTaskDTOs.GetByIdToDoTaskDTOs.ResponseModel
                 {
                     Id = task.Id,
                     AssignedUserName = task.AssignedUser.UserName,
@@ -171,7 +163,7 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             }
         }
 
-        public async Task<UpdateToDoTaskResponseDTO> Update(UpdateToDoTaskRequestDTO request)
+        public async Task<DTOs.ToDoTaskDTOs.UpdateToDoTaskDTOs.ResponseModel> Update(DTOs.ToDoTaskDTOs.UpdateToDoTaskDTOs.RequestModel request)
         {
             var task = await _toDoTaskRepository.GetById(request.Id);
 
@@ -185,7 +177,7 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
 
                 await _toDoTaskRepository.Update(task);
 
-                var response = new UpdateToDoTaskResponseDTO
+                var response = new DTOs.ToDoTaskDTOs.UpdateToDoTaskDTOs.ResponseModel
                 {
                     Id = task.Id,
                     ToDoTaskName = task.ToDoTaskName,
@@ -203,7 +195,7 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             }
         }
 
-        public async Task<UpdateToDoTaskResponseDTO> UpdateStatus(UpdateToDoTaskRequestDTO request)
+        public async Task<DTOs.ToDoTaskDTOs.UpdateStatusToDoTaskDTOs.ResponseModel> UpdateStatus(DTOs.ToDoTaskDTOs.UpdateStatusToDoTaskDTOs.RequestModel request)
         {
             var task = await _toDoTaskRepository.GetById(request.Id);
 
@@ -213,7 +205,7 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
 
                 await _toDoTaskRepository.Update(task);
 
-                var response = new UpdateToDoTaskResponseDTO
+                var response = new DTOs.ToDoTaskDTOs.UpdateStatusToDoTaskDTOs.ResponseModel
                 {
                     Id = task.Id,
                     Status = task.Status

@@ -1,17 +1,13 @@
-﻿using TaskManagementSystem.Domain.Entites;
-using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel;
-using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserResponseModel;
-
-namespace TaskManagementSystem.Infrastructure.DomainServices
+﻿namespace TaskManagementSystem.Infrastructure.DomainServices
 {
     public interface IUserService
     {
-        Task<CreateUserResponseDTO> Create(CreateUserRequestDTO request);
-        Task<UserResponseDTO> Update(UpdateUserRequestDTO request);
-        Task<DeleteUserResponseDTO> Delete(GetUserIdRequestDTO request);
-        Task<UserResponseDTO> GetById(Guid id);
-        Task<List<UserResponseDTO>> All();
-        Task<LoginUserResponseDTO> Login(LoginUserRequestDTO request);
+        Task<DTOs.UserDTOs.CreateUserDTOs.ResponseModel> Create(DTOs.UserDTOs.CreateUserDTOs.RequestModel request);
+        Task<DTOs.UserDTOs.UpdateUserDTOs.ResponseModel> Update(DTOs.UserDTOs.UpdateUserDTOs.RequestModel request);
+        Task<DTOs.UserDTOs.DeleteUserDTOs.ResponseModel> Delete(DTOs.UserDTOs.DeleteUserDTOs.RequestModel request);
+        Task<DTOs.UserDTOs.GetByIdUserDTOs.ResponseModel> GetById(Guid id);
+        Task<List<DTOs.UserDTOs.AllUserDTOs.ResponseModel>> All();
+        Task<DTOs.UserDTOs.LoginUserDTOs.ResponseModel> Login(DTOs.UserDTOs.LoginUserDTOs.RequestModel request);
         Task<string> GetUserByEmail(string email);
     }
 }

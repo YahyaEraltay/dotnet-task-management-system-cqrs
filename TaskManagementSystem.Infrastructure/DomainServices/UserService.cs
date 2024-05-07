@@ -1,6 +1,4 @@
 ﻿using TaskManagementSystem.Domain.Entites;
-using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel;
-using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserResponseModel;
 using TaskManagementSystem.Infrastructure.Repositories;
 
 namespace TaskManagementSystem.Infrastructure.DomainServices
@@ -14,14 +12,14 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             _userRepository = userRepository;
         }
 
-        public async Task<List<UserResponseDTO>> All()
+        public async Task<List<DTOs.UserDTOs.AllUserDTOs.ResponseModel>> All()
         {
             var users = await _userRepository.All();
-            var response = new List<UserResponseDTO>();
+            var response = new List<DTOs.UserDTOs.AllUserDTOs.ResponseModel>();
 
             foreach (var user in users)
             {
-                response.Add(new UserResponseDTO
+                response.Add(new DTOs.UserDTOs.AllUserDTOs.ResponseModel
                 {
                     Id = user.Id,
                     UserName = user.UserName,
@@ -33,7 +31,7 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             return response;
         }
 
-        public async Task<CreateUserResponseDTO> Create(CreateUserRequestDTO request)
+        public async Task<DTOs.UserDTOs.CreateUserDTOs.ResponseModel> Create(DTOs.UserDTOs.CreateUserDTOs.RequestModel request)
         {
             var user = new User()
             {
@@ -47,7 +45,7 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
 
             await _userRepository.Create(user);
 
-            var response = new CreateUserResponseDTO()
+            var response = new DTOs.UserDTOs.CreateUserDTOs.ResponseModel()
             {
                 Id = user.Id,
                 UserName = user.UserName,
@@ -60,10 +58,10 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             return response;
         }
 
-        public async Task<DeleteUserResponseDTO> Delete(GetUserIdRequestDTO request)
+        public async Task<DTOs.UserDTOs.DeleteUserDTOs.ResponseModel> Delete(DTOs.UserDTOs.DeleteUserDTOs.RequestModel request)
         {
             var user = await _userRepository.GetById(request.Id);
-            var response = new DeleteUserResponseDTO();
+            var response = new DTOs.UserDTOs.DeleteUserDTOs.ResponseModel();
 
             if (user != null)
             {
@@ -81,13 +79,13 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             return response;
         }
 
-        public async Task<UserResponseDTO> GetById(Guid id)
+        public async Task<DTOs.UserDTOs.GetByIdUserDTOs.ResponseModel> GetById(Guid id)
         {
             var user = await _userRepository.GetById(id);
 
             if (user != null)
             {
-                var response = new UserResponseDTO()
+                var response = new DTOs.UserDTOs.GetByIdUserDTOs.ResponseModel()
                 {
                     Id = user.Id,
                     UserName = user.UserName,
@@ -114,13 +112,13 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             return userPassword;
         }
 
-        public async Task<LoginUserResponseDTO> Login(LoginUserRequestDTO request)
+        public async Task<DTOs.UserDTOs.LoginUserDTOs.ResponseModel> Login(DTOs.UserDTOs.LoginUserDTOs.RequestModel request)
         {
             var user = await _userRepository.Login(request.UserEmail, request.UserPassword);
 
             if (user != null)
             {
-                return new LoginUserResponseDTO
+                return new DTOs.UserDTOs.LoginUserDTOs.ResponseModel
                 {
                     UserName = user.UserName,
                     UserEmail = user.UserEmail
@@ -132,7 +130,7 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
             }
         }
 
-        public async Task<UserResponseDTO> Update(UpdateUserRequestDTO request)
+        public async Task<DTOs.UserDTOs.UpdateUserDTOs.ResponseModel> Update(DTOs.UserDTOs.UpdateUserDTOs.RequestModel request)
         {
             var user = await _userRepository.GetById(request.Id);
 
@@ -147,7 +145,7 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
 
                 await _userRepository.Update(user);
 
-                var response = new UserResponseDTO
+                var response = new DTOs.UserDTOs.UpdateUserDTOs.ResponseModel
                 {
                     Id = user.Id,
                     UserName = user.UserName,
