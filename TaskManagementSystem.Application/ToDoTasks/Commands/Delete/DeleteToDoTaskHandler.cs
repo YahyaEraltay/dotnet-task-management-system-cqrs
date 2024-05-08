@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using TaskManagementSystem.Infrastructure.DomainServices;
-using TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskRequestModel;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Commands.Delete
@@ -26,7 +25,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Delete
 
             if (currentUser.Id == creatorUser)
             {
-                await _toDoTaskService.Delete(new DeleteToDoTaskRequestDTO
+                await _toDoTaskService.Delete(new Infrastructure.DTOs.ToDoTaskDTOs.DeleteToDoTaskDTOs.RequestModel
                 {
                     Id = task.Id,
                 });

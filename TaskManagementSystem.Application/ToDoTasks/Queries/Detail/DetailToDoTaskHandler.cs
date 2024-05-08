@@ -1,13 +1,5 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaskManagementSystem.Application.ToDoTasks.Queries.All;
 using TaskManagementSystem.Infrastructure.DomainServices;
-using TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskResponseModel;
-using static TaskManagementSystem.Domain.Entites.ToDoTask;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Queries.Detail
 {

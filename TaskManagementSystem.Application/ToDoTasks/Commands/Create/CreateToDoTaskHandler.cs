@@ -1,12 +1,5 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaskManagementSystem.Infrastructure.DomainServices;
-using TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskRequestModel;
-using TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskResponseModel;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Commands.Create
@@ -26,7 +19,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Create
         {
             var currentUser = await _currentUser.GetCurrentUser();
 
-            var task = new CreateToDoTaskRequestDTO
+            var task = new Infrastructure.DTOs.ToDoTaskDTOs.CreateToDoTaskDTOs.RequestModel
             {
                 ToDoTaskName = request.ToDoTaskName,
                 ToDoTaskDescription = request.ToDoTaskDescription,

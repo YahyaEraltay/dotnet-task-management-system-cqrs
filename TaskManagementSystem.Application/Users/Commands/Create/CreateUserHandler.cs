@@ -1,11 +1,5 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaskManagementSystem.Infrastructure.DomainServices;
-using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel;
 
 namespace TaskManagementSystem.Application.Users.Commands.Create
 {
@@ -20,7 +14,7 @@ namespace TaskManagementSystem.Application.Users.Commands.Create
 
         public async Task<CreateUserResponse> Handle(CreateUserRequest request, CancellationToken cancellationToken)
         {
-            var user = new CreateUserRequestDTO
+            var user = new Infrastructure.DTOs.UserDTOs.CreateUserDTOs.RequestModel
             {
                 UserName = request.UserName,
                 UserEmail = request.UserEmail,

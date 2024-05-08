@@ -1,11 +1,5 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaskManagementSystem.Infrastructure.DomainServices;
-using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel;
 
 namespace TaskManagementSystem.Application.Users.Commands.Login
 {
@@ -20,7 +14,7 @@ namespace TaskManagementSystem.Application.Users.Commands.Login
 
         public async Task<LoginUserResponse> Handle(LoginUserRequest request, CancellationToken cancellationToken)
         {
-            var user = await _userService.Login(new LoginUserRequestDTO
+            var user = await _userService.Login(new Infrastructure.DTOs.UserDTOs.LoginUserDTOs.RequestModel
             {
                 UserEmail = request.UserEmail,
                 UserPassword = request.UserPassword

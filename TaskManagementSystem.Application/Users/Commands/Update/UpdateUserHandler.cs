@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using TaskManagementSystem.Infrastructure.DomainServices;
-using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.Users.Commands.Update
@@ -22,7 +21,7 @@ namespace TaskManagementSystem.Application.Users.Commands.Update
 
             if (currentUser.Id == request.Id)
             {
-                var updatedUser = await _userService.Update(new UpdateUserRequestDTO
+                var updatedUser = await _userService.Update(new Infrastructure.DTOs.UserDTOs.UpdateUserDTOs.RequestModel
                 {
                     Id = request.Id,
                     UserName = request.UserName,

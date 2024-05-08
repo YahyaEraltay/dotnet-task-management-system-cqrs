@@ -18,7 +18,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Queries.AssignedToDoTask
         public async Task<List<AssignedToDoTaskResponse>> Handle(AssignedToDoTaskRequest request, CancellationToken cancellationToken)
         {
             var currentUser = await _currentUser.GetCurrentUser();
-            var assignedTasks = await _toDoTaskService.AssignedTasks(currentUser.Id);
+            var assignedTasks = await _toDoTaskService.AssignedToDoTask(currentUser.Id);
             var response = new List<AssignedToDoTaskResponse>();
 
             foreach ( var assignedTask in assignedTasks )

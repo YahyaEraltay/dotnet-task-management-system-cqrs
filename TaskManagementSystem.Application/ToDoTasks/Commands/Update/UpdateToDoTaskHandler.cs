@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using TaskManagementSystem.Infrastructure.DomainServices;
-using TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskRequestModel;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Commands.Update
@@ -22,7 +21,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Update
 
             if (currentUser.Id == request.CreatorUserId)
             {
-                var updatedUser = await _toDoTaskService.Update(new UpdateToDoTaskRequestDTO
+                var updatedUser = await _toDoTaskService.Update(new Infrastructure.DTOs.ToDoTaskDTOs.UpdateToDoTaskDTOs.RequestModel
                 {
                     Id = request.Id,
                     ToDoTaskName = request.ToDoTaskName,

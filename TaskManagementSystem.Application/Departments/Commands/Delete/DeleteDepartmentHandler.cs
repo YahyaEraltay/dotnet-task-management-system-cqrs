@@ -1,7 +1,5 @@
 ﻿using MediatR;
 using TaskManagementSystem.Infrastructure.DomainServices;
-using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentRequestModel;
-using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentResponseModel;
 
 namespace TaskManagementSystem.Application.Departments.Commands.Delete
 {
@@ -19,7 +17,7 @@ namespace TaskManagementSystem.Application.Departments.Commands.Delete
             var department = await _departmentService.GetById(request.Id);
             var response = new DeleteDepartmentResponse();
 
-            await _departmentService.Delete(new GetDepartmentIdRequestDTO
+            await _departmentService.Delete(new Infrastructure.DTOs.DepartmentDTOs.DeleteDepartmentDTOs.RequestModel
             {
                 Id = department.Id,
             });

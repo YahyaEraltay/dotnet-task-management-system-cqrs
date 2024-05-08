@@ -1,11 +1,5 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaskManagementSystem.Infrastructure.DomainServices;
-using TaskManagementSystem.Infrastructure.DTOs.ToDoTaskDTOs.ToDoTaskRequestModel;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Commands.Status
@@ -29,7 +23,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Status
 
             if (currentUser.Id == assignedUser)
             {
-                var updateStatus = await _toDoTaskService.UpdateStatus(new UpdateToDoTaskRequestDTO
+                var updateStatus = await _toDoTaskService.UpdateStatus(new Infrastructure.DTOs.ToDoTaskDTOs.UpdateStatusToDoTaskDTOs.RequestModel
                 {
                     Id = request.Id,
                     Status = request.Status

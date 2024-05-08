@@ -1,7 +1,5 @@
 ﻿using MediatR;
 using TaskManagementSystem.Infrastructure.DomainServices;
-using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentRequestModel;
-using TaskManagementSystem.Infrastructure.DTOs.DepartmentDTOs.DepartmentResponseModel;
 
 namespace TaskManagementSystem.Application.Departments.Commands.Update
 {
@@ -20,7 +18,7 @@ namespace TaskManagementSystem.Application.Departments.Commands.Update
 
             if (department != null)
             {
-                var updatedDepartment = new UpdateDepartmentRequestDTO
+                var updatedDepartment = new Infrastructure.DTOs.DepartmentDTOs.UpdateDepartmentDTOs.RequestModel
                 {
                     Id = department.Id,
                     DepartmentName = request.DepartmentName
