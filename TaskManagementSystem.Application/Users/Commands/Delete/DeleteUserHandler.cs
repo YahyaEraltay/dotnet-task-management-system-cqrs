@@ -1,11 +1,5 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaskManagementSystem.Infrastructure.DomainServices;
-using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.Users.Commands.Delete
@@ -30,7 +24,7 @@ namespace TaskManagementSystem.Application.Users.Commands.Delete
 
             if (currentUser.Id == request.Id)
             {
-                await _userService.Delete(new GetUserIdRequestDTO
+                await _userService.Delete(new Infrastructure.DTOs.UserDTOs.DeleteUserDTOs.RequestModel
                 {
                     Id = user.Id
                 });
