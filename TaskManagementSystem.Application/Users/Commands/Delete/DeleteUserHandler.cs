@@ -1,30 +1,32 @@
 ﻿using MediatR;
+using TaskManagementSystem.Domain.Entites;
 using TaskManagementSystem.Infrastructure.DomainServices;
+using TaskManagementSystem.Infrastructure.Repositories;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.Users.Commands.Delete
 {
     public class DeleteUserHandler : IRequestHandler<DeleteUserRequest, DeleteUserResponse>
     {
-        private readonly IUserService _userService;
+        private readonly IUserRepository _userRepository;
         private readonly ICurrentUserService _currentUserService;
 
-        public DeleteUserHandler(IUserService userService, ICurrentUserService currentUserService)
+        public DeleteUserHandler(IUserRepository userRepository, ICurrentUserService currentUserService)
         {
-            _userService = userService;
+            _userRepository = userRepository;
             _currentUserService = currentUserService;
         }
 
         public async Task<DeleteUserResponse> Handle(DeleteUserRequest request, CancellationToken cancellationToken)
         {
             var currentUser = await _currentUserService.GetCurrentUser();
-            var user = await _userService.GetById(request.Id);
+            var user = await _userRepository.GetById(request.Id);
 
             var response = new DeleteUserResponse();
 
             if (currentUser.Id == request.Id)
             {
-                await _userService.Delete(new Infrastructure.DTOs.UserDTOs.DeleteUserDTOs.RequestModel
+                await _userRepository.Delete(new User
                 {
                     Id = user.Id
                 });

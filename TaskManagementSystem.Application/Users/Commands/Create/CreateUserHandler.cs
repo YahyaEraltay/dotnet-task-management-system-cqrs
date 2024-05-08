@@ -1,20 +1,22 @@
 ﻿using MediatR;
+using TaskManagementSystem.Domain.Entites;
 using TaskManagementSystem.Infrastructure.DomainServices;
+using TaskManagementSystem.Infrastructure.Repositories;
 
 namespace TaskManagementSystem.Application.Users.Commands.Create
 {
     public class CreateUserHandler : IRequestHandler<CreateUserRequest, CreateUserResponse>
     {
-        private readonly IUserService _userService;
+        private readonly IUserRepository _userRepository;
 
-        public CreateUserHandler(IUserService userService)
+        public CreateUserHandler(IUserRepository userRepository)
         {
-            _userService = userService;
+            _userRepository = userRepository;
         }
 
         public async Task<CreateUserResponse> Handle(CreateUserRequest request, CancellationToken cancellationToken)
         {
-            var user = new Infrastructure.DTOs.UserDTOs.CreateUserDTOs.RequestModel
+            var user = new User
             {
                 UserName = request.UserName,
                 UserEmail = request.UserEmail,
@@ -24,7 +26,7 @@ namespace TaskManagementSystem.Application.Users.Commands.Create
                 UserTitle = request.UserTitle
             };
 
-            await _userService.Create(user);
+            await _userRepository.Create(user);
 
             var response = new CreateUserResponse
             {

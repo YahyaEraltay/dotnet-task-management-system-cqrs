@@ -24,7 +24,7 @@ namespace TaskManagementSystem.Infrastructure.Repositories
                                       .Include(x => x.Department)
                                       .ToListAsync();
 
-            return users;   
+            return users;
         }
 
         public async Task<User> Create(User user)
@@ -51,22 +51,43 @@ namespace TaskManagementSystem.Infrastructure.Repositories
                                      .Include(x => x.Department)
                                      .FirstOrDefaultAsync(x => x.Id == id);
 
-            return user;
+            if (user != null)
+            {
+                return user;
+            }
+            else
+            {
+                throw new Exception("User not found");
+            }
         }
 
         public async Task<User> GetUserByEmail(string email)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x=>x.UserEmail == email);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.UserEmail == email);
 
-            return user;
+            if (user != null)
+            {
+                return user;
+            }
+            else
+            {
+                throw new Exception("Not found");
+            }
         }
 
         public async Task<User> Login(string email, string password)
         {
             var user = await _context.Users
                                      .Include(x => x.Department)
-                                     .FirstOrDefaultAsync(x => x.UserEmail == email && x.UserPassword == password);   
-            return user;
+                                     .FirstOrDefaultAsync(x => x.UserEmail == email && x.UserPassword == password);
+            if (user != null)
+            {
+                return user;
+            }
+            else
+            {
+                throw new Exception("Invalid email or password");
+            }
         }
 
         public async Task<User> Update(User user)

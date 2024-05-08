@@ -1,36 +1,34 @@
 ﻿using MediatR;
-using TaskManagementSystem.Infrastructure.DomainServices;
+using TaskManagementSystem.Infrastructure.Repositories;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.Users.Commands.Update
 {
     public class UpdateUserHandler : IRequestHandler<UpdateUserRequest, UpdateUserResponse>
     {
-        private readonly IUserService _userService;
+        private readonly IUserRepository _userRepository;
         private readonly ICurrentUserService _currentUserService;
 
-        public UpdateUserHandler(IUserService userService, ICurrentUserService currentUserService)
+        public UpdateUserHandler(IUserRepository userRepository, ICurrentUserService currentUserService)
         {
-            _userService = userService;
+            _userRepository = userRepository;
             _currentUserService = currentUserService;
         }
 
         public async Task<UpdateUserResponse> Handle(UpdateUserRequest request, CancellationToken cancellationToken)
         {
             var currentUser = await _currentUserService.GetCurrentUser();
+            var updatedUser = await _userRepository.GetById(request.Id);
 
             if (currentUser.Id == request.Id)
             {
-                var updatedUser = await _userService.Update(new Infrastructure.DTOs.UserDTOs.UpdateUserDTOs.RequestModel
-                {
-                    Id = request.Id,
-                    UserName = request.UserName,
-                    UserEmail = request.UserEmail,
-                    UserTitle = request.UserTitle,
-                    UserPassword = request.UserPassword,
-                    PhoneNumber = request.PhoneNumber,
-                    DepartmentId = request.DepartmentId
-                });
+                updatedUser.Id = request.Id;
+                updatedUser.UserName = request.UserName;
+                updatedUser.UserEmail = request.UserEmail;
+                updatedUser.UserTitle = request.UserTitle;
+                updatedUser.UserPassword = request.UserPassword;
+                updatedUser.PhoneNumber = request.PhoneNumber;
+                updatedUser.DepartmentId = request.DepartmentId;
 
                 var response = new UpdateUserResponse
                 {
@@ -38,8 +36,8 @@ namespace TaskManagementSystem.Application.Users.Commands.Update
                     UserName = updatedUser.UserName,
                     UserEmail = updatedUser.UserEmail,
                     UserTitle = updatedUser.UserTitle,
-                    PhoneNumber = updatedUser.PhoneNumber,  
-                    DepartmentName = updatedUser.DepartmentName
+                    PhoneNumber = updatedUser.PhoneNumber,
+                    DepartmentName = updatedUser.Department.DepartmentName
                 };
 
                 return response;

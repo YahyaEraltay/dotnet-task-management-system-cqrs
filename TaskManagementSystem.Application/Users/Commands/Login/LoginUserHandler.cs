@@ -1,37 +1,27 @@
 ﻿using MediatR;
 using TaskManagementSystem.Infrastructure.DomainServices;
+using TaskManagementSystem.Infrastructure.Repositories;
 
 namespace TaskManagementSystem.Application.Users.Commands.Login
 {
     public class LoginUserHandler : IRequestHandler<LoginUserRequest, LoginUserResponse>
     {
-        private readonly IUserService _userService;
+        private readonly IUserRepository _userRepository;
 
-        public LoginUserHandler(IUserService userService)
+        public LoginUserHandler(IUserRepository userRepository)
         {
-            _userService = userService;
+            _userRepository = userRepository;
         }
 
         public async Task<LoginUserResponse> Handle(LoginUserRequest request, CancellationToken cancellationToken)
         {
-            var user = await _userService.Login(new Infrastructure.DTOs.UserDTOs.LoginUserDTOs.RequestModel
-            {
-                UserEmail = request.UserEmail,
-                UserPassword = request.UserPassword
-            });
+            var user = await _userRepository.Login(request.UserEmail, request.UserPassword);
 
-            if (user != null)
+            return new LoginUserResponse //Aslında burası çalışmıyor token dönüyor.
             {
-                return new LoginUserResponse
-                {
-                    UserName = user.UserName,
-                    UserEmail = user.UserEmail
-                };
-            }
-            else
-            {
-                throw new Exception("Invalid email adress or password");
-            }
+                UserName = user.UserName,
+                UserEmail = user.UserEmail
+            };
         }
     }
 }
