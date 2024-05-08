@@ -1,20 +1,21 @@
 ﻿using MediatR;
 using TaskManagementSystem.Infrastructure.DomainServices;
+using TaskManagementSystem.Infrastructure.Repositories;
 
 namespace TaskManagementSystem.Application.Departments.Queries.Detail
 {
     public class DetailDepartmentHandler : IRequestHandler<DetailDepartmentRequest, DetailDepartmentResponse>
     {
-        private readonly IDepartmentService _departmentService;
+        private readonly IDepartmentRepository _departmentRepository;
 
-        public DetailDepartmentHandler(IDepartmentService departmentService)
+        public DetailDepartmentHandler(IDepartmentRepository departmentRepository)
         {
-            _departmentService = departmentService;
+            _departmentRepository = departmentRepository;
         }
 
         public async Task<DetailDepartmentResponse> Handle(DetailDepartmentRequest request, CancellationToken cancellationToken)
         {
-            var departmentDetail = await _departmentService.GetById(request.Id);
+            var departmentDetail = await _departmentRepository.GetById(request.Id);
 
             var response = new DetailDepartmentResponse
             {

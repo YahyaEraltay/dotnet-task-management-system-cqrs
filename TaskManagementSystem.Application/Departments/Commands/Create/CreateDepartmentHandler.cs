@@ -1,25 +1,26 @@
 ﻿using MediatR;
-using TaskManagementSystem.Infrastructure.DomainServices;
+using TaskManagementSystem.Domain.Entites;
+using TaskManagementSystem.Infrastructure.Repositories;
 
 namespace TaskManagementSystem.Application.Departments.Commands.Create
 {
     public class CreateDepartmentHandler : IRequestHandler<CreateDepartmentRequest, CreateDepartmentResponse>
     {
-        private readonly IDepartmentService _departmentService;
+        private readonly IDepartmentRepository _departmentRepository;
 
-        public CreateDepartmentHandler(IDepartmentService departmentService)
+        public CreateDepartmentHandler(IDepartmentRepository departmentRepository)
         {
-            _departmentService = departmentService;
+            _departmentRepository = departmentRepository;
         }
 
         public async Task<CreateDepartmentResponse> Handle(CreateDepartmentRequest request, CancellationToken cancellationToken)
         {
-            var department = new Infrastructure.DTOs.DepartmentDTOs.CreateDepartmentDTOs.RequestModel()
+            var department = new Department()
             {
                 DepartmentName = request.DepartmentName
             };
 
-            await _departmentService.Create(department);
+            await _departmentRepository.Create(department);
 
             var response = new CreateDepartmentResponse()
             {

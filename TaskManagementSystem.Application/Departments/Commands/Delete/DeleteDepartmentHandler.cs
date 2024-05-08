@@ -1,23 +1,24 @@
 ﻿using MediatR;
-using TaskManagementSystem.Infrastructure.DomainServices;
+using TaskManagementSystem.Domain.Entites;
+using TaskManagementSystem.Infrastructure.Repositories;
 
 namespace TaskManagementSystem.Application.Departments.Commands.Delete
 {
     public class DeleteDepartmentHandler : IRequestHandler<DeleteDepartmentRequest, DeleteDepartmentResponse>
     {
-        private readonly IDepartmentService _departmentService;
+        private readonly IDepartmentRepository _departmentRepository;
 
-        public DeleteDepartmentHandler(IDepartmentService departmentService)
+        public DeleteDepartmentHandler(IDepartmentRepository departmentRepository)
         {
-            _departmentService = departmentService;
+            _departmentRepository = departmentRepository;
         }
 
         public async Task<DeleteDepartmentResponse> Handle(DeleteDepartmentRequest request, CancellationToken cancellationToken)
         {
-            var department = await _departmentService.GetById(request.Id);
+            var department = await _departmentRepository.GetById(request.Id);
             var response = new DeleteDepartmentResponse();
 
-            await _departmentService.Delete(new Infrastructure.DTOs.DepartmentDTOs.DeleteDepartmentDTOs.RequestModel
+            await _departmentRepository.Delete(new Department
             {
                 Id = department.Id,
             });

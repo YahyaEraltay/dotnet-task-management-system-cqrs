@@ -42,7 +42,14 @@ namespace TaskManagementSystem.Infrastructure.Repositories
         {
             var department = await _context.Departments.FirstOrDefaultAsync(x => x.Id == id);
 
-            return department;
+            if (department != null)
+            {
+                return department;
+            }
+            else
+            {
+                throw new Exception("Department not found");
+            }
         }
 
         public async Task<Department> Update(Department department)

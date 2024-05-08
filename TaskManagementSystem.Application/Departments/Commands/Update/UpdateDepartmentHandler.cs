@@ -1,31 +1,26 @@
 ﻿using MediatR;
+using TaskManagementSystem.Domain.Entites;
 using TaskManagementSystem.Infrastructure.DomainServices;
+using TaskManagementSystem.Infrastructure.Repositories;
 
 namespace TaskManagementSystem.Application.Departments.Commands.Update
 {
     public class UpdateDepartmentHandler : IRequestHandler<UpdateDepartmentRequest, UpdateDepartmentResponse>
     {
-        private readonly IDepartmentService _departmentService;
+        private readonly IDepartmentRepository _departmentRepository;
 
-        public UpdateDepartmentHandler(IDepartmentService departmentService)
+        public UpdateDepartmentHandler(IDepartmentRepository departmentRepository)
         {
-            _departmentService = departmentService;
+            _departmentRepository = departmentRepository;
         }
 
         public async Task<UpdateDepartmentResponse> Handle(UpdateDepartmentRequest request, CancellationToken cancellationToken)
         {
-            var department = await _departmentService.GetById(request.Id);
+            var department = await _departmentRepository.GetById(request.Id);
 
-            if (department != null)
-            {
-                var updatedDepartment = new Infrastructure.DTOs.DepartmentDTOs.UpdateDepartmentDTOs.RequestModel
-                {
-                    Id = department.Id,
-                    DepartmentName = request.DepartmentName
-                };
+            department.DepartmentName = request.DepartmentName;
 
-                await _departmentService.Update(updatedDepartment);
-            }
+            await _departmentRepository.Update(department);
 
             var response = new UpdateDepartmentResponse
             {
