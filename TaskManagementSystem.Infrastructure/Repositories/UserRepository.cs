@@ -71,7 +71,7 @@ namespace TaskManagementSystem.Infrastructure.Repositories
             }
             else
             {
-                throw new Exception("Not found");
+                throw new Exception("User not found");
             }
         }
 
