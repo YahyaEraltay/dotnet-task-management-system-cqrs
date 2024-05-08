@@ -1,15 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using TaskManagementSystem.Application.Users.Commands.Create;
 using TaskManagementSystem.Application.Users.Commands.Delete;
 using TaskManagementSystem.Application.Users.Commands.Login;
 using TaskManagementSystem.Application.Users.Commands.Update;
 using TaskManagementSystem.Application.Users.Queries.All;
 using TaskManagementSystem.Application.Users.Queries.Detail;
-using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserRequestModel;
-using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.UserResponseModel;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace Task_Management_System_CQRS.Controllers
@@ -82,7 +79,7 @@ namespace Task_Management_System_CQRS.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<ActionResult<UserResponseDTO>> GetCurrentUser()
+        public async Task<ActionResult<TaskManagementSystem.Infrastructure.DTOs.UserDTOs.CurrentUserDTOs.ResponseModel>> GetCurrentUser()
         {
             var currentUser = await _currentUser.GetCurrentUser();
 
