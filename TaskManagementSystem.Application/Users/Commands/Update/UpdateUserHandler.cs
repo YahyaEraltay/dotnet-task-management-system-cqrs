@@ -30,6 +30,8 @@ namespace TaskManagementSystem.Application.Users.Commands.Update
                 updatedUser.PhoneNumber = request.PhoneNumber;
                 updatedUser.DepartmentId = request.DepartmentId;
 
+                await _userRepository.Update(updatedUser);
+
                 var response = new UpdateUserResponse
                 {
                     Id = updatedUser.Id,

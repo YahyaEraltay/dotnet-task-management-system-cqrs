@@ -46,7 +46,7 @@ namespace TaskManagementSystem.Infrastructure.DomainServices
 
         public async Task<List<DTOs.ToDoTaskDTOs.AssignedToDoTaskDTOs.ResponseModel>> AssignedToDoTask(Guid id)
         {
-            var assignedTasks = await _toDoTaskRepository.AssignedTasks(id);
+            var assignedTasks = await _toDoTaskRepository.AssignedToDoTask(id);
             var response = new List<DTOs.ToDoTaskDTOs.AssignedToDoTaskDTOs.ResponseModel>();
 
             if (assignedTasks != null)
