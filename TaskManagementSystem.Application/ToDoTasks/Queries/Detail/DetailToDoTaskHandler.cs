@@ -1,35 +1,21 @@
 ﻿using MediatR;
 using TaskManagementSystem.Infrastructure.DomainServices;
+using TaskManagementSystem.Infrastructure.Repositories;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Queries.Detail
 {
     public class DetailToDoTaskHandler : IRequestHandler<DetailToDoTaskRequest, DetailToDoTaskResponse>
     {
-        private readonly IToDoTaskService _toDoTaskService;
+        private readonly IToDoTaskRepository _toDoTaskRepository;
 
-        public DetailToDoTaskHandler(IToDoTaskService toDoTaskService)
+        public DetailToDoTaskHandler(IToDoTaskRepository toDoTaskRepository)
         {
-            _toDoTaskService = toDoTaskService;
+            _toDoTaskRepository = toDoTaskRepository;
         }
 
         public async Task<DetailToDoTaskResponse> Handle(DetailToDoTaskRequest request, CancellationToken cancellationToken)
         {
-            //var task = await _toDoTaskService.GetById(request.Id);
-
-            //var response = new DetailToDoTaskResponse
-            //{
-            //    Id = task.Id,
-            //    AssignedUserName = task.AssignedUserName,
-            //    AssignedUserEmail = task.AssignedUserEmail,
-            //    DepartmentName = task.DepartmentName,
-            //    ToDoTaskName = task.ToDoTaskName,
-            //    CreatorUserName = task.CreatorUserName,
-            //    Status = task.Status
-            //};
-
-            //return response;
-
-            var toDoTask = await _toDoTaskService.GetById(request.Id);
+            var toDoTask = await _toDoTaskRepository.GetById(request.Id);
 
             if (toDoTask != null)
             {
@@ -37,10 +23,10 @@ namespace TaskManagementSystem.Application.ToDoTasks.Queries.Detail
                 {
                     Id = toDoTask.Id,
                     ToDoTaskName = toDoTask.ToDoTaskName,
-                    DepartmentName = toDoTask.DepartmentName,
-                    CreatorUserName = toDoTask.CreatorUserName,
-                    AssignedUserName = toDoTask.AssignedUserName,
-                    AssignedUserEmail = toDoTask.AssignedUserEmail,
+                    DepartmentName = toDoTask.Department.DepartmentName,
+                    CreatorUserName = toDoTask.CreatorUser.UserName,
+                    AssignedUserName = toDoTask.AssignedUser.UserName,
+                    AssignedUserEmail = toDoTask.AssignedUser.UserEmail,
                     Status = toDoTask.Status,
                 };
 

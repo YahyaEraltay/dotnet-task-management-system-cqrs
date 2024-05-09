@@ -1,20 +1,21 @@
 ﻿using MediatR;
 using TaskManagementSystem.Infrastructure.DomainServices;
+using TaskManagementSystem.Infrastructure.Repositories;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Queries.All
 {
     public class AllToDoTaskHandler : IRequestHandler<AllToDoTaskRequest, List<AllToDoTaskResponse>>
     {
-        private readonly IToDoTaskService _toDoTaskService;
+        private readonly IToDoTaskRepository _toDoTaskRepository;
 
-        public AllToDoTaskHandler(IToDoTaskService toDoTaskService)
+        public AllToDoTaskHandler(IToDoTaskRepository toDoTaskRepository)
         {
-            _toDoTaskService = toDoTaskService;
+            _toDoTaskRepository = toDoTaskRepository;
         }
 
         public async Task<List<AllToDoTaskResponse>> Handle(AllToDoTaskRequest request, CancellationToken cancellationToken)
         {
-            var tasks = await _toDoTaskService.All();
+            var tasks = await _toDoTaskRepository.All();
             var response = new List<AllToDoTaskResponse>();
 
             foreach (var task in tasks)
@@ -22,11 +23,11 @@ namespace TaskManagementSystem.Application.ToDoTasks.Queries.All
                 response.Add(new AllToDoTaskResponse
                 {
                     Id = task.Id,
-                    AssignedUserName = task.AssignedUserName,
-                    AssignedUserEmail = task.AssignedUserEmail,
-                    DepartmentName = task.DepartmentName,
+                    AssignedUserName = task.AssignedUser.UserName,
+                    AssignedUserEmail = task.AssignedUser.UserEmail,
+                    DepartmentName = task.Department.DepartmentName,
                     ToDoTaskName = task.ToDoTaskName,
-                    CreatorUserName = task.CreatorUserName,
+                    CreatorUserName = task.CreatorUser.UserName,
                     Status = task.Status
                 });
             }

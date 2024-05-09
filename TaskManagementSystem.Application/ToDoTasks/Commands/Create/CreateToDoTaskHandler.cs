@@ -1,17 +1,19 @@
 ﻿using MediatR;
+using TaskManagementSystem.Domain.Entites;
 using TaskManagementSystem.Infrastructure.DomainServices;
+using TaskManagementSystem.Infrastructure.Repositories;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Commands.Create
 {
     public class CreateToDoTaskHandler : IRequestHandler<CreateToDoTaskRequest, CreateToDoTaskResponse>
     {
-        private readonly IToDoTaskService _toDoTaskService;
+        private readonly IToDoTaskRepository _toDoTaskRepository;
         private readonly ICurrentUserService _currentUser;
 
-        public CreateToDoTaskHandler(IToDoTaskService toDoTaskService, ICurrentUserService currentUser)
+        public CreateToDoTaskHandler(IToDoTaskRepository toDoTaskRepository, ICurrentUserService currentUser)
         {
-            _toDoTaskService = toDoTaskService;
+            _toDoTaskRepository = toDoTaskRepository;
             _currentUser = currentUser;
         }
 
@@ -19,7 +21,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Create
         {
             var currentUser = await _currentUser.GetCurrentUser();
 
-            var task = new Infrastructure.DTOs.ToDoTaskDTOs.CreateToDoTaskDTOs.RequestModel
+            var task = new ToDoTask
             {
                 ToDoTaskName = request.ToDoTaskName,
                 ToDoTaskDescription = request.ToDoTaskDescription,
@@ -30,7 +32,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Create
                 Status = request.Status = 0
             };
 
-            await _toDoTaskService.Create(task);
+            await _toDoTaskRepository.Create(task);
 
             var response = new CreateToDoTaskResponse
             {

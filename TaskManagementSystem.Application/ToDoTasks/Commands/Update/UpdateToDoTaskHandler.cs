@@ -1,44 +1,44 @@
 ﻿using MediatR;
+using TaskManagementSystem.Domain.Entites;
 using TaskManagementSystem.Infrastructure.DomainServices;
+using TaskManagementSystem.Infrastructure.Repositories;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Commands.Update
 {
     public class UpdateToDoTaskHandler : IRequestHandler<UpdateToDoTaskRequest, UpdateToDoTaskResponse>
     {
-        private readonly IToDoTaskService _toDoTaskService;
+        private readonly IToDoTaskRepository _toDoTaskRepository;
         private readonly ICurrentUserService _currentUser;
 
-        public UpdateToDoTaskHandler(IToDoTaskService toDoTaskService, ICurrentUserService currentUser)
+        public UpdateToDoTaskHandler(IToDoTaskRepository toDoTaskRepository, ICurrentUserService currentUser)
         {
-            _toDoTaskService = toDoTaskService;
+            _toDoTaskRepository = toDoTaskRepository;
             _currentUser = currentUser;
         }
 
         public async Task<UpdateToDoTaskResponse> Handle(UpdateToDoTaskRequest request, CancellationToken cancellationToken)
         {
             var currentUser = await _currentUser.GetCurrentUser();
+            var updatedTask = await _toDoTaskRepository.GetById(request.Id);
+            var creatorUser = await _toDoTaskRepository.CreatorUser(updatedTask.Id);
 
-            if (currentUser.Id == request.CreatorUserId)
+            if (currentUser.Id == creatorUser)
             {
-                var updatedUser = await _toDoTaskService.Update(new Infrastructure.DTOs.ToDoTaskDTOs.UpdateToDoTaskDTOs.RequestModel
-                {
-                    Id = request.Id,
-                    ToDoTaskName = request.ToDoTaskName,
-                    AssignedUserId = request.AssignedUserId,
-                    CreatorUserId = request.CreatorUserId,
-                    DepartmentId = request.DepartmentId,
-                    Status = request.Status
-                });
+                updatedTask.Id = request.Id;
+                updatedTask.ToDoTaskName = request.ToDoTaskName;
+                updatedTask.AssignedUserId = request.AssignedUserId;
+                updatedTask.DepartmentId = request.DepartmentId;
+
+                await _toDoTaskRepository.Update(updatedTask);
 
                 var response = new UpdateToDoTaskResponse
                 {
-                    Id = updatedUser.Id,
-                    ToDoTaskName = updatedUser.ToDoTaskName,
-                    AssignedUserName = updatedUser.AssignedUserName,
-                    CreatorUserName = updatedUser.CreatorUserName,
-                    DepartmentName = updatedUser.DepartmentName,
-                    Status = updatedUser.Status
+                    Id = updatedTask.Id,
+                    ToDoTaskName = updatedTask.ToDoTaskName,
+                    AssignedUserName = updatedTask.AssignedUser.UserName,
+                    CreatorUserName = updatedTask.CreatorUser.UserName,
+                    DepartmentName = updatedTask.Department.DepartmentName,
                 };
 
                 return response;

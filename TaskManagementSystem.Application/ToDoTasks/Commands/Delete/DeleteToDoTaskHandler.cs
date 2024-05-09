@@ -1,31 +1,33 @@
 ﻿using MediatR;
+using TaskManagementSystem.Domain.Entites;
 using TaskManagementSystem.Infrastructure.DomainServices;
+using TaskManagementSystem.Infrastructure.Repositories;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Commands.Delete
 {
     public class DeleteToDoTaskHandler : IRequestHandler<DeleteToDoTaskRequest, DeleteToDoTaskResponse>
     {
-        private readonly IToDoTaskService _toDoTaskService;
+        private readonly IToDoTaskRepository _toDoTaskRepository;
         private readonly ICurrentUserService _currentUser;
 
-        public DeleteToDoTaskHandler(IToDoTaskService toDoTaskService, ICurrentUserService currentUser)
+        public DeleteToDoTaskHandler(IToDoTaskRepository toDoTaskRepository, ICurrentUserService currentUser)
         {
-            _toDoTaskService = toDoTaskService;
+            _toDoTaskRepository = toDoTaskRepository;
             _currentUser = currentUser;
         }
 
         public async Task<DeleteToDoTaskResponse> Handle(DeleteToDoTaskRequest request, CancellationToken cancellationToken)
         {
             var currentUser = await _currentUser.GetCurrentUser();
-            var task = await _toDoTaskService.GetById(request.Id);
-            var creatorUser = await _toDoTaskService.CreatorUser(task.Id);
+            var task = await _toDoTaskRepository.GetById(request.Id);
+            var creatorUser = await _toDoTaskRepository.CreatorUser(task.Id);
 
             var response = new DeleteToDoTaskResponse();
 
             if (currentUser.Id == creatorUser)
             {
-                await _toDoTaskService.Delete(new Infrastructure.DTOs.ToDoTaskDTOs.DeleteToDoTaskDTOs.RequestModel
+                await _toDoTaskRepository.Delete(new ToDoTask
                 {
                     Id = task.Id,
                 });

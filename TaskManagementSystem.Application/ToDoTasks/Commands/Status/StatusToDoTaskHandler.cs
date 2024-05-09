@@ -1,37 +1,37 @@
 ﻿using MediatR;
 using TaskManagementSystem.Infrastructure.DomainServices;
+using TaskManagementSystem.Infrastructure.Repositories;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Commands.Status
 {
     public class StatusToDoTaskHandler : IRequestHandler<StatusToDoTaskRequest, StatusToDoTaskResponse>
     {
-        private readonly IToDoTaskService _toDoTaskService;
+        private readonly IToDoTaskRepository _toDoTaskRepository;
         private readonly ICurrentUserService _currentUser;
 
-        public StatusToDoTaskHandler(IToDoTaskService toDoTaskService, ICurrentUserService currentUser)
+        public StatusToDoTaskHandler(IToDoTaskRepository toDoTaskRepository, ICurrentUserService currentUser)
         {
-            _toDoTaskService = toDoTaskService;
+            _toDoTaskRepository = toDoTaskRepository;
             _currentUser = currentUser;
         }
 
         public async Task<StatusToDoTaskResponse> Handle(StatusToDoTaskRequest request, CancellationToken cancellationToken)
         {
             var currentUser = await _currentUser.GetCurrentUser();
-            var task = await _toDoTaskService.GetById(request.Id);
-            var assignedUser = await _toDoTaskService.AssignedUser(task.Id);
+            var task = await _toDoTaskRepository.GetById(request.Id);
+            var assignedUser = await _toDoTaskRepository.AssignedUser(task.Id);
 
             if (currentUser.Id == assignedUser)
             {
-                var updateStatus = await _toDoTaskService.UpdateStatus(new Infrastructure.DTOs.ToDoTaskDTOs.UpdateStatusToDoTaskDTOs.RequestModel
-                {
-                    Id = request.Id,
-                    Status = request.Status
-                });
+                task.Id = request.Id;
+                task.Status = request.Status;
+
+                await _toDoTaskRepository.UpdateStatus(task);
 
                 var response = new StatusToDoTaskResponse
                 {
-                    Status = updateStatus.Status,
+                    Status = task.Status,
                 };
 
                 return response;

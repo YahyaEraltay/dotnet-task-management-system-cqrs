@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using TaskManagementSystem.Infrastructure.DomainServices;
+using TaskManagementSystem.Infrastructure.Repositories;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Queries.AssignedToDoTask
@@ -7,18 +8,18 @@ namespace TaskManagementSystem.Application.ToDoTasks.Queries.AssignedToDoTask
     public class AssignedToDoTaskHandler : IRequestHandler<AssignedToDoTaskRequest, List<AssignedToDoTaskResponse>>
     {
         private readonly ICurrentUserService _currentUser;
-        private readonly IToDoTaskService _toDoTaskService;
+        private readonly IToDoTaskRepository _toDoTaskRepository;
 
-        public AssignedToDoTaskHandler(ICurrentUserService currentUser, IToDoTaskService toDoTaskService)
+        public AssignedToDoTaskHandler(ICurrentUserService currentUser, IToDoTaskRepository toDoTaskRepository)
         {
             _currentUser = currentUser;
-            _toDoTaskService = toDoTaskService;
+            _toDoTaskRepository = toDoTaskRepository;
         }
 
         public async Task<List<AssignedToDoTaskResponse>> Handle(AssignedToDoTaskRequest request, CancellationToken cancellationToken)
         {
             var currentUser = await _currentUser.GetCurrentUser();
-            var assignedTasks = await _toDoTaskService.AssignedToDoTask(currentUser.Id);
+            var assignedTasks = await _toDoTaskRepository.AssignedToDoTask(currentUser.Id);
             var response = new List<AssignedToDoTaskResponse>();
 
             foreach ( var assignedTask in assignedTasks )
@@ -26,9 +27,9 @@ namespace TaskManagementSystem.Application.ToDoTasks.Queries.AssignedToDoTask
                 response.Add(new AssignedToDoTaskResponse
                 {
                     ToDoTaskDate = assignedTask.ToDoTaskDate.Date,
-                    CreatorUserName = assignedTask.CreatorUserName,
-                    AssignedUserName = assignedTask.AssignedUserName,
-                    AssignedDepartmentName = assignedTask.AssignedDepartmentName,
+                    CreatorUserName = assignedTask.CreatorUser.UserName,
+                    AssignedUserName = assignedTask.AssignedUser.UserName,
+                    AssignedDepartmentName = assignedTask.AssignedUser.Department.DepartmentName,
                     ToDoTaskName = assignedTask.ToDoTaskName,
                     Status = assignedTask.Status,
                 });
