@@ -28,7 +28,7 @@ namespace TaskManagementSystem.Infrastructure.Repositories
             return toDoTask;
         }
 
-        public async Task<List<ToDoTask>> AssignedTasks(Guid id)
+        public async Task<List<ToDoTask>> AssignedToDoTask(Guid id)
         {
             var assignedTasks = await _context.ToDoTasks
                                               .Include(x => x.Department)
@@ -39,12 +39,28 @@ namespace TaskManagementSystem.Infrastructure.Repositories
             return assignedTasks;
         }
 
+        public async Task<Guid> AssignedUser(Guid id)
+        {
+            var user = await _context.ToDoTasks.FirstOrDefaultAsync(x => x.Id == id);
+            var assignedUser = user.AssignedUserId;
+
+            return assignedUser;
+        }
+
         public async Task<ToDoTask> Create(ToDoTask toDoTask)
         {
             _context.ToDoTasks.Add(toDoTask);
             await _context.SaveChangesAsync();
 
             return toDoTask;
+        }
+
+        public async Task<Guid> CreatorUser(Guid id)
+        {
+            var task = await _context.ToDoTasks.FirstOrDefaultAsync(x => x.Id == id);
+            var creatorUser = task.CreatorUserId;
+
+            return creatorUser;
         }
 
         public async Task<ToDoTask> Delete(ToDoTask toDoTask)
@@ -64,17 +80,43 @@ namespace TaskManagementSystem.Infrastructure.Repositories
                                    .Include(x => x.CreatorUser)
                                    .Include(x => x.AssignedUser)
                                    .FirstOrDefaultAsync(x => x.Id == id);
-            return toDoTask;
+            if (toDoTask != null)
+            {
+                return toDoTask;
+            }
+            else
+            {
+                throw new Exception("To do task no found");
+            }
         }
 
         public async Task<ToDoTask> Update(ToDoTask toDoTask)
         {
-            var updatedUser = _context.ToDoTasks.FirstOrDefault(x => x.Id == toDoTask.Id);
+            var updatedToDoTask = _context.ToDoTasks.FirstOrDefault(x => x.Id == toDoTask.Id);
 
-            _context.ToDoTasks.Update(updatedUser);
+            _context.ToDoTasks.Update(updatedToDoTask);
             await _context.SaveChangesAsync();
 
-            return updatedUser;
+            return updatedToDoTask;
+        }
+
+        public async Task<ToDoTask> UpdateStatus(ToDoTask toDoTask)
+        {
+            var statusToDoTask = await _context.ToDoTasks.FirstOrDefaultAsync(x => x.Id == toDoTask.Id);
+
+            if (statusToDoTask != null)
+            {
+                statusToDoTask.Status = toDoTask.Status;
+
+                _context.ToDoTasks.Update(statusToDoTask);
+                await _context.SaveChangesAsync();
+
+                return statusToDoTask;
+            }
+            else
+            {
+                throw new Exception("To do task not found");
+            }
         }
     }
 }
