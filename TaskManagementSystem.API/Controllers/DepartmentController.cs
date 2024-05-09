@@ -22,28 +22,28 @@ namespace Task_Management_System_CQRS.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<ActionResult> Create(CreateDepartmentRequest request)
+        public async Task<ActionResult> Create([FromBody] CreateDepartmentRequest request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);
         }
 
         [HttpPut("[action]")]
-        public async Task<ActionResult> Update(UpdateDepartmentRequest request)
+        public async Task<ActionResult> Update([FromBody] UpdateDepartmentRequest request)
         {
             var result = await _mediator.Send(request); 
             return Ok(result);
         }
 
         [HttpDelete("[action]")]
-        public async Task<ActionResult> Delete(DeleteDepartmentRequest request)
+        public async Task<ActionResult> Delete([FromBody] DeleteDepartmentRequest request)
         {
             var result = await _mediator.Send(request); 
             return Ok(result);
         }
 
         [HttpGet("[action]")]
-        public async Task<ActionResult> Detail(DetailDepartmentRequest request)
+        public async Task<ActionResult> Detail([FromBody] DetailDepartmentRequest request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);

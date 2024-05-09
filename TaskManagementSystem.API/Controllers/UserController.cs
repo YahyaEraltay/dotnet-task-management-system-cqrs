@@ -28,21 +28,21 @@ namespace Task_Management_System_CQRS.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<ActionResult> Create(CreateUserRequest request)
+        public async Task<ActionResult> Create([FromBody] CreateUserRequest request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);
         }
 
         [HttpDelete("[action]")]
-        public async Task<ActionResult> Delete(DeleteUserRequest request)
+        public async Task<ActionResult> Delete([FromBody] DeleteUserRequest request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);
         }
 
         [HttpPut("[action]")]
-        public async Task<ActionResult> Update(UpdateUserRequest request)
+        public async Task<ActionResult> Update([FromBody] UpdateUserRequest request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);
@@ -56,7 +56,7 @@ namespace Task_Management_System_CQRS.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<ActionResult> Detail(DetailUserRequest request)
+        public async Task<ActionResult> Detail([FromBody] DetailUserRequest request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);
@@ -64,7 +64,7 @@ namespace Task_Management_System_CQRS.Controllers
 
         [AllowAnonymous]
         [HttpPost("[action]")]
-        public async Task<ActionResult> Login(LoginUserRequest request)
+        public async Task<ActionResult> Login([FromBody] LoginUserRequest request)
         {
             var result = await _mediator.Send(request);
 

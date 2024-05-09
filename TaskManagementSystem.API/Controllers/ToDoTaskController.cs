@@ -25,21 +25,21 @@ namespace Task_Management_System_CQRS.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<ActionResult> Create(CreateToDoTaskRequest request)
+        public async Task<ActionResult> Create([FromBody] CreateToDoTaskRequest request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);
         }
 
         [HttpDelete("[action]")]
-        public async Task<ActionResult> Delete(DeleteToDoTaskRequest request)
+        public async Task<ActionResult> Delete([FromBody] DeleteToDoTaskRequest request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);
         }
 
         [HttpPut("[action]")]
-        public async Task<ActionResult> Update(UpdateToDoTaskRequest request)
+        public async Task<ActionResult> Update([FromBody] UpdateToDoTaskRequest request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);
@@ -53,7 +53,7 @@ namespace Task_Management_System_CQRS.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<ActionResult> Detail(DetailToDoTaskRequest request)
+        public async Task<ActionResult> Detail([FromBody] DetailToDoTaskRequest request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);
@@ -67,7 +67,7 @@ namespace Task_Management_System_CQRS.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<ActionResult> TaskStatus(StatusToDoTaskRequest request)
+        public async Task<ActionResult> TaskStatus([FromBody] StatusToDoTaskRequest request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);
