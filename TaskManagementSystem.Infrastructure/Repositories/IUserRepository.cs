@@ -15,6 +15,6 @@ namespace TaskManagementSystem.Infrastructure.Repositories
         Task<User> GetById(Guid id);
         Task<List<User>> All();
         Task<User> Login(string email, string password);
-        Task<User> GetUserByEmail(string email);
+        Task<string> GetUserByEmail(string email);
     }
 }

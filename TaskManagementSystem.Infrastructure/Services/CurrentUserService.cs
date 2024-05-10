@@ -12,20 +12,18 @@ namespace TaskManagementSystem.Infrastructure.Services
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IUserRepository _userRepository;
-        private readonly IUserService _userService;
 
-        public CurrentUserService(IHttpContextAccessor httpContextAccessor, IUserRepository userRepository, IUserService userService)
+        public CurrentUserService(IHttpContextAccessor httpContextAccessor, IUserRepository userRepository)
         {
             _httpContextAccessor = httpContextAccessor;
             _userRepository = userRepository;
-            _userService = userService;
         }
 
         public async Task<ResponseModel> GetCurrentUser()
         {
             var claims = _httpContextAccessor.HttpContext.User.Claims;
             var email = claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
-            var password = await _userService.GetUserByEmail(email);
+            var password = await _userRepository.GetUserByEmail(email);
 
             var user = await _userRepository.Login(email, password);
 

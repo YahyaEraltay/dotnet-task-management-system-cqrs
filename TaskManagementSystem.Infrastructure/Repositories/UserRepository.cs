@@ -61,13 +61,14 @@ namespace TaskManagementSystem.Infrastructure.Repositories
             }
         }
 
-        public async Task<User> GetUserByEmail(string email)
+        public async Task<string> GetUserByEmail(string email)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.UserEmail == email);
+            var userEmail = await _context.Users.FirstOrDefaultAsync(x => x.UserEmail == email);
+            var userPassword = userEmail.UserPassword;
 
-            if (user != null)
+            if (userEmail != null || userPassword != null)
             {
-                return user;
+                return userPassword;
             }
             else
             {
