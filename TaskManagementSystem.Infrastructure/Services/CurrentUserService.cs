@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using TaskManagementSystem.Infrastructure.DomainServices;
 using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.CurrentUserDTOs;
 using TaskManagementSystem.Infrastructure.Repositories;
 

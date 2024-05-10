@@ -5,7 +5,6 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using TaskManagementSystem.Application.Departments.Commands.Create;
-using TaskManagementSystem.Infrastructure.DomainServices;
 using TaskManagementSystem.Infrastructure.RelationalDb;
 using TaskManagementSystem.Infrastructure.Repositories;
 using TaskManagementSystem.Infrastructure.Services;
@@ -45,11 +44,8 @@ builder.Services.AddHttpContextAccessor();
 
 
 builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IToDoTaskRepository, ToDoTaskRepository>();
-builder.Services.AddScoped<IToDoTaskService, ToDoTaskService>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
 builder.Services.AddMediatR(typeof(CreateDepartmentHandler).Assembly);
