@@ -28,7 +28,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Queries.AssignedToDoTask
                     ToDoTaskDate = assignedTask.ToDoTaskDate.Date,
                     CreatorUserName = assignedTask.CreatorUser.UserName,
                     AssignedUserName = assignedTask.AssignedUser.UserName,
-                    AssignedDepartmentName = assignedTask.AssignedUser.Department.DepartmentName,
+                    AssignedDepartmentName = assignedTask.CreatorUser.Department.DepartmentName,
                     ToDoTaskName = assignedTask.ToDoTaskName,
                     Status = assignedTask.Status,
                 });

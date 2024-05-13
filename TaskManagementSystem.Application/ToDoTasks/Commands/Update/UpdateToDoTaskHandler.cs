@@ -26,7 +26,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Update
                 updatedTask.Id = request.Id;
                 updatedTask.ToDoTaskName = request.ToDoTaskName;
                 updatedTask.AssignedUserId = request.AssignedUserId;
-                updatedTask.DepartmentId = request.DepartmentId;
+                updatedTask.ToDoTaskDescription = request.ToDoTaskDescription;
 
                 await _toDoTaskRepository.Update(updatedTask);
 
@@ -36,7 +36,8 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Update
                     ToDoTaskName = updatedTask.ToDoTaskName,
                     AssignedUserName = updatedTask.AssignedUser.UserName,
                     CreatorUserName = updatedTask.CreatorUser.UserName,
-                    DepartmentName = updatedTask.Department.DepartmentName,
+                    AssignedDepartmentName = updatedTask.Department.DepartmentName,
+                    ToDoTaskDescription = updatedTask.ToDoTaskDescription,
                 };
 
                 return response;

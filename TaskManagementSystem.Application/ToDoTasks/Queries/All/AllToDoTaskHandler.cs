@@ -24,7 +24,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Queries.All
                     Id = task.Id,
                     AssignedUserName = task.AssignedUser.UserName,
                     AssignedUserEmail = task.AssignedUser.UserEmail,
-                    DepartmentName = task.Department.DepartmentName,
+                    AssignedDepartmentName = task.Department.DepartmentName,
                     ToDoTaskName = task.ToDoTaskName,
                     CreatorUserName = task.CreatorUser.UserName,
                     Status = task.Status

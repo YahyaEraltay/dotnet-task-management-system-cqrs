@@ -22,7 +22,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Queries.Detail
                 {
                     Id = toDoTask.Id,
                     ToDoTaskName = toDoTask.ToDoTaskName,
-                    DepartmentName = toDoTask.Department.DepartmentName,
+                    AssignedDepartmentName = toDoTask.Department.DepartmentName,
                     CreatorUserName = toDoTask.CreatorUser.UserName,
                     AssignedUserName = toDoTask.AssignedUser.UserName,
                     AssignedUserEmail = toDoTask.AssignedUser.UserEmail,

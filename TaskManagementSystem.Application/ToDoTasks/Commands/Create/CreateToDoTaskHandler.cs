@@ -27,7 +27,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Create
                 ToDoTaskDate = DateTime.Now.Date,
                 AssignedUserId = request.AssignedUserId,
                 CreatorUserId = currentUser.Id,
-                DepartmentId = request.DepartmentId,
+                DepartmentId = currentUser.DepartmentId,
                 Status = request.Status = 0
             };
 

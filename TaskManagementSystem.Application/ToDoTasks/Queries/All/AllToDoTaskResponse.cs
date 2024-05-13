@@ -14,7 +14,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Queries.All
         public string AssignedUserName { get; set; }
         public string AssignedUserEmail { get; set; }
         public string CreatorUserName { get; set; }
-        public string DepartmentName { get; set; }
+        public string AssignedDepartmentName { get; set; }
         public StatusEnum Status { get; set; }
     }
 }

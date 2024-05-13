@@ -12,6 +12,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Update
     {
         public Guid Id { get; set; }
         public string ToDoTaskName { get; set; }
+        public string ToDoTaskDescription { get; set; }
         public Guid DepartmentId { get; set; }
         public Guid CreatorUserId { get; set; }
         public Guid AssignedUserId { get; set; }

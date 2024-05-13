@@ -11,7 +11,8 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Update
     {
         public Guid Id { get; set; }
         public string ToDoTaskName { get; set; }
-        public string DepartmentName { get; set; }
+        public string ToDoTaskDescription { get; set; }
+        public string AssignedDepartmentName { get; set; }
         public string CreatorUserName { get; set; }
         public string AssignedUserName { get; set; }
         public StatusEnum Status { get; set; }

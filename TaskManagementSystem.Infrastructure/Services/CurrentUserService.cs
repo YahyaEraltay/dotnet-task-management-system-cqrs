@@ -29,6 +29,7 @@ namespace TaskManagementSystem.Infrastructure.Services
                 return new ResponseModel
                 {
                     Id = user.Id,
+                    DepartmentId = user.DepartmentId,
                     UserName = user.UserName,
                     UserEmail = user.UserEmail,
                     PhoneNumber = user.PhoneNumber,

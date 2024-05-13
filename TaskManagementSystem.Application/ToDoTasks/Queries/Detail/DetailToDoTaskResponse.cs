@@ -13,7 +13,7 @@ namespace TaskManagementSystem.Application.ToDoTasks.Queries.Detail
         public string ToDoTaskName { get; set; }
         public string AssignedUserName { get; set; }
         public string AssignedUserEmail { get; set; }
-        public string DepartmentName { get; set; }
+        public string AssignedDepartmentName { get; set; }
         public string CreatorUserName { get; set; }
         public StatusEnum Status { get; set; }
     }
