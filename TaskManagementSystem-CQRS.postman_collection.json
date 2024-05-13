@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "a0a2dbbf-0a8a-417a-b0d5-45ecc31894a8",
 		"name": "TaskManagementSystem-CQRS",
+		"description": "Bu Postman koleksiyonu, .NET 6.0 kullanılarak geliştirilen görev yönetim sistemi projesi için API isteklerini içerir. Bu proje, Clean Architecture ve CQRS (Command Query Responsibility Segregation) mimarisi prensiplerini takip eder. Sisteme JWT (JSON Web Token) ile kimlik doğrulama yapılır.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "32995018"
 	},
@@ -35,7 +36,70 @@
 								"Department",
 								"Create"
 							]
-						}
+						},
+						"description": "Bu istek, görev yönetim sisteminde yeni bir departman oluşturmak için kullanılır."
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"\",\r\n  \"departmentName\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/Department/Update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"Department",
+								"Update"
+							]
+						},
+						"description": "Bu istek, görev yönetim sisteminde belirli bir departmanı güncellemek için kullanılır. Girilen `id` bilgisine ait departmanın adını `departmentName` alanındaki yeni değerle günceller."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/Department/Delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"Department",
+								"Delete"
+							]
+						},
+						"description": "Bu istek, görev yönetim sisteminde belirli bir departmanı silmek için kullanılır. Girilen `id` bilgisine ait departmanı siler."
 					},
 					"response": []
 				},
@@ -56,7 +120,8 @@
 								"Department",
 								"All"
 							]
-						}
+						},
+						"description": "Bu istek, görev yönetim sistemindeki tüm departmanları listelemek için kullanılır."
 					},
 					"response": []
 				},
@@ -89,71 +154,13 @@
 								"Department",
 								"Detail"
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"id\": \"\",\r\n  \"departmentName\": \"string\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
 						},
-						"url": {
-							"raw": "http://localhost:40921/api/Department/Update",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "40921",
-							"path": [
-								"api",
-								"Department",
-								"Update"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"id\": \"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:40921/api/Department/Delete",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "40921",
-							"path": [
-								"api",
-								"Department",
-								"Delete"
-							]
-						}
+						"description": "Bu istek, görev yönetim sistemindeki `id` değeri girilen departmanın detaylarını görüntülemek için kullanılır."
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "**Department:**\n\n- Bu dosya, görev yönetim sistemindeki departmanları temsil eder.\n    \n\n**Özellikler:**\n\n- `Id`: Departmanın benzersiz kimliğini temsil eden bir GUID.\n- `departmentName`: Departmanın adını belirtir.\n    \n\n**İlişkiler:**\n\n- Depatrment entity' si bir veya daha fazla kullanıcı (User) ile ilişkilendirilebilir.\n- Department entity' si bir veya daha fazla görev (ToDoTask) ile ilişkilendirilebilir.\n    \n\nBu sınıf, Clean Architecture prensiplerine uygun olarak domain katmanında yer alır ve veri tabanı işlemlerini gerçekleştiren repository sınıfı tarafından kullanılır."
 		},
 		{
 			"name": "User",
@@ -184,7 +191,39 @@
 								"User",
 								"Create"
 							]
-						}
+						},
+						"description": "Bu istek, görev yönetim sisteminde yeni bir kullanıcı oluşturmak için kullanılır."
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"userName\": \"string\",\r\n  \"userEmail\": \"string\",\r\n  \"userPassword\": \"string\",\r\n  \"userTitle\": \"string\",\r\n  \"phoneNumber\": \"string\",\r\n  \"departmentId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/User/Update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"User",
+								"Update"
+							]
+						},
+						"description": "Bu istek, görev yönetim sisteminde belirli bir kullanıcıyı güncellemek için kullanılır. Girilen `id` bilgisine göre kullanıcının ilgili alanlarını günceller."
 					},
 					"response": []
 				},
@@ -214,37 +253,8 @@
 								"User",
 								"Delete"
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"id\": \"\",\r\n  \"userName\": \"string\",\r\n  \"userEmail\": \"string\",\r\n  \"departmentId\": \"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
 						},
-						"url": {
-							"raw": "http://localhost:40921/api/User/Update",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "40921",
-							"path": [
-								"api",
-								"User",
-								"Update"
-							]
-						}
+						"description": "Bu istek, görev yönetim sisteminde belirli bir kullanıcıyı silmek için kullanılır. Girilen`id` bilgisine ait kullanıcıyı siler."
 					},
 					"response": []
 				},
@@ -265,7 +275,8 @@
 								"User",
 								"All"
 							]
-						}
+						},
+						"description": "Bu istek, görev yönetim sistemindeki tüm kullanıcıları listelemek için kullanılır."
 					},
 					"response": []
 				},
@@ -298,7 +309,8 @@
 								"User",
 								"Detail"
 							]
-						}
+						},
+						"description": "Bu istek, görev yönetim sistemindeki `id` değeri girilen kullanıcının detaylarını görüntülemek için kullanılır."
 					},
 					"response": []
 				},
@@ -328,7 +340,8 @@
 								"User",
 								"Login"
 							]
-						}
+						},
+						"description": "Bu istek, görev yönetim sisteminde bir kullanıcının giriş yapması için kullanılır. Kullanıcı `userEmail` ve `userPassword` bilgilerini doğru bir şekilde girdiği taktirde sisteme giriş yapar ve JWT üretilir."
 					},
 					"response": []
 				},
@@ -359,11 +372,13 @@
 								"User",
 								"GetCurrentUser"
 							]
-						}
+						},
+						"description": "Bu istek, görev yönetim sisteminde giriş yapan kullanıcının profil bilgilerini almak için kullanılır. Login isteğiyle üretilen JWT, bu isteğin Authorization kısmına girilerek çalıştırılır. Authorization `Bearer Token` olarak girilmelidir."
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "**User:**\n\n- Bu dosya, görev yönetim sistemindeki kullanıcıları temsil eder.\n    \n\n**Özellikler:**\n\n- `id`: Kullanıcının benzersiz kimligini temsil eden bir GUID.\n- `userName`: Kullanıcının adını belirtir.\n- `userEmail`: Kullanıcının email adresini belirtir.\n- `userPassword`: Kullanıcının şifresini belirtir.\n- `phoneNumber`: Kullanıcının telefon numarasını belirtir.\n- `userTitle`: Kullanıcının pozisyonunu belirtir.\n- `departmentId`: Kullanıcının bağlı olduğu departmanın id' sini belirten GUID.\n    \n\n**İlişkiler:**\n\n- User entity' si sadece bir departman (Department) ile ilişkilendirilebilir.\n    \n- User entity' si bir veya daha fazla görev (ToDoTask) ile ilişkiledirilebilir."
 		},
 		{
 			"name": "ToDoTask",
@@ -371,11 +386,21 @@
 				{
 					"name": "Create",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlhaHlhZXJhbHRheUBnbWFpbC5jb20iLCJuYmYiOjE3MTUyNDQ3NzgsImV4cCI6MTcxNTI0ODM3OCwiaWF0IjoxNzE1MjQ0Nzc4LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjQwOTIxIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MDkyMSJ9.fjjCie5XT8JAfX4aX6Wv7X-6OLiRZTNAmChdNzrt1I0",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"toDoTaskName\": \"string\",\r\n  \"toDoTaskDescription\": \"string\",\r\n  \"departmentId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"creatorUserId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"assignedUserId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"status\": \"pending\"\r\n}",
+							"raw": "{\r\n  \"toDoTaskName\": \"string\",\r\n  \"toDoTaskDescription\": \"string\",\r\n  \"assignedUserId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -394,7 +419,49 @@
 								"ToDoTask",
 								"Create"
 							]
-						}
+						},
+						"description": "Bu istek, görev yönetim sisteminde yeni bir görev oluşturmak için kullanılır."
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1lcnlAY29tcGFueS5jb20iLCJuYmYiOjE3MTUyNTE3MTksImV4cCI6MTcxNTI1NTMxOSwiaWF0IjoxNzE1MjUxNzE5LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjQwOTIxIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MDkyMSJ9.PTf_ao2yL8o-jzuvPC1wkbx6pbE0SPwmEtFv2FufRqQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"65eadeb7-737b-455c-1787-08dc7012fc91\",\r\n  \"toDoTaskName\": \"string\",\r\n  \"toDoTaskDescription\": \"string\",\r\n  \"assignedUserId\": \"6196ec47-fc60-4be4-a2d9-08dc70047c7b\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:40921/api/ToDoTask/Update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "40921",
+							"path": [
+								"api",
+								"ToDoTask",
+								"Update"
+							]
+						},
+						"description": "Bu istek, görev yönetim sisteminde belirli bir görevi güncellemek için kullanılır. Girilen `id` bilgisine göre görevin ilgili alanlarını günceller."
 					},
 					"response": []
 				},
@@ -424,37 +491,8 @@
 								"ToDoTask",
 								"Delete"
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"toDoTaskName\": \"string\",\r\n  \"departmentId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"creatorUserId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"assignedUserId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"status\": 0\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
 						},
-						"url": {
-							"raw": "http://localhost:40921/api/ToDoTask/Update",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "40921",
-							"path": [
-								"api",
-								"ToDoTask",
-								"Update"
-							]
-						}
+						"description": "Bu istek, görev yönetim sisteminde belirli bir görevi silmek için kullanılır. Girilen`id` bilgisine ait görevi siler."
 					},
 					"response": []
 				},
@@ -475,7 +513,8 @@
 								"ToDoTask",
 								"All"
 							]
-						}
+						},
+						"description": "Bu istek, görev yönetim sistemindeki tüm kullanıcıları listelemek için kullanılır."
 					},
 					"response": []
 				},
@@ -508,7 +547,8 @@
 								"ToDoTask",
 								"Detail"
 							]
-						}
+						},
+						"description": "Bu istek, görev yönetim sistemindeki `id` değeri girilen görevin detaylarını görüntülemek için kullanılır."
 					},
 					"response": []
 				},
@@ -539,7 +579,8 @@
 								"ToDoTask",
 								"AssignedTasks"
 							]
-						}
+						},
+						"description": "Bu istek, görev yönetim sistemine giriş yapan kullanıcının kendisine ait görevleri listelemek için kullanılır."
 					},
 					"response": []
 				},
@@ -569,11 +610,13 @@
 								"ToDoTask",
 								"TaskStatus"
 							]
-						}
+						},
+						"description": "Bu istek, görev yönetim sistemindeki bir görevin durumunu güncellemek için kullanılır. Girilen `id` bilgisine ait görevin durumunu belirtilen değerle günceller. Durum değeri 1 ise görev onaylandı, 2 ise görev reddedildi olarak kabul edilir."
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "**To Do Task**\n\n- Bu dosya, görev yönetim sistemindeki görevleri temsil eder.\n    \n\n**Özellikler**\n\n- `id`: Görevin benzersiz kimliğini temsil eden bir GUID.\n- `toDoTaskName`: Görevin adını belirtir.\n- `toDoTaskDescription`: Görevin açıklamasını belirtir.\n- `toDoTaskDate`: Görevin tarihini belirtir.\n- `assignedDepartmentName`: Görev oluşturan kullanıcının bağlı olduğu departmanın adını belirtir.\n- `creatorUser`: Görevi oluşturan kullanıcıyı belirtir.\n- `assignedUser`: Göreve atanan kullanıcıyı belirtir.\n- `Status`: Görevin durumunu belirten bir enum.\n    - `Pending`(0): Görev bekliyor.\n    - `Approved`(1): Görev onaylandı.\n    - `Denied`(2): Görev reddedildi.\n\n**İlişkiler**\n\n- ToDoTask entity'si, sadece bir departman ile ilişkilendirilebilir.\n    \n- ToDoTask entity'si, bir CreatorUser (oluşturan kullanıcı) ile ilişkilendirilmiştir. Görevi oluşturan kullanıcıyı belirtir.\n- ToDoTask entity'si, bir AssignedUser (atanmış kullanıcı) ile ilişkilendirilmiştir. Göreve atanmış kullanıcıyı belirtir."
 		}
 	]
 }
