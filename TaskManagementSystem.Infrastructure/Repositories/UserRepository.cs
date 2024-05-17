@@ -64,10 +64,10 @@ namespace TaskManagementSystem.Infrastructure.Repositories
         public async Task<string> GetUserByEmail(string email)
         {
             var userEmail = await _context.Users.FirstOrDefaultAsync(x => x.UserEmail == email);
-            var userPassword = userEmail.UserPassword;
 
-            if (userEmail != null || userPassword != null)
+            if (userEmail != null)
             {
+                var userPassword = userEmail.UserPassword;
                 return userPassword;
             }
             else
@@ -80,6 +80,7 @@ namespace TaskManagementSystem.Infrastructure.Repositories
         {
             var user = await _context.Users
                                      .Include(x => x.Department)
+                                     .Include(x => x.ToDoTasks)
                                      .FirstOrDefaultAsync(x => x.UserEmail == email && x.UserPassword == password);
             if (user != null)
             {
