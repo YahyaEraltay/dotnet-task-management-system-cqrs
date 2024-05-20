@@ -32,7 +32,7 @@ namespace TaskManagementSystem.Infrastructure.Repositories
         {
             var assignedTasks = await _context.ToDoTasks
                                               .Include(x => x.Department)
-                                              .Include(x => x.CreatorUser)
+                                              .Include(x => x.CreatorUser).ThenInclude(x =>x.Department)
                                               .Include(x => x.AssignedUser)
                                               .Where(x => x.AssignedUserId == id)
                                               .ToListAsync();
