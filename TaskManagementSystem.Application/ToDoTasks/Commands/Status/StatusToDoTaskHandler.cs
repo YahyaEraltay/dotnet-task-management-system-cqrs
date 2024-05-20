@@ -23,17 +23,24 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Status
 
             if (currentUser.Id == assignedUser)
             {
-                task.Id = request.Id;
-                task.Status = request.Status;
-
-                await _toDoTaskRepository.UpdateStatus(task);
-
-                var response = new StatusToDoTaskResponse
+                if (task.Status == 0)
                 {
-                    Status = task.Status,
-                };
+                    task.Id = request.Id;
+                    task.Status = request.Status;
 
-                return response;
+                    await _toDoTaskRepository.UpdateStatus(task);
+
+                    var response = new StatusToDoTaskResponse
+                    {
+                        Status = task.Status,
+                    };
+
+                    return response;
+                }
+                else
+                {
+                    throw new Exception("You can only approve/reject the pending task");
+                }
             }
             else
             {
