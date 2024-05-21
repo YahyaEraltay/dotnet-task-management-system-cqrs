@@ -29,6 +29,7 @@ namespace TaskManagementSystem.Application.Users.Commands.Create
 
             var response = new CreateUserResponse
             {
+                Id = user.Id,
                 UserName = user.UserName,
                 UserEmail = user.UserEmail,
                 PhoneNumber = user.PhoneNumber,

@@ -8,6 +8,7 @@ namespace TaskManagementSystem.Application.Users.Commands.Create
 {
     public class CreateUserResponse
     {
+        public Guid Id { get; set; }
         public string UserName { get; set; }
         public string UserEmail { get; set; }
         public string PhoneNumber { get; set; }
