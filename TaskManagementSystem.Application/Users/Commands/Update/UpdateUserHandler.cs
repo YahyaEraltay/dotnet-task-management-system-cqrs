@@ -18,29 +18,15 @@ namespace TaskManagementSystem.Application.Users.Commands.Update
         public async Task<UpdateUserResponse> Handle(UpdateUserRequest request, CancellationToken cancellationToken)
         {
             var currentUser = await _currentUserService.GetCurrentUser();
-            var updatedUser = await _userRepository.GetById(request.Id);
+            var user = await _userRepository.GetById(request.Id);
 
             if (currentUser.Id == request.Id)
             {
-                updatedUser.Id = request.Id;
-                updatedUser.UserName = request.UserName;
-                updatedUser.UserEmail = request.UserEmail;
-                updatedUser.UserTitle = request.UserTitle;
-                updatedUser.UserPassword = request.UserPassword;
-                updatedUser.PhoneNumber = request.PhoneNumber;
-                updatedUser.DepartmentId = request.DepartmentId;
+                user = UpdateUserMapper.MapToEntity(request, user);
 
-                await _userRepository.Update(updatedUser);
+                await _userRepository.Update(user);
 
-                var response = new UpdateUserResponse
-                {
-                    Id = updatedUser.Id,
-                    UserName = updatedUser.UserName,
-                    UserEmail = updatedUser.UserEmail,
-                    UserTitle = updatedUser.UserTitle,
-                    PhoneNumber = updatedUser.PhoneNumber,
-                    DepartmentName = updatedUser.Department.DepartmentName
-                };
+                var response = UpdateUserMapper.MapToResponse(user);
 
                 return response;
             }

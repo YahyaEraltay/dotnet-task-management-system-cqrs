@@ -15,27 +15,11 @@ namespace TaskManagementSystem.Application.Users.Commands.Create
 
         public async Task<CreateUserResponse> Handle(CreateUserRequest request, CancellationToken cancellationToken)
         {
-            var user = new User
-            {
-                UserName = request.UserName,
-                UserEmail = request.UserEmail,
-                UserPassword = request.UserPassword,    
-                PhoneNumber = request.PhoneNumber,
-                DepartmentId = request.DepartmentId,
-                UserTitle = request.UserTitle
-            };
+            var user = CreateUserMapper.MapToNewEntity(request);
 
             await _userRepository.Create(user);
 
-            var response = new CreateUserResponse
-            {
-                Id = user.Id,
-                UserName = user.UserName,
-                UserEmail = user.UserEmail,
-                PhoneNumber = user.PhoneNumber,
-                DepartmentId = user.DepartmentId,
-                UserTitle = user.UserTitle
-            };
+            var response = CreateUserMapper.MapToResponse(user);
 
             return response;
         }

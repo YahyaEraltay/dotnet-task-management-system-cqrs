@@ -21,17 +21,13 @@ namespace TaskManagementSystem.Application.Users.Commands.Delete
             var currentUser = await _currentUserService.GetCurrentUser();
             var user = await _userRepository.GetById(request.Id);
 
-            var response = new DeleteUserResponse();
-
             if (currentUser.Id == request.Id)
             {
-                await _userRepository.Delete(new User
-                {
-                    Id = user.Id
-                });
+                var userToDelete = DeleteUserMapper.MapToEntity(user);
 
-                response.IsDeleted = true;
-                response.Message = "User deleted";
+                await _userRepository.Delete(userToDelete);
+
+                var response = DeleteUserMapper.MapToResponse(true, "User deleted");
 
                 return response;
             }

@@ -15,25 +15,8 @@ namespace TaskManagementSystem.Application.Users.Queries.All
         public async Task<List<AllUserResponse>> Handle(AllUserRequest request, CancellationToken cancellationToken)
         {
             var users = await _userRepository.All();
-            var response = new List<AllUserResponse>();
 
-            if (users.Count != 0)
-            {
-                foreach (var user in users)
-                {
-                    response.Add(new AllUserResponse
-                    {
-                        Id = user.Id,
-                        UserName = user.UserName,
-                        UserEmail = user.UserEmail,
-                        DepartmentName = user.Department.DepartmentName
-                    });
-                }
-            }
-            else
-            {
-                throw new Exception("There is no user");
-            }
+            var response = AllUserMapper.MapToResponse(users);
 
             return response;
         }
