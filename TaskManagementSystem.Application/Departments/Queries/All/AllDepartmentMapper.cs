@@ -11,18 +11,11 @@ namespace TaskManagementSystem.Application.Departments.Queries.All
     {
         public static List<AllDepartmentResponse> MapToResponse(List<Department> departments)
         {
-            var response = new List<AllDepartmentResponse>();
-
-            foreach (var department in departments)
+            return departments?.Select(department => new AllDepartmentResponse
             {
-                response.Add(new AllDepartmentResponse
-                {
-                    Id = department.Id,
-                    DepartmentName = department.DepartmentName
-                });
-            }
-
-            return response;
+                Id = department.Id,
+                DepartmentName = department.DepartmentName
+            }).ToList();
         }
     }
 }
