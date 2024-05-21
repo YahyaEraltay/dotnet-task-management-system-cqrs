@@ -23,9 +23,8 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Status
 
             if (currentUser.Id == assignedUser)
             {
-                if (task.Status == 0)
+                if (task.Status == Domain.Entites.ToDoTask.StatusEnum.Pending)
                 {
-                    task.Id = request.Id;
                     task.Status = request.Status;
 
                     await _toDoTaskRepository.UpdateStatus(task);
@@ -37,9 +36,13 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Status
 
                     return response;
                 }
+                if (task.Status == Domain.Entites.ToDoTask.StatusEnum.Approved || task.Status == Domain.Entites.ToDoTask.StatusEnum.Denied)
+                {
+                    throw new Exception("This task has already been approved or denied");
+                }
                 else
                 {
-                    throw new Exception("You can only approve/reject the pending task");
+                    return null;
                 }
             }
             else
