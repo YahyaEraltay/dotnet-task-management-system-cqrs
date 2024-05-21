@@ -15,16 +15,8 @@ namespace TaskManagementSystem.Application.Departments.Queries.All
         public async Task<List<AllDepartmentResponse>> Handle(AllDepartmentRequest request, CancellationToken cancellationToken)
         {
             var departments = await _departmentRepository.All();
-            var response = new List<AllDepartmentResponse>();
 
-            foreach (var department in departments)
-            {
-                response.Add(new AllDepartmentResponse
-                {
-                    Id = department.Id,
-                    DepartmentName = department.DepartmentName
-                });
-            }
+            var response = AllDepartmentMapper.MapToResponse(departments);
 
             return response;
         }

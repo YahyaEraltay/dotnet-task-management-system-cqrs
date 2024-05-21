@@ -16,15 +16,11 @@ namespace TaskManagementSystem.Application.Departments.Commands.Update
         {
             var department = await _departmentRepository.GetById(request.Id);
 
-            department.DepartmentName = request.DepartmentName;
+            department = UpdateDepartmentMapper.MapToEntity(request, department);
 
             await _departmentRepository.Update(department);
 
-            var response = new UpdateDepartmentResponse
-            {
-                Id = department.Id,
-                DepartmentName = request.DepartmentName
-            };
+            var response = UpdateDepartmentMapper.MapToResponse(department);
 
             return response;
         }

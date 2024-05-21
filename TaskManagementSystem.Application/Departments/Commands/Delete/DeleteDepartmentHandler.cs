@@ -16,15 +16,12 @@ namespace TaskManagementSystem.Application.Departments.Commands.Delete
         public async Task<DeleteDepartmentResponse> Handle(DeleteDepartmentRequest request, CancellationToken cancellationToken)
         {
             var department = await _departmentRepository.GetById(request.Id);
-            var response = new DeleteDepartmentResponse();
 
-            await _departmentRepository.Delete(new Department
-            {
-                Id = department.Id,
-            });
+            var departmentToDelete = DeleteDepartmentMapper.MapToEntity(department);
 
-            response.IsDeleted = true;
-            response.Message = "Department deleted";
+            await _departmentRepository.Delete(departmentToDelete);
+
+            var response = DeleteDepartmentMapper.MapToResponse(true, "Department deleted");
 
             return response;
         }

@@ -14,13 +14,9 @@ namespace TaskManagementSystem.Application.Departments.Queries.Detail
 
         public async Task<DetailDepartmentResponse> Handle(DetailDepartmentRequest request, CancellationToken cancellationToken)
         {
-            var departmentDetail = await _departmentRepository.GetById(request.Id);
+            var department = await _departmentRepository.GetById(request.Id);
 
-            var response = new DetailDepartmentResponse
-            {
-                Id = departmentDetail.Id,
-                DepartmentName = departmentDetail.DepartmentName
-            };
+            var response = DetailDepartmentMapper.MapToResponse(department);
 
             return response;
         }

@@ -15,18 +15,11 @@ namespace TaskManagementSystem.Application.Departments.Commands.Create
 
         public async Task<CreateDepartmentResponse> Handle(CreateDepartmentRequest request, CancellationToken cancellationToken)
         {
-            var department = new Department()
-            {
-                DepartmentName = request.DepartmentName
-            };
+            var department = CreateDepartmentMapper.MapToEntity(request);
 
             await _departmentRepository.Create(department);
 
-            var response = new CreateDepartmentResponse()
-            {
-                Id = department.Id,
-                DepartmentName = department.DepartmentName
-            };
+            var response = CreateDepartmentMapper.MapToResponse(department);
 
             return response;
         }
