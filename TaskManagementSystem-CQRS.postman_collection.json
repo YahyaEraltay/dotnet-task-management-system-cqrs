@@ -13,6 +13,16 @@
 				{
 					"name": "Create",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -25,12 +35,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:40921/api/Department/Create",
-							"protocol": "http",
+							"raw": "{{url}}/api/Department/Create",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"Department",
@@ -44,6 +52,16 @@
 				{
 					"name": "Update",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -56,12 +74,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:40921/api/Department/Update",
-							"protocol": "http",
+							"raw": "{{url}}/api/Department/Update",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"Department",
@@ -75,6 +91,16 @@
 				{
 					"name": "Delete",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -87,12 +113,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:40921/api/Department/Delete",
-							"protocol": "http",
+							"raw": "{{url}}/api/Department/Delete",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"Department",
@@ -106,15 +130,23 @@
 				{
 					"name": "All",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:40921/api/Department/All",
-							"protocol": "http",
+							"raw": "{{url}}/api/Department/All",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"Department",
@@ -131,6 +163,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -143,12 +185,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:40921/api/Department/Detail",
-							"protocol": "http",
+							"raw": "{{url}}/api/Department/Detail",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"Department",
@@ -160,7 +200,7 @@
 					"response": []
 				}
 			],
-			"description": "**Department:**\n\n- Bu dosya, görev yönetim sistemindeki departmanları temsil eder.\n    \n\n**Özellikler:**\n\n- `Id`: Departmanın benzersiz kimliğini temsil eden bir GUID.\n- `departmentName`: Departmanın adını belirtir.\n    \n\n**İlişkiler:**\n\n- Depatrment entity' si bir veya daha fazla kullanıcı (User) ile ilişkilendirilebilir.\n- Department entity' si bir veya daha fazla görev (ToDoTask) ile ilişkilendirilebilir.\n    \n\nBu sınıf, Clean Architecture prensiplerine uygun olarak domain katmanında yer alır ve veri tabanı işlemlerini gerçekleştiren repository sınıfı tarafından kullanılır."
+			"description": "**Department:**\n\n- Bu dosya, görev yönetim sistemindeki departmanları temsil eder.\n    \n\n**Özellikler:**\n\n- `Id`: Departmanın benzersiz kimliğini temsil eden bir GUID.\n- `departmentName`: Departmanın adını belirtir.\n    \n\n**İlişkiler:**\n\n- Department entity' si bir veya daha fazla kullanıcı (User) ile ilişkilendirilebilir.\n- Department entity' si bir veya daha fazla görev (ToDoTask) ile ilişkilendirilebilir.\n    \n\nBu sınıf, Clean Architecture prensiplerine uygun olarak domain katmanında yer alır ve veri tabanı işlemlerini gerçekleştiren repository sınıfı tarafından kullanılır."
 		},
 		{
 			"name": "User",
@@ -168,6 +208,16 @@
 				{
 					"name": "Create",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -180,12 +230,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:40921/api/User/Create",
-							"protocol": "http",
+							"raw": "{{url}}/api/User/Create",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"User",
@@ -199,6 +247,16 @@
 				{
 					"name": "Update",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -211,12 +269,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:40921/api/User/Update",
-							"protocol": "http",
+							"raw": "{{url}}/api/User/Update",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"User",
@@ -230,6 +286,16 @@
 				{
 					"name": "Delete",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -242,12 +308,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:40921/api/User/Delete",
-							"protocol": "http",
+							"raw": "{{url}}/api/User/Delete",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"User",
@@ -261,15 +325,23 @@
 				{
 					"name": "All",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:40921/api/User/All",
-							"protocol": "http",
+							"raw": "{{url}}/api/User/All",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"User",
@@ -286,6 +358,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -298,12 +380,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:40921/api/User/Detail",
-							"protocol": "http",
+							"raw": "{{url}}/api/User/Detail",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"User",
@@ -317,6 +397,9 @@
 				{
 					"name": "Login",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -329,12 +412,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:40921/api/User/Login",
-							"protocol": "http",
+							"raw": "{{url}}/api/User/Login",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"User",
@@ -353,7 +434,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNlcmthbnl1cnRAZ21haWwuY29tIiwibmJmIjoxNzE0NDAwNjE4LCJleHAiOjE3MTQ0MDQyMTgsImlhdCI6MTcxNDQwMDYxOCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0MDkyMSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDA5MjEifQ.UHHhQec_YWHZqaptBpq3bZPIRxhsbkEZhqo98-DXeIE",
+									"value": "{{jwt}}",
 									"type": "string"
 								}
 							]
@@ -361,12 +442,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:40921/api/User/GetCurrentUser",
-							"protocol": "http",
+							"raw": "{{url}}/api/User/GetCurrentUser",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"User",
@@ -378,7 +457,7 @@
 					"response": []
 				}
 			],
-			"description": "**User:**\n\n- Bu dosya, görev yönetim sistemindeki kullanıcıları temsil eder.\n    \n\n**Özellikler:**\n\n- `id`: Kullanıcının benzersiz kimligini temsil eden bir GUID.\n- `userName`: Kullanıcının adını belirtir.\n- `userEmail`: Kullanıcının email adresini belirtir.\n- `userPassword`: Kullanıcının şifresini belirtir.\n- `phoneNumber`: Kullanıcının telefon numarasını belirtir.\n- `userTitle`: Kullanıcının pozisyonunu belirtir.\n- `departmentId`: Kullanıcının bağlı olduğu departmanın id' sini belirten GUID.\n    \n\n**İlişkiler:**\n\n- User entity' si sadece bir departman (Department) ile ilişkilendirilebilir.\n    \n- User entity' si bir veya daha fazla görev (ToDoTask) ile ilişkiledirilebilir."
+			"description": "**User:**\n\n- Bu dosya, görev yönetim sistemindeki kullanıcıları temsil eder.\n    \n\n**Özellikler:**\n\n- `id`: Kullanıcının benzersiz kimligini temsil eden bir GUID.\n- `userName`: Kullanıcının adını belirtir.\n- `userEmail`: Kullanıcının email adresini belirtir.\n- `userPassword`: Kullanıcının şifresini belirtir.\n- `phoneNumber`: Kullanıcının telefon numarasını belirtir.\n- `userTitle`: Kullanıcının pozisyonunu belirtir.\n- `departmentId`: Kullanıcının bağlı olduğu departmanın id' sini belirten GUID.\n    \n\n**İlişkiler:**\n\n- User entity' si sadece bir departman (Department) ile ilişkilendirilebilir.\n- User entity' si bir veya daha fazla görev (ToDoTask) ile ilişkiledirilebilir.\n    \n\nBu sınıf, Clean Architecture prensiplerine uygun olarak domain katmanında yer alır ve veri tabanı işlemlerini gerçekleştiren repository sınıfı tarafından kullanılır."
 		},
 		{
 			"name": "ToDoTask",
@@ -391,7 +470,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlhaHlhZXJhbHRheUBnbWFpbC5jb20iLCJuYmYiOjE3MTUyNDQ3NzgsImV4cCI6MTcxNTI0ODM3OCwiaWF0IjoxNzE1MjQ0Nzc4LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjQwOTIxIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MDkyMSJ9.fjjCie5XT8JAfX4aX6Wv7X-6OLiRZTNAmChdNzrt1I0",
+									"value": "{{jwt}}",
 									"type": "string"
 								}
 							]
@@ -408,12 +487,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:40921/api/ToDoTask/Create",
-							"protocol": "http",
+							"raw": "{{url}}/api/ToDoTask/Create",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"ToDoTask",
@@ -432,7 +509,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1lcnlAY29tcGFueS5jb20iLCJuYmYiOjE3MTUyNTE3MTksImV4cCI6MTcxNTI1NTMxOSwiaWF0IjoxNzE1MjUxNzE5LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjQwOTIxIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MDkyMSJ9.PTf_ao2yL8o-jzuvPC1wkbx6pbE0SPwmEtFv2FufRqQ",
+									"value": "{{jwt}}",
 									"type": "string"
 								}
 							]
@@ -449,12 +526,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:40921/api/ToDoTask/Update",
-							"protocol": "http",
+							"raw": "{{url}}/api/ToDoTask/Update",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"ToDoTask",
@@ -468,6 +543,16 @@
 				{
 					"name": "Delete",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -480,12 +565,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:40921/api/ToDoTask/Delete",
-							"protocol": "http",
+							"raw": "{{url}}/api/ToDoTask/Delete",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"ToDoTask",
@@ -499,15 +582,23 @@
 				{
 					"name": "All",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:40921/api/ToDoTask/All",
-							"protocol": "http",
+							"raw": "{{url}}/api/ToDoTask/All",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"ToDoTask",
@@ -524,6 +615,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -536,12 +637,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:40921/api/ToDoTask/Detail",
-							"protocol": "http",
+							"raw": "{{url}}/api/ToDoTask/Detail",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"ToDoTask",
@@ -560,7 +659,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlhaHlhZXJhbHRheUBnbWFpbC5jb20iLCJuYmYiOjE3MTQ2NTA5NjcsImV4cCI6MTcxNDY1NDU2NywiaWF0IjoxNzE0NjUwOTY3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjQwOTIxIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MDkyMSJ9.hnduGY3ZtTIFkEC6qezHqXZjACxHoT7fjgSGK0tM9pw",
+									"value": "{{jwt}}",
 									"type": "string"
 								}
 							]
@@ -568,12 +667,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:40921/api/ToDoTask/AssignedTasks",
-							"protocol": "http",
+							"raw": "{{url}}/api/ToDoTask/AssignedTasks",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"ToDoTask",
@@ -587,6 +684,16 @@
 				{
 					"name": "TaskStatus",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -599,12 +706,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:40921/api/ToDoTask/TaskStatus",
-							"protocol": "http",
+							"raw": "{{url}}/api/ToDoTask/TaskStatus",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "40921",
 							"path": [
 								"api",
 								"ToDoTask",
@@ -616,7 +721,7 @@
 					"response": []
 				}
 			],
-			"description": "**To Do Task**\n\n- Bu dosya, görev yönetim sistemindeki görevleri temsil eder.\n    \n\n**Özellikler**\n\n- `id`: Görevin benzersiz kimliğini temsil eden bir GUID.\n- `toDoTaskName`: Görevin adını belirtir.\n- `toDoTaskDescription`: Görevin açıklamasını belirtir.\n- `toDoTaskDate`: Görevin tarihini belirtir.\n- `assignedDepartmentName`: Görev oluşturan kullanıcının bağlı olduğu departmanın adını belirtir.\n- `creatorUser`: Görevi oluşturan kullanıcıyı belirtir.\n- `assignedUser`: Göreve atanan kullanıcıyı belirtir.\n- `Status`: Görevin durumunu belirten bir enum.\n    - `Pending`(0): Görev bekliyor.\n    - `Approved`(1): Görev onaylandı.\n    - `Denied`(2): Görev reddedildi.\n\n**İlişkiler**\n\n- ToDoTask entity'si, sadece bir departman ile ilişkilendirilebilir.\n    \n- ToDoTask entity'si, bir CreatorUser (oluşturan kullanıcı) ile ilişkilendirilmiştir. Görevi oluşturan kullanıcıyı belirtir.\n- ToDoTask entity'si, bir AssignedUser (atanmış kullanıcı) ile ilişkilendirilmiştir. Göreve atanmış kullanıcıyı belirtir."
+			"description": "**To Do Task**\n\n- Bu dosya, görev yönetim sistemindeki görevleri temsil eder.\n    \n\n**Özellikler**\n\n- `id`: Görevin benzersiz kimliğini temsil eden bir GUID.\n- `toDoTaskName`: Görevin adını belirtir.\n- `toDoTaskDescription`: Görevin açıklamasını belirtir.\n- `toDoTaskDate`: Görevin oluşturulma tarihini belirtir.\n- `assignedDepartmentName`: Görev oluşturan kullanıcının bağlı olduğu departmanın adını belirtir.\n- `creatorUser`: Görevi oluşturan kullanıcıyı belirtir.\n- `assignedUser`: Göreve atanan kullanıcıyı belirtir.\n- `Status`: Görevin durumunu belirten bir enum.\n    - `Pending`(0): Görev bekliyor.\n    - `Approved`(1): Görev onaylandı.\n    - `Denied`(2): Görev reddedildi.\n\n**İlişkiler**\n\n- ToDoTask entity'si, sadece bir departman ile ilişkilendirilebilir.\n- ToDoTask entity'si, bir CreatorUser (oluşturan kullanıcı) ile ilişkilendirilmiştir. Görevi oluşturan kullanıcıyı belirtir.\n- ToDoTask entity'si, bir AssignedUser (atanmış kullanıcı) ile ilişkilendirilmiştir. Göreve atanmış kullanıcıyı belirtir."
 		}
 	]
 }
