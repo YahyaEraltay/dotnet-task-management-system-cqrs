@@ -40,8 +40,8 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Create
                 ToDoTaskDescription = request.ToDoTaskDescription,
                 ToDoTaskDate = task.ToDoTaskDate.Date,
                 AssignedUserId = request.AssignedUserId,
-                CreatorUserId = request.CreatorUserId,
-                DepartmentId = request.DepartmentId,
+                CreatorUserId = task.CreatorUserId,
+                DepartmentId = task.DepartmentId,
                 Status = request.Status
             };
 
