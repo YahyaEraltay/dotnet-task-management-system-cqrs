@@ -17,9 +17,9 @@ namespace TaskManagementSystem.Application.Departments.Commands.Delete
         {
             var department = await _departmentRepository.GetById(request.Id);
 
-            var departmentToDelete = DeleteDepartmentMapper.MapToEntity(department);
+            department = DeleteDepartmentMapper.MapToEntity(department);
 
-            await _departmentRepository.Delete(departmentToDelete);
+            await _departmentRepository.Delete(department);
 
             var response = DeleteDepartmentMapper.MapToResponse(true, "Department deleted");
 
