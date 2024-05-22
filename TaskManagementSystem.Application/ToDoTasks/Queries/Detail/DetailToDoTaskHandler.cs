@@ -14,27 +14,11 @@ namespace TaskManagementSystem.Application.ToDoTasks.Queries.Detail
 
         public async Task<DetailToDoTaskResponse> Handle(DetailToDoTaskRequest request, CancellationToken cancellationToken)
         {
-            var toDoTask = await _toDoTaskRepository.GetById(request.Id);
+            var task = await _toDoTaskRepository.GetById(request.Id);
 
-            if (toDoTask != null)
-            {
-                var toDoTaskDTO = new DetailToDoTaskResponse()
-                {
-                    Id = toDoTask.Id,
-                    ToDoTaskName = toDoTask.ToDoTaskName,
-                    AssignedDepartmentName = toDoTask.Department.DepartmentName,
-                    CreatorUserName = toDoTask.CreatorUser.UserName,
-                    AssignedUserName = toDoTask.AssignedUser.UserName,
-                    AssignedUserEmail = toDoTask.AssignedUser.UserEmail,
-                    Status = toDoTask.Status,
-                };
+            var response = DetailToDoTaskMapper.MapToResponse(task);
 
-                return toDoTaskDTO;
-            }
-            else
-            {
-                throw new Exception("Task not found");
-            }
+            return response;
         }
     }
 }

@@ -18,36 +18,21 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Update
         public async Task<UpdateToDoTaskResponse> Handle(UpdateToDoTaskRequest request, CancellationToken cancellationToken)
         {
             var currentUser = await _currentUser.GetCurrentUser();
-            var updatedTask = await _toDoTaskRepository.GetById(request.Id);
-            var creatorUser = await _toDoTaskRepository.CreatorUser(updatedTask.Id);
+            var task = await _toDoTaskRepository.GetById(request.Id);
+            var creatorUser = await _toDoTaskRepository.CreatorUser(task.Id);
 
-            if (currentUser.Id == creatorUser)
-            {
-                updatedTask.Id = request.Id;
-                updatedTask.ToDoTaskName = request.ToDoTaskName;
-                updatedTask.AssignedUserId = request.AssignedUserId;
-                updatedTask.ToDoTaskDescription = request.ToDoTaskDescription;
-
-                await _toDoTaskRepository.Update(updatedTask);
-
-                var response = new UpdateToDoTaskResponse
-                {
-                    Id = updatedTask.Id,
-                    ToDoTaskName = updatedTask.ToDoTaskName,
-                    AssignedUserName = updatedTask.AssignedUser.UserName,
-                    CreatorUserName = updatedTask.CreatorUser.UserName,
-                    AssignedDepartmentName = updatedTask.Department.DepartmentName,
-                    ToDoTaskDescription = updatedTask.ToDoTaskDescription,
-                };
-
-                return response;
-            }
-            else
+            if (currentUser.Id != creatorUser)
             {
                 throw new Exception("You can only update tasks that you have created yourself");
             }
 
+            task = UpdateToDoTaskMapper.MapToEntity(task, request);
 
+            await _toDoTaskRepository.Update(task);
+
+            var response = UpdateToDoTaskMapper.MapToResponse(task);
+
+            return response;
         }
     }
 }

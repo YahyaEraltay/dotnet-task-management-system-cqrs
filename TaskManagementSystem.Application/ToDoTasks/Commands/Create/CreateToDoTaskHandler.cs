@@ -20,30 +20,11 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Create
         {
             var currentUser = await _currentUser.GetCurrentUser();
 
-            var task = new ToDoTask
-            {
-                ToDoTaskName = request.ToDoTaskName,
-                ToDoTaskDescription = request.ToDoTaskDescription,
-                ToDoTaskDate = DateTime.Now.Date,
-                AssignedUserId = request.AssignedUserId,
-                CreatorUserId = currentUser.Id,
-                DepartmentId = currentUser.DepartmentId,
-                Status = request.Status = 0
-            };
+            var task = CreateToDoTaskMapper.MapToEntity(request, currentUser.Id, currentUser.DepartmentId);
 
             await _toDoTaskRepository.Create(task);
 
-            var response = new CreateToDoTaskResponse
-            {
-                Id = task.Id,
-                ToDoTaskName = request.ToDoTaskName,
-                ToDoTaskDescription = request.ToDoTaskDescription,
-                ToDoTaskDate = task.ToDoTaskDate.Date,
-                AssignedUserId = request.AssignedUserId,
-                CreatorUserId = task.CreatorUserId,
-                DepartmentId = task.DepartmentId,
-                Status = request.Status
-            };
+            var response = CreateToDoTaskMapper.MapToResponse(task);
 
             return response;
         }

@@ -22,24 +22,18 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Delete
             var task = await _toDoTaskRepository.GetById(request.Id);
             var creatorUser = await _toDoTaskRepository.CreatorUser(task.Id);
 
-            var response = new DeleteToDoTaskResponse();
-
-            if (currentUser.Id == creatorUser)
-            {
-                await _toDoTaskRepository.Delete(new ToDoTask
-                {
-                    Id = task.Id,
-                });
-
-                response.IsDeleted = true;
-                response.Message = "Task deleted";
-
-                return response;
-            }
-            else
+            if (currentUser.Id != creatorUser)
             {
                 throw new Exception("You can only delete the task created to you");
+
             }
+            task = DeleteToDoTaskMapper.MapToEntity(task);
+
+            await _toDoTaskRepository.Delete(task);
+
+            var response = DeleteToDoTaskMapper.MapToResponse(true, "Task deleted");
+
+            return response;
         }
     }
 }

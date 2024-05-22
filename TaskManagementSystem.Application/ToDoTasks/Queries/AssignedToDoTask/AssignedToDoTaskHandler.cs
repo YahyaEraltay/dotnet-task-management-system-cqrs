@@ -19,21 +19,8 @@ namespace TaskManagementSystem.Application.ToDoTasks.Queries.AssignedToDoTask
         {
             var currentUser = await _currentUser.GetCurrentUser();
             var assignedTasks = await _toDoTaskRepository.AssignedToDoTask(currentUser.Id);
-            var response = new List<AssignedToDoTaskResponse>();
 
-            foreach ( var assignedTask in assignedTasks )
-            {
-                response.Add(new AssignedToDoTaskResponse
-                {
-                    Id = assignedTask.Id,
-                    ToDoTaskDate = assignedTask.ToDoTaskDate.Date,
-                    CreatorUserName = assignedTask.CreatorUser.UserName,
-                    AssignedUserName = assignedTask.AssignedUser.UserName,
-                    AssignedDepartmentName = assignedTask.CreatorUser.Department.DepartmentName,
-                    ToDoTaskName = assignedTask.ToDoTaskName,
-                    Status = assignedTask.Status,
-                });
-            }
+            var response = AssignedToDoTaskMapper.MapToResponse(assignedTasks);
 
             return response;
         }

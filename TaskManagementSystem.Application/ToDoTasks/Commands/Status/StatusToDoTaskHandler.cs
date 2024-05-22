@@ -21,34 +21,23 @@ namespace TaskManagementSystem.Application.ToDoTasks.Commands.Status
             var task = await _toDoTaskRepository.GetById(request.Id);
             var assignedUser = await _toDoTaskRepository.AssignedUser(task.Id);
 
-            if (currentUser.Id == assignedUser)
-            {
-                if (task.Status == Domain.Entites.ToDoTask.StatusEnum.Pending)
-                {
-                    task.Status = request.Status;
-
-                    await _toDoTaskRepository.UpdateStatus(task);
-
-                    var response = new StatusToDoTaskResponse
-                    {
-                        Status = task.Status,
-                    };
-
-                    return response;
-                }
-                if (task.Status == Domain.Entites.ToDoTask.StatusEnum.Approved || task.Status == Domain.Entites.ToDoTask.StatusEnum.Denied)
-                {
-                    throw new Exception("This task has already been approved or denied");
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            else
+            if (currentUser.Id != assignedUser)
             {
                 throw new Exception("You can only approve/reject the task assigned to you");
             }
+
+            if (task.Status != Domain.Entites.ToDoTask.StatusEnum.Pending)
+            {
+                throw new Exception("This task has already been approved or denied");
+            }
+
+            var statusTask = StatusToDoTaskMapper.MapToEntity(task, request);
+
+            await _toDoTaskRepository.Update(statusTask);
+
+            var response = StatusToDoTaskMapper.MapToResponse(task);
+
+            return response;
         }
     }
 }
