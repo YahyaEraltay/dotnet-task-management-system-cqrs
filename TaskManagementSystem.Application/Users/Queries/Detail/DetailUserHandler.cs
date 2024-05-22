@@ -16,13 +16,7 @@ namespace TaskManagementSystem.Application.Users.Queries.Detail
         {
             var user = await _userRepository.GetById(request.Id);
 
-            var response = new DetailUserResponse
-            {
-                Id = user.Id,
-                UserName = user.UserName,
-                UserEmail = user.UserEmail,
-                DepartmentName = user.Department.DepartmentName
-            };
+            var response = DetailUserMapper.MapToResponse(user);
 
             return response;
         }

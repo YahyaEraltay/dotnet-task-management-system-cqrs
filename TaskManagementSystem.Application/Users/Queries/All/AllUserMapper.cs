@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaskManagementSystem.Domain.Entites;
+﻿using TaskManagementSystem.Domain.Entites;
 
 namespace TaskManagementSystem.Application.Users.Queries.All
 {

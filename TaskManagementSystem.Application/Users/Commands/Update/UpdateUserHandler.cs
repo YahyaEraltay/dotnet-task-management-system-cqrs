@@ -20,20 +20,19 @@ namespace TaskManagementSystem.Application.Users.Commands.Update
             var currentUser = await _currentUserService.GetCurrentUser();
             var user = await _userRepository.GetById(request.Id);
 
-            if (currentUser.Id == request.Id)
-            {
-                user = UpdateUserMapper.MapToEntity(request, user);
-
-                await _userRepository.Update(user);
-
-                var response = UpdateUserMapper.MapToResponse(user);
-
-                return response;
-            }
-            else
+            if (currentUser.Id != request.Id)
             {
                 throw new Exception("You can only update user that you have created yourself");
+
             }
+            
+            user = UpdateUserMapper.MapToEntity(request, user);
+
+            await _userRepository.Update(user);
+
+            var response = UpdateUserMapper.MapToResponse(user);
+
+            return response;
         }
     }
 }

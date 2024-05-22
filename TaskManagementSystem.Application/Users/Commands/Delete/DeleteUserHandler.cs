@@ -21,20 +21,18 @@ namespace TaskManagementSystem.Application.Users.Commands.Delete
             var currentUser = await _currentUserService.GetCurrentUser();
             var user = await _userRepository.GetById(request.Id);
 
-            if (currentUser.Id == request.Id)
-            {
-                var userToDelete = DeleteUserMapper.MapToEntity(user);
-
-                await _userRepository.Delete(userToDelete);
-
-                var response = DeleteUserMapper.MapToResponse(true, "User deleted");
-
-                return response;
-            }
-            else
+            if (currentUser.Id != request.Id)
             {
                 throw new Exception("You can only delete user that you have created yourself");
             }
+           
+            user = DeleteUserMapper.MapToEntity(user);
+
+            await _userRepository.Delete(user);
+
+            var response = DeleteUserMapper.MapToResponse(true, "User deleted");
+
+            return response;
         }
     }
 }
