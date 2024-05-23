@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+using TaskManagementSystem.Domain.Entites;
 using TaskManagementSystem.Infrastructure.DTOs.UserDTOs.CurrentUserDTOs;
 using TaskManagementSystem.Infrastructure.Repositories;
 
@@ -20,10 +21,8 @@ namespace TaskManagementSystem.Infrastructure.Services
         {
             var claims = _httpContextAccessor.HttpContext.User.Claims;
             var email = claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
-            var password = await _userRepository.GetUserByEmail(email);
-
-            var user = await _userRepository.Login(email, password);
-
+            var user = await _userRepository.GetUserByEmail(email);
+            
             if (user != null)
             {
                 return new ResponseModel

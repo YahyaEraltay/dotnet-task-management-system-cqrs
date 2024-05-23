@@ -61,14 +61,13 @@ namespace TaskManagementSystem.Infrastructure.Repositories
             }
         }
 
-        public async Task<string> GetUserByEmail(string email)
+        public async Task<User> GetUserByEmail(string email)
         {
-            var userEmail = await _context.Users.FirstOrDefaultAsync(x => x.UserEmail == email);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.UserEmail == email);
 
-            if (userEmail != null)
+            if (user != null)
             {
-                var userPassword = userEmail.UserPassword;
-                return userPassword;
+                return user;
             }
             else
             {
@@ -76,13 +75,15 @@ namespace TaskManagementSystem.Infrastructure.Repositories
             }
         }
 
+
         public async Task<User> Login(string email, string password)
         {
             var user = await _context.Users
                                      .Include(x => x.Department)
                                      .Include(x => x.ToDoTasks)
-                                     .FirstOrDefaultAsync(x => x.UserEmail == email && x.UserPassword == password);
-            if (user != null)
+                                     .FirstOrDefaultAsync(x => x.UserEmail == email);
+
+            if (user != null && BCrypt.Net.BCrypt.Verify(password, user.UserPassword))
             {
                 return user;
             }

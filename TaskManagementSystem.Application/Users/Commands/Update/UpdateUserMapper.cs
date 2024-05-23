@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BCrypt.Net;
 using TaskManagementSystem.Domain.Entites;
 
 namespace TaskManagementSystem.Application.Users.Commands.Update
 {
-    public class UpdateUserMapper
+    public static class UpdateUserMapper
     {
         public static User MapToEntity(UpdateUserRequest request, User user)
         {
@@ -15,10 +11,13 @@ namespace TaskManagementSystem.Application.Users.Commands.Update
             user.UserName = request.UserName;
             user.UserEmail = request.UserEmail;
             user.UserTitle = request.UserTitle;
-            user.UserPassword = request.UserPassword;
             user.PhoneNumber = request.PhoneNumber;
             user.DepartmentId = request.DepartmentId;
 
+            if (!string.IsNullOrEmpty(request.UserPassword))
+            {
+                user.UserPassword = BCrypt.Net.BCrypt.HashPassword(request.UserPassword);
+            }
             return user;
         }
 

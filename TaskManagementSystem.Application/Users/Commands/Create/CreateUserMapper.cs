@@ -1,21 +1,17 @@
-﻿ using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BCrypt.Net;
 using TaskManagementSystem.Domain.Entites;
 
 namespace TaskManagementSystem.Application.Users.Commands.Create
 {
-    public class CreateUserMapper
+    public static class CreateUserMapper
     {
-       public static User MapToNewEntity(CreateUserRequest request)
+        public static User MapToNewEntity(CreateUserRequest request)
         {
             return new User
             {
                 UserName = request.UserName,
                 UserEmail = request.UserEmail,
-                UserPassword = request.UserPassword,
+                UserPassword = BCrypt.Net.BCrypt.HashPassword(request.UserPassword), 
                 PhoneNumber = request.PhoneNumber,
                 DepartmentId = request.DepartmentId,
                 UserTitle = request.UserTitle

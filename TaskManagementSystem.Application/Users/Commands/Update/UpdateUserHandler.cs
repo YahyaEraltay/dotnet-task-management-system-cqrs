@@ -23,7 +23,6 @@ namespace TaskManagementSystem.Application.Users.Commands.Update
             if (currentUser.Id != request.Id)
             {
                 throw new Exception("You can only update user that you have created yourself");
-
             }
             
             user = UpdateUserMapper.MapToEntity(request, user);
