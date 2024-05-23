@@ -6,7 +6,7 @@ Bu dokümantasyon, **Görev Yönetim Sistemi** projesinin teknik detaylarını v
 
 Bu proje, bir görev yönetim sistemi oluşturmayı amaçlamıştır. Görev yönetim sistemi, bir organizasyonun veya bir grup insanın projelerini, görevlerini ve iş akışlarını düzenlemek ve takip etmesini kolaylaştırmayı hedeflemiştir. Bu sistem ekipler arasında işbirliğini kolaylaştırır, görevlerin atanmasını, izlenmesini ve tamamlanmasını sağlar.
 
-Görev Yönetim Sistemine kullanıcılar e-posta ve şifreleriyle birlikte giriş yaparlar. Giriş yapan kullanıcılar için bir JWT oluşturulur. Bu sayede sistemdeki tüm endpoint' leri kullanabilirler. Sisteme kayıtlı tüm görevleri görüntüleyebilecekleri bir endpoint bulunmaktadır. Burada görevlerin şu bilgileri bulunur:
+Görev Yönetim Sistemine kullanıcılar e-posta ve şifreleriyle birlikte giriş yaparlar. Kullanıcıların parolaları, veri tabanına şifrelenmiş olarak kaydedilir. Giriş yapan kullanıcılar için bir JWT oluşturulur. Bu sayede sistemdeki tüm endpoint' leri kullanabilirler. Sisteme kayıtlı tüm görevleri görüntüleyebilecekleri bir endpoint bulunmaktadır. Burada görevlerin şu bilgileri bulunur:
 
 - **Atanan Kişinin Adı ve Soyadı**
 - **E-posta Adresi**
@@ -278,24 +278,29 @@ Department üzerinde gerçekleştirilebilecek komutlar bu bölümde bulunmaktad�
 - **Handler:** `CreateDepartmentHandler`
 - **Request:** `CreateDepartmentRequest`
 - **Response:** `CreateDepartmentResponse`
+- **Mapper:** `CreateDepartmentMapper`
 
-Bu komut, yeni bir departman oluşturmak için kullanılır. `CreateDepartmentRequest` sınıfı, oluşturulacak departmanın bilgilerini içerir. Bu komutun işlenmesi sonucunda `CreateDepartmentResponse` sınıfıyla işlem sonucu ve oluşturulan departmanın bilgileri döndürülür. Komutun işlenmesi, `CreateDepartmentHandler` tarafından gerçekleştirilir. 
+Bu komut, yeni bir departman oluşturmak için kullanılır. `CreateDepartmentRequest` sınıfı, oluşturulacak departmanın bilgilerini içerir. Bu komutun işlenmesi sonucunda `CreateDepartmentResponse` sınıfıyla işlem sonucu ve oluşturulan departmanın bilgileri döndürülür. Komutun işlenmesi, `CreateDepartmentHandler` tarafından gerçekleştirilir.
+Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `CreateDepartmentMapper` kullanılmıştır. 
 
 #### Update
 
 - **Handler:** `UpdateDepartmentHandler`
 - **Request:** `UpdateDepartmentRequest`
 - **Response:** `UpdateDepartmentResponse`
+- **Mapper:** `UpdateDepartmentMapper`
 
-Bu komut, varolan bir departmanı güncellemek için kullanılır. `UpdateDepartmentRequest` sınıfı, güncellenecek departmanın kimliğini ve yeni bilgilerini içerir. İşlem sonucu ve güncellenen departmanın bilgileri `UpdateDepartmentResponse` sınıfıyla döndürülür. Komutun işlenmesi, `UpdateDepartmentHandler` tarafından gerçekleştirilir.
+Bu komut, varolan bir departmanı güncellemek için kullanılır. `UpdateDepartmentRequest` sınıfı, güncellenecek departmanın kimliğini ve yeni bilgilerini içerir. İşlem sonucu ve güncellenen departmanın bilgileri `UpdateDepartmentResponse` sınıfıyla döndürülür. Komutun işlenmesi, `UpdateDepartmentHandler` tarafından gerçekleştirilir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `UpdateDepartmentMapper` kullanılmıştır.
 
 #### Delete
 
 - **Handler:** `DeleteDepartmentHandler`
 - **Request:** `DeleteDepartmentRequest`
 - **Response:** `DeleteDepartmentResponse`
+- **Mapper:** `DeleteDepartmentMapper`
 
-Bu komut, varolan bir departmanı silmek için kullanılır. `DeleteDepartmentRequest` sınıfı, silinecek departmanın kimliğini içerir. İşlem sonucu `DeleteDepartmentResponse` sınıfıyla döndürülür. Komutun işlenmesi, `DeleteDepartmentHandler` tarafından gerçekleştirilir.
+Bu komut, varolan bir departmanı silmek için kullanılır. `DeleteDepartmentRequest` sınıfı, silinecek departmanın kimliğini içerir. İşlem sonucu `DeleteDepartmentResponse` sınıfıyla döndürülür. Komutun işlenmesi, `DeleteDepartmentHandler` tarafından gerçekleştirilir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `DeleteDepartmentMapper` kullanılmıştır.
+
 
 ### Queries
 
@@ -306,16 +311,18 @@ Department üzerinde gerçekleştirilebilecek sorgular bu bölümde bulunmaktad�
 - **Handler:** `AllDepartmentHandler`
 - **Response:** `AllDepartmentResponse`
 - **Request:** `AllDepartmentRequest` 
+- **Mapper:** `AllDepartmentMapper`
 
-Bu sorgu, tüm departmanların listesini getirmek için kullanılır. MediatR yapısını kullanabilmek için boş bir `AllDepartmentRequest` sınıfı oluşturulmuştur. İşlem sonucu ve departman listesi `AllDepartmentResponse` sınıfıyla döndürülür. Komutun işlenmesi, `AllDepartmentHandler` tarafından gerçekleştirilir.
+Bu sorgu, tüm departmanların listesini getirmek için kullanılır. MediatR yapısını kullanabilmek için boş bir `AllDepartmentRequest` sınıfı oluşturulmuştur. İşlem sonucu ve departman listesi `AllDepartmentResponse` sınıfıyla döndürülür. Komutun işlenmesi, `AllDepartmentHandler` tarafından gerçekleştirilir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `AllDepartmentMapper` kullanılmıştır.
 
 #### Detail
 
 - **Handler:** `DetailDepartmentHandler`
 - **Request:** `DetailDepartmentRequest`
 - **Response:** `DetailDepartmentResponse`
+- **Mapper:** `DetailDepartmentMapper`
 
-Bu sorgu, belirli bir departmanın bilgilerini getirmek için kullanılır. `DetailDepartmentRequest` sınıfı, istenen departmanın kimliğini içerir. İşlem sonucu ve departman bilgileri `DetailDepartmentResponse` sınıfıyla döndürülür. Komutun işlenmesi, `DetailDepartmentHandler` tarafından gerçekleştirilir.
+Bu sorgu, belirli bir departmanın bilgilerini getirmek için kullanılır. `DetailDepartmentRequest` sınıfı, istenen departmanın kimliğini içerir. İşlem sonucu ve departman bilgileri `DetailDepartmentResponse` sınıfıyla döndürülür. Komutun işlenmesi, `DetailDepartmentHandler` tarafından gerçekleştirilir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `DetailDepartmentMapper` kullanılmıştır.
 
 ### User
 
@@ -330,24 +337,27 @@ User üzerinde gerçekleştirilebilecek komutlar bu bölümde bulunmaktadır.
 - **Handler:** `CreateUserHandler`
 - **Request:** `CreateUserRequest`
 - **Response:** `CreateUserResponse`
+- **Mapper:** `CreateUserMapper`
 
-Bu komut, yeni bir kullanıcı oluşturmak için kullanılır. `CreateUserRequest` sınıfı, oluşturulacak kullanıcının bilgilerini içerir. Bu komutun işlenmesi sonucunda `CreateUserResponse` sınıfıyla işlem sonucu ve oluşturulan kullanıcının bilgileri döndürülür. Komutun işlenmesi, `CreateUserHandler` tarafından gerçekleştirilir.
+Bu komut, yeni bir kullanıcı oluşturmak için kullanılır. `CreateUserRequest` sınıfı, oluşturulacak kullanıcının bilgilerini içerir. Bu komutun işlenmesi sonucunda `CreateUserResponse` sınıfıyla işlem sonucu ve oluşturulan kullanıcının bilgileri döndürülür. Komutun işlenmesi, `CreateUserHandler` tarafından gerçekleştirilir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `CreateUserMapper` kullanılmıştır.
 
 #### Update
 
 - **Handler:** `UpdateUserHandler`
 - **Request:** `UpdateUserRequest`
 - **Response:** `UpdateUserResponse`
+- **Mapper:** `UpdateUserMapper`
 
-Bu komut, varolan bir kullanıcıyı güncellemek için kullanılır. `UpdateUserRequest` sınıfı, güncellenecek kullanıcının kimliğini ve yeni bilgilerini içerir. İşlem sonucu ve güncellenen kullanıcının bilgileri `UpdateUserResponse` sınıfıyla döndürülür. Komutun işlenmesi, `UpdateUserHandler` tarafından gerçekleştirilir.
+Bu komut, varolan bir kullanıcıyı güncellemek için kullanılır. `UpdateUserRequest` sınıfı, güncellenecek kullanıcının kimliğini ve yeni bilgilerini içerir. İşlem sonucu ve güncellenen kullanıcının bilgileri `UpdateUserResponse` sınıfıyla döndürülür. Komutun işlenmesi, `UpdateUserHandler` tarafından gerçekleştirilir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `UpdateUserMapper` kullanılmıştır.
 
 #### Delete
 
 - **Handler:** `DeleteUserHandler`
 - **Request:** `DeleteUserRequest`
 - **Response:** `DeleteUserResponse`
+- **Mapper:** `DeleteUserMapper`
 
-Bu komut, varolan bir kullanıcıyı silmek için kullanılır. `DeleteUserRequest` sınıfı, silinecek kullanıcının kimliğini içerir. İşlem sonucu `DeleteUserResponse` sınıfıyla döndürülür. Komutun işlenmesi, `DeleteUserHandler` tarafından gerçekleştirilir. Komutun işlenmesi, `DeleteUserHandler` tarafından gerçekleştirilir.
+Bu komut, varolan bir kullanıcıyı silmek için kullanılır. `DeleteUserRequest` sınıfı, silinecek kullanıcının kimliğini içerir. İşlem sonucu `DeleteUserResponse` sınıfıyla döndürülür. Komutun işlenmesi, `DeleteUserHandler` tarafından gerçekleştirilir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `DeleteUserMapper` kullanılmıştır.
 
 #### Login
 
@@ -366,16 +376,18 @@ User üzerinde gerçekleştirilebilecek sorgular bu bölümde bulunmaktadır.
 - **Handler:** `AllUserHandler`
 - **Request:** `AllUserRequest`
 - **Response:** `AllUserResponse`
+- **Mapper:** `AllUserMapper`
 
-Bu sorgu, tüm kullanıcıların listesini getirmek için kullanılır. MediatR yapısını kullanabilmek için boş bir `AllUserRequest` sınıfı oluşturulmuştur. İşlem sonucu ve kullanıcı listesi `GetAllUsersResponse` sınıfıyla döndürülür. Komutun işlenmesi, `LoginUserHandler` tarafından gerçekleştirilir.
+Bu sorgu, tüm kullanıcıların listesini getirmek için kullanılır. MediatR yapısını kullanabilmek için boş bir `AllUserRequest` sınıfı oluşturulmuştur. İşlem sonucu ve kullanıcı listesi `AllUserResponse` sınıfıyla döndürülür. Komutun işlenmesi, `AllUserHandler` tarafından gerçekleştirilir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `AllUserMapper` kullanılmıştır.
 
 #### Detail
 
 - **Handler:** `DetailUserHandler`
 - **Request:** `DetailUserRequest`
 - **Response:** `DetailUserResponse`
+- **Mapper:** `DetailUserMapper`
 
-Bu sorgu, belirli bir kullanıcının bilgilerini getirmek için kullanılır. `DetailUserRequest` sınıfı, istenen kullanıcının kimliğini içerir. İşlem sonucu ve kullanıcı bilgileri `DetailUserResponse` sınıfıyla döndürülür. Komutun işlenmesi, `DetailUserHandler` tarafından gerçekleştirilir.
+Bu sorgu, belirli bir kullanıcının bilgilerini getirmek için kullanılır. `DetailUserRequest` sınıfı, istenen kullanıcının kimliğini içerir. İşlem sonucu ve kullanıcı bilgileri `DetailUserResponse` sınıfıyla döndürülür. Komutun işlenmesi, `DetailUserHandler` tarafından gerçekleştirilir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `DetailUserMapper` kullanılmıştır.
 
 
 ### ToDoTask
@@ -391,32 +403,36 @@ ToDoTask üzerinde gerçekleştirilebilecek komutlar bu bölümde bulunmaktadır
 - **Handler:** `CreateToDoTaskHandler`
 - **Request:** `CreateToDoTaskRequest`
 - **Response:** `CreateToDoTaskResponse`
+- **Mapper:** `CreateToDoTaskMapper`
 
-Bu komut, yeni bir görev oluşturmak için kullanılır. `CreateToDoTaskRequest` sınıfı, oluşturulacak görevin bilgilerini içerir. Bu komutun işlenmesi sonucunda `CreateToDoTaskResponse` sınıfıyla işlem sonucu ve oluşturulan görevin bilgileri döndürülür. Komutun işlenmesi, `CreateToDoTaskHandler` tarafından gerçekleştirilir.
+Bu komut, yeni bir görev oluşturmak için kullanılır. `CreateToDoTaskRequest` sınıfı, oluşturulacak görevin bilgilerini içerir. Bu komutun işlenmesi sonucunda `CreateToDoTaskResponse` sınıfıyla işlem sonucu ve oluşturulan görevin bilgileri döndürülür. Komutun işlenmesi, `CreateToDoTaskHandler` tarafından gerçekleştirilir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `CreateToDoTaskMapper` kullanılmıştır.
 
 #### Update
 
 - **Handler:** `UpdateToDoTaskHandler`
 - **Request:** `UpdateToDoTaskRequest`
 - **Response:** `UpdateToDoTaskResponse`
+- **Mapper:** `UpdateToDoTaskMapper`
 
-Bu komut, varolan bir görevi güncellemek için kullanılır. `UpdateToDoTaskRequest` sınıfı, güncellenecek görevin kimliğini ve yeni bilgilerini içerir. İşlem sonucu ve güncellenen görevin bilgileri `UpdateToDoTaskResponse` sınıfıyla döndürülür. Komutun işlenmesi, `UpdateToDoTaskHandler` tarafından gerçekleştirilir.
+Bu komut, varolan bir görevi güncellemek için kullanılır. `UpdateToDoTaskRequest` sınıfı, güncellenecek görevin kimliğini ve yeni bilgilerini içerir. İşlem sonucu ve güncellenen görevin bilgileri `UpdateToDoTaskResponse` sınıfıyla döndürülür. Komutun işlenmesi, `UpdateToDoTaskHandler` tarafından gerçekleştirilir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `UpdateToDoTaskMapper` kullanılmıştır.
 
 #### Delete
 
 - **Handler:** `DeleteToDoTaskHandler`
 - **Request:** `DeleteToDoTaskRequest`
 - **Response:** `DeleteToDoTaskResponse`
+- **Mapper:** `DeleteToDoTaskMapper`
 
-Bu komut, varolan bir görevi silmek için kullanılır. `DeleteToDoTaskRequest` sınıfı, silinecek görevin kimliğini içerir. İşlem sonucu `DeleteToDoTaskResponse` sınıfıyla döndürülür. Komutun işlenmesi, `DeleteToDoTaskHandler` tarafından gerçekleştirilir.
+Bu komut, varolan bir görevi silmek için kullanılır. `DeleteToDoTaskRequest` sınıfı, silinecek görevin kimliğini içerir. İşlem sonucu `DeleteToDoTaskResponse` sınıfıyla döndürülür. Komutun işlenmesi, `DeleteToDoTaskHandler` tarafından gerçekleştirilir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `DeleteToDoTaskMapper` kullanılmıştır.
 
 #### Status
 
 - **Handler:** `StatusToDoTaskHandler`
 - **Request:** `StatusToDoTaskRequest`
 - **Response:** `StatusToDoTaskResponse`
+- **Mapper:** `StatusToDoTaskMapper`
 
-Bu komut, bir görevin durumunu güncellemek için kullanılır. `StatusToDoTaskRequest` sınıfı, güncellenecek görevin kimliğini ve yeni durumunu içerir. İşlem sonucu ve güncellenen görevin bilgileri `StatusToDoTaskResponse` sınıfıyla döndürülür. Komutun işlenmesi, `StatusToDoTaskHandler` tarafından gerçekleştirilir.
+Bu komut, bir görevin durumunu güncellemek için kullanılır. `StatusToDoTaskRequest` sınıfı, güncellenecek görevin kimliğini ve yeni durumunu içerir. İşlem sonucu ve güncellenen görevin bilgileri `StatusToDoTaskResponse` sınıfıyla döndürülür. Komutun işlenmesi, `StatusToDoTaskHandler` tarafından gerçekleştirilir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `StatusToDoTaskMapper` kullanılmıştır.
 
 ### Queries
 
@@ -427,25 +443,28 @@ ToDoTask üzerinde gerçekleştirilebilecek sorgular bu bölümde bulunmaktadır
 - **Handler:** `AllToDoTaskHandler`
 - **Request:** `AllToDoTaskRequest`
 - **Response:** `AllToDoTaskResponse`
+- **Mapper:** `AllToDoTaskMapper`
 
-Bu sorgu, tüm görevlerin listesini getirmek için kullanılır. MediatR yapısını kullanabilmek için boş bir `AllToDoTaskRequest` sınıfı oluşturulmuştur. İşlem sonucu ve görev listesi `AllToDoTaskResponse` sınıfıyla döndürülür. Komutun işlenmesi, `AllToDoTaskHandler` tarafından gerçekleştirilir.
+Bu sorgu, tüm görevlerin listesini getirmek için kullanılır. MediatR yapısını kullanabilmek için boş bir `AllToDoTaskRequest` sınıfı oluşturulmuştur. İşlem sonucu ve görev listesi `AllToDoTaskResponse` sınıfıyla döndürülür. Komutun işlenmesi, `AllToDoTaskHandler` tarafından gerçekleştirilir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `AllToDoTaskMapper` kullanılmıştır.
 
 #### Detail
 
 - **Handler:** `DetailToDoTaskHandler`
 - **Request:** `DetailToDoTaskRequest`
 - **Response:** `DetailToDoTaskResponse`
+- **Mapper:** `DetailToDoTaskMapper`
 
-Bu sorgu, belirli bir görevin bilgilerini getirmek için kullanılır. `DetailToDoTaskRequest` sınıfı, istenen görevin kimliğini içerir. İşlem sonucu ve görev bilgileri `DetailToDoTaskResponse` sınıfıyla döndürülür. Komutun işlenmesi, `DetailToDoTaskHandler` tarafından gerçekleştirilir.
+Bu sorgu, belirli bir görevin bilgilerini getirmek için kullanılır. `DetailToDoTaskRequest` sınıfı, istenen görevin kimliğini içerir. İşlem sonucu ve görev bilgileri `DetailToDoTaskResponse` sınıfıyla döndürülür. Komutun işlenmesi, `DetailToDoTaskHandler` tarafından gerçekleştirilir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `DetailToDoTaskMapper` kullanılmıştır.
 
 #### AssignedToDoTask
 
 - **Handler:** `AssignedToDoTaskHandler`
 - **Request:** `AssignedToDoTaskRequest`
 - **Response:** `AssignedToDoTaskResponse`
+- **Mapper:** `AssignedToDoTaskMapper`
 
-Bu sorgu, belirli bir kullanıcıya atanmış görevlerin listesini getirmek için kullanılır. MediatR yapısını kullanabilmek için boş bir `AllToDoTaskRequest` sınıfı oluşturulmuştur. İşlem sonucu ve görev listesi `AssignedToDoTaskResponse` sınıfıyla döndürülür. Komutun işlenmesi, `AssignedToDoTaskHandler` tarafından gerçekleştirilir.
-Handler tarafında sisteme giriş yapan kullanıcının kimliğini alır ve bu kullanıcıya atanmış görevleri getirir.
+Bu sorgu, belirli bir kullanıcıya atanmış görevlerin listesini getirmek için kullanılır. MediatR yapısını kullanabilmek için boş bir `AssignedToDoTaskRequest` sınıfı oluşturulmuştur. İşlem sonucu ve görev listesi `AssignedToDoTaskResponse` sınıfıyla döndürülür. Komutun işlenmesi, `AssignedToDoTaskHandler` tarafından gerçekleştirilir.
+Handler tarafında sisteme giriş yapan kullanıcının kimliğini alır ve bu kullanıcıya atanmış görevleri getirir. Aynı zamanda handler' daki kod karmaşasının önüne geçmek için `AssignedToDoTaskMapper` kullanılmıştır.
 
 
 ### Auth
@@ -467,6 +486,7 @@ Bu klasör, JWT token üretimiyle ilgili işlemleri gerçekleştiren sınıflar�
 
 - **MediatR (9.0.0)**
 - **Microsoft.AspNetCore.Http.Abstractions (2.1.1)**
+- **BCrypt.Next-Net (4.0.3)**
 
 ## API Katmanı
 
