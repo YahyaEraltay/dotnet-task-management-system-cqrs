@@ -9,6 +9,7 @@ using TaskManagementSystem.Application.Departments.Queries.All;
 using TaskManagementSystem.Application.Departments.Queries.Detail;
 
 namespace Task_Management_System_CQRS.Controllers;
+
 [Authorize]
 [Route("api/[controller]")]
 [ApiController]
@@ -30,21 +31,22 @@ public class DepartmentController : ControllerBase
     [HttpPut("[action]")]
     public async Task<ActionResult> Update([FromBody] UpdateDepartmentRequest request)
     {
-        var result = await _mediator.Send(request); 
+        var result = await _mediator.Send(request);
         return Ok(result);
     }
 
     [HttpDelete("[action]")]
     public async Task<ActionResult> Delete([FromBody] DeleteDepartmentRequest request)
     {
-        var result = await _mediator.Send(request); 
+        var result = await _mediator.Send(request);
         return Ok(result);
     }
 
-    [HttpGet("[action]")]
-    public async Task<ActionResult> Detail([FromBody] DetailDepartmentRequest request)
+
+    [HttpGet("[action]/{id}")]
+    public async Task<ActionResult> Detail(Guid id)
     {
-        var result = await _mediator.Send(request);
+        var result = await _mediator.Send(new DetailDepartmentRequest { Id = id });
         return Ok(result);
     }
 

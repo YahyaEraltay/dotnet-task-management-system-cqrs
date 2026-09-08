@@ -10,6 +10,7 @@ using TaskManagementSystem.Application.Users.Queries.Detail;
 using TaskManagementSystem.Infrastructure.Services;
 
 namespace Task_Management_System_CQRS.Controllers;
+
 [Authorize]
 [Route("api/[controller]")]
 [ApiController]
@@ -54,10 +55,10 @@ public class UserController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("[action]")]
-    public async Task<ActionResult> Detail([FromBody] DetailUserRequest request)
+    [HttpGet("[action]/{id}")]
+    public async Task<ActionResult> Detail(Guid id)
     {
-        var result = await _mediator.Send(request);
+        var result = await _mediator.Send(new DetailUserRequest { Id = id });
         return Ok(result);
     }
 

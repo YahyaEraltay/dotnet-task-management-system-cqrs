@@ -11,6 +11,7 @@ using TaskManagementSystem.Application.ToDoTasks.Queries.AssignedToDoTask;
 using TaskManagementSystem.Application.ToDoTasks.Queries.Detail;
 
 namespace Task_Management_System_CQRS.Controllers;
+
 [Authorize]
 [Route("api/[controller]")]
 [ApiController]
@@ -51,10 +52,10 @@ public class ToDoTaskController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("[action]")]
-    public async Task<ActionResult> Detail([FromBody] DetailToDoTaskRequest request)
+    [HttpGet("[action]/{id}")]
+    public async Task<ActionResult> Detail(Guid id)
     {
-        var result = await _mediator.Send(request);
+        var result = await _mediator.Send(new DetailToDoTaskRequest { Id = id });
         return Ok(result);
     }
 
