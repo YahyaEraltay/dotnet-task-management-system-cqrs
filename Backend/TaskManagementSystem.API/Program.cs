@@ -16,9 +16,9 @@ builder.Services.AddSingleton<IGenerateJwtToken>(new GenerateJwtToken(builder.Co
 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
-options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
-options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
 });
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -51,12 +51,12 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Creat
 
 builder.Services.AddCors(options =>
 {
-options.AddPolicy("AllowFrontend", policy =>
-{
-    policy.WithOrigins("http://localhost:5173")
-          .AllowAnyMethod()
-          .AllowAnyHeader();
-});
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
 });
 
 var app = builder.Build();
@@ -64,11 +64,11 @@ var app = builder.Build();
 app.UseCors("AllowFrontend");
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+// if (app.Environment.IsDevelopment())
+// {
 app.UseSwagger();
 app.UseSwaggerUI();
-}
+// }
 
 app.UseAuthentication();
 app.UseAuthorization();
