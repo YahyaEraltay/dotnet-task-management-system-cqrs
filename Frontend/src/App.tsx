@@ -1,7 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { LoginPage } from "./pages/LoginPage";
 import { TasksPage } from "./pages/TasksPage";
-import { AssignedTasksPage } from "./pages/AssignedTasksPage"; // YENİ
+import { DepartmentsPage } from "./pages/DepartmentsPage"; 
+import { AssignedTasksPage } from "./pages/AssignedTasksPage"; 
 import { ProtectedRoute } from "./auth/ProtectedRoute";
 import { AppLayout } from "./components/layouts/AppLayout";
 
@@ -26,7 +27,18 @@ function App() {
         element={
           <ProtectedRoute>
             <AppLayout>
-              <AssignedTasksPage /> {/* DEĞİŞTİ: artık gerçek sayfa */}
+              <AssignedTasksPage /> 
+            </AppLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/departments"
+        element={
+          <ProtectedRoute>
+            <AppLayout>
+              <DepartmentsPage /> 
             </AppLayout>
           </ProtectedRoute>
         }

@@ -78,10 +78,7 @@ export function AssignedTasksPage() {
 
   return (
     <Box>
-      <Typography
-        variant="h5"
-        sx={{ mb: 2, fontWeight: 700, letterSpacing: 0.2 }}
-      >
+      <Typography variant="h5" sx={{ mb: 2, fontWeight: 700, letterSpacing: 0.2 }}>
         Bana Atanan Görevler
       </Typography>
 

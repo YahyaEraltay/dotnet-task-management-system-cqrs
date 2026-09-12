@@ -153,6 +153,11 @@ export interface Department {
   departmentName: string;
 }
 
+export interface DeleteDepartmentResponse {
+  isDeleted: boolean;
+  message: string;
+}
+
 export interface CreateDepartmentRequest {
   departmentName: string;
 }

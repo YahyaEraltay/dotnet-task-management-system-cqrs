@@ -20,7 +20,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { toDoTaskApi } from "../api/toDoTaskApi";
 import type { ToDoTaskListItem, TaskStatus } from "../api/types";
-import { TaskFormDialog } from "../components/tasks/TaskFormDialog";
+import { TaskFormDialog } from "../components/dialogs/TaskFormDialog";
 
 const statusConfig: Record<TaskStatus, { label: string; color: "warning" | "success" | "error" }> = {
   pending: { label: "Beklemede", color: "warning" },
@@ -97,7 +97,9 @@ export function TasksPage() {
   return (
     <Box>
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
-        <Typography variant="h5">Görevler</Typography>
+        <Typography variant="h5" sx={{ mb: 2, fontWeight: 700, letterSpacing: 0.2 }}>
+        Görevler
+      </Typography>
         <Button variant="contained" onClick={handleCreateClick}>
           Yeni Görev
         </Button>

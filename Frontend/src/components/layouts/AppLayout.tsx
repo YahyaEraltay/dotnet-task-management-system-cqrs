@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
+import BusinessIcon from "@mui/icons-material/Business";
 import { useAuth } from "../../auth/AuthContext";
 
 const DRAWER_WIDTH = 240;
@@ -25,7 +26,7 @@ const DRAWER_WIDTH = 240;
 const navItems = [
   { label: "Tüm Görevler", path: "/", icon: <AssignmentIcon /> },
   { label: "Bana Atanan Görevler", path: "/assigned", icon: <AssignmentIndIcon /> },
-];
+  { label: "Departmanlar", path: "/departments", icon: <BusinessIcon  /> },];
 
 export function AppLayout({ children }: { children: ReactNode }) {
   const { user, logout } = useAuth();
