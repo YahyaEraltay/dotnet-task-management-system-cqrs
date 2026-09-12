@@ -55,13 +55,17 @@ export function DepartmentsPage() {
   }
 
   async function handleDeleteClick(department: Department) {
-    if (!window.confirm(`"${department.departmentName}" departmanını silmek istediğine emin misin?`)) {
-      return;
-    }
-      await departmentApi.delete(department.id);
-      setSnackbar("Departman silindi.");
-      loadDepartments();
+  if (!window.confirm(`"${department.departmentName}" departmanını silmek istediğine emin misin?`)) {
+    return;
   }
+  try {
+    await departmentApi.delete(department.id);
+    setSnackbar("Departman silindi.");
+    loadDepartments();
+  } catch {
+    setSnackbar("Departman silinemedi. Bu departmana bağlı kullanıcılar olabilir.");
+  }
+}
 
   if (isLoading) {
     return (
