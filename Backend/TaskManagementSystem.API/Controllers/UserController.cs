@@ -27,6 +27,7 @@ public class UserController : ControllerBase
         _currentUser = currentUser;
     }
 
+    [AllowAnonymous]
     [HttpPost("[action]")]
     public async Task<ActionResult> Create([FromBody] CreateUserRequest request)
     {
