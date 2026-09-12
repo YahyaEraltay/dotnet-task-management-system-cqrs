@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaskManagementSystem.Domain.Entites;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Queries.AssignedToDoTask;
+
 public class AssignedToDoTaskMapper
 {
     public static List<AssignedToDoTaskResponse> MapToResponse(List<ToDoTask> assignedTasks)
@@ -13,6 +14,7 @@ public class AssignedToDoTaskMapper
         return assignedTasks.Select(assignedTask => new AssignedToDoTaskResponse
         {
             Id = assignedTask.Id,
+            AssignedUserId = assignedTask.AssignedUserId,
             ToDoTaskDate = assignedTask.ToDoTaskDate.Date,
             CreatorUserName = assignedTask.CreatorUser.UserName,
             AssignedUserName = assignedTask.AssignedUser.UserName,

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaskManagementSystem.Domain.Entites;
 
 namespace TaskManagementSystem.Application.ToDoTasks.Queries.Detail;
+
 public class DetailToDoTaskMapper
 {
     public static DetailToDoTaskResponse MapToResponse(ToDoTask task)
@@ -14,6 +15,7 @@ public class DetailToDoTaskMapper
         {
             Id = task.Id,
             ToDoTaskName = task.ToDoTaskName,
+            AssignedUserId = task.AssignedUserId,
             AssignedDepartmentName = task.Department.DepartmentName,
             CreatorUserName = task.CreatorUser.UserName,
             AssignedUserName = task.AssignedUser.UserName,

@@ -6,10 +6,9 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-  token: string; // UserController.Login sadece { token } döndürüyor
+  token: string; 
 }
 
-// UserController.GetCurrentUser -> CurrentUserDTOs.ResponseModel
 export interface CurrentUser {
   id: string;
   departmentId: string;
@@ -23,7 +22,9 @@ export interface CurrentUser {
 // ---- ToDoTask ----
 export interface ToDoTaskListItem {
   id: string;
+  assignedUserId: string;
   toDoTaskName: string;
+  toDoTaskDescription: string;
   assignedUserName: string;
   assignedUserEmail: string;
   creatorUserName: string;
@@ -33,6 +34,7 @@ export interface ToDoTaskListItem {
 
 export interface ToDoTaskDetail {
   id: string;
+  assignedUserId: string;
   toDoTaskName: string;
   assignedUserName: string;
   assignedUserEmail: string;
@@ -43,7 +45,8 @@ export interface ToDoTaskDetail {
 
 export interface AssignedToDoTask {
   id: string;
-  toDoTaskDate: string; // DateTime -> ISO string
+  assignedUserId: string;
+  toDoTaskDate: string; 
   creatorUserName: string;
   assignedUserName: string;
   assignedDepartmentName: string;
